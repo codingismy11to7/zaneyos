@@ -123,6 +123,7 @@ in {
         "$modifier SHIFT,P,pseudo,"
         "$modifier SHIFT,I,togglesplit,"
         "$modifier,F,fullscreen,"
+        "$modifier ALT,F,workspaceopt, allfloat"
         "$modifier SHIFT,F,togglefloating,"
         "$modifier SHIFT,C,exit,"
         "$modifier SHIFT,left,movewindow,l"
