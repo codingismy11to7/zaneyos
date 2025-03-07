@@ -54,13 +54,7 @@
 
           config.default_cursor_style = "BlinkingUnderline"
           config.cursor_blink_rate = 500
-
-          if os.getenv("SSH_CONNECTION") then
-            config.term = "xterm-256color"
-          else
-            config.term = "wezterm"
-          end
-
+          config.term = "xterm-256color"
           config.max_fps = 144
           config.animation_fps = 30
 
