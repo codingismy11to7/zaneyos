@@ -24,6 +24,7 @@
     ./waybar.nix
     ./wlogout
     ./xdg.nix
+    ./yazi.nix
     ./zoxide.nix
     ./zsh.nix
     ./zshrc-personal.nix
