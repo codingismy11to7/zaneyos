@@ -1,5 +1,5 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.02**  
+- **Revision v1.03**  
 - **Date:** 15-Mar-2025
 
 ## Why did you create ZaneyOS ?
@@ -267,6 +267,13 @@ To change the hostname, there are several steps and you will have to reboot to m
 2.  Change the `TIMEOUT = ` value. Which is in seconds. 
 3.  Run the command alias `fr` to create a new generation.  
 4.  You will need to logout or reboot to make the change effective. 
+
+## How do I change my waybar? 
+
+- Currently ZaneyOS has two waybars 
+1. `waybar.nix` and `waybar-ddubs.nix`
+2. Edit the `variables.nix` for your host and change the waybar variable
+
 
 ## How do I update my version ZaneyOS ? 
 
