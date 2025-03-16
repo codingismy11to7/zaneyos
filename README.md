@@ -5,7 +5,7 @@
 ZaneyOS is a simple way of reproducing my configuration on any NixOS system.
 This includes the wallpaper, scripts, applications, config files, and more.
 
-<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/demo.png" />
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo.png" />
 
 **Inspiration for the Waybar config
 [here](https://github.com/justinlime/dotfiles).**
@@ -78,11 +78,11 @@ Please do yourself a favor and
 - Contact me on [Discord](https://discord.gg/2cRdBs8) as well, for a potentially
   faster response.
 
-### ⬇️ Install
+## ⬇️ Install
 
 Don't forget to checkout the [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq)
 
-#### 📜 Script:
+### 📜 Script:
 
 This is the easiest and recommended way of starting out. The script is not meant
 to allow you to change every option that you can in the flake or help you
@@ -92,15 +92,33 @@ content!
 
 Simply copy this and run it:
 
+![ZaneyOS First Install Command](img/first-install-cmd.jpg)
+
 ```
 nix-shell -p git curl
 ```
 
 Then:
 
+![ZaneyOS Install Script Command](img/install-script.jpg)
+
 ```
 sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)
 ```
+
+#### The install process will look something like this:
+
+![First Part Of Install](img/1.jpg)
+
+![Second Part Of Install](img/2.jpg)
+
+#### After the install completes your environment will probably look broken. Just reboot and you will see this as your login:
+
+![Display Manager](img/3.jpg)
+
+#### Then after login you should see a screen like this:
+
+![Desktop Example](img/4.jpg)
 
 #### 🦽 Manual:
 
