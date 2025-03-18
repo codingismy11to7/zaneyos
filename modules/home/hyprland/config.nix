@@ -83,6 +83,27 @@ in {
         };
       };
 
+       cursor = {
+        sync_gsettings_theme = true;
+        no_hardware_cursors = 2; # change to 1 if want to disable
+        enable_hyprcursor = false;
+        warp_on_change_workspace = 2;
+        no_warps = true;
+      };
+
+        render = {
+        explicit_sync = 1; # Change to 1 to disable
+        explicit_sync_kms = 1;
+        direct_scanout = 0;
+      };
+
+      master = {
+         new_status = "master";
+         new_on_top = 1;
+         mfact = 0.5;
+      };
+
+
       animations = {
         enabled = true;
         bezier = [
