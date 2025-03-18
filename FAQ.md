@@ -1,6 +1,6 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.03**  
-- **Date:** 16-Mar-2025
+- **Revision v1.04**  
+- **Date:** 18-Mar-2025
 
 ## Why did you create ZaneyOS ?
  
@@ -267,6 +267,19 @@ To change the hostname, there are several steps and you will have to reboot to m
 2.  Change the `TIMEOUT = ` value. Which is in seconds. 
 3.  Run the command alias `fr` to create a new generation.  
 4.  You will need to logout or reboot to make the change effective. 
+
+## How do I disable the spinning snowflake at startup? 
+
+1.  Edit the `~/zaneyos/modules/core/boot.nix` file.
+2.  Look for: 
+   ``` 
+   };
+    plymouth.enable = true;
+  };
+   ```
+ 3. Change it to `false`
+ 4. Run the command alias `fr` to create a new generation. 
+  
 
 ## How do I update my version ZaneyOS ? 
 
