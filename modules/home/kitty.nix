@@ -21,7 +21,7 @@
       tab_bar_style powerline
       enabled_layouts splits
       # Cursor trails text like neovide
-      kitty_trails 1
+      cursor_trail 1
       
       # Clipboard
       map ctrl+shift+v        paste_from_selection
