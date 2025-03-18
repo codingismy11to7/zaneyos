@@ -20,6 +20,7 @@
       tab_bar_margin_width 0.0
       tab_bar_style powerline
       enabled_layouts splits
+      cursor_trail 1
 
       # Clipboard
       map ctrl+shift+v        paste_from_selection
