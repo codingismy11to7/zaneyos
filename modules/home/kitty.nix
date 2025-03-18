@@ -20,7 +20,9 @@
       tab_bar_margin_width 0.0
       tab_bar_style powerline
       enabled_layouts splits
-
+      # Cursor trails text like neovide
+      kitty_trails 1
+      
       # Clipboard
       map ctrl+shift+v        paste_from_selection
       map shift+insert        paste_from_selection
