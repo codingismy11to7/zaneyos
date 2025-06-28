@@ -4,18 +4,17 @@
 
 ** Updated: June 27th, 2025 **
 
-- Updated `install-zaneyos.sh` with nicer tui, error logging and auto GPU
-  detection
-- Changed `nixos-rebuild switch` to `nixos-rebuild boot` SDDM startup interrupts
-  rebuild process
+- Updated flake
+- Updated `install-zaneyos.sh` with nicer tui, error logging
+- Added auto gpu detection to install script
+- Changed `nixos-rebuild switch` to `nixos-rebuild boot`
+- The change was needed becasue SDDM startup interrupts rebuild process
 - Added `gemini.nix` Creates an `npm` script to install `gemini-cli`
 - Added `evil-helix` with language support as option
 - Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
 - Thanks to `delciak` for providing the NIX code for `vscode.nix`
 - Added variable 'enableVscode' in the `hosts/default/variables.nix`
-- Updated flake
-- Added control variables for `alacritty` `ghostty` `tmux` `wezterm` in
-  `variables.nix`
+- Added variables for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
 - Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
 - Added variable `displayManager` in `hosts/hostname/variables.nix`
 - Set to `sddm` will enable SDDM login manager themed by stylix
