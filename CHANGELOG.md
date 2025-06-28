@@ -4,6 +4,10 @@
 
 ** Updated: June 27th, 2025 **
 
+- Updated `install-zaneyos.sh` with nicer tui, error logging and auto GPU
+  detection
+- Changed `nixos-rebuild switch` to `nixos-rebuild boot` SDDM startup interrupts
+  rebuild process
 - Added `gemini.nix` Creates an `npm` script to install `gemini-cli`
 - Added `evil-helix` with language support as option
 - Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
