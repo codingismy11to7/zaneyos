@@ -22,6 +22,7 @@ Commands:
   help      - Show this help message.
 ```
 
+- Removed `doas.nix` doas is not fully functional in NixOS issues with PAM
 - Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
 - Improved `install-zaneyos.sh` script Detects GPU and better presentation
 - Added `gemini.nix` Creates an `npm` script to install `gemini-cli`
