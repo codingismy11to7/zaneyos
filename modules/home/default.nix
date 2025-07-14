@@ -48,6 +48,7 @@ in {
       ./wlogout
       ./xdg.nix
       ./yazi
+      ./zen-browser.nix
       ./zoxide.nix
       ./zsh
     ]
