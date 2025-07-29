@@ -29,76 +29,39 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "zaneyos-oem";
-    profile = "vm";
     username = "dwilliams";
-  in {
-    nixosConfigurations = {
-      amd = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/amd
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
+
+    # Host configurations - define each host and its profile here
+    hosts = {
+      zaneyos-oem = {
+        profile = "vm";
       };
-      nvidia = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/nvidia
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
+      default = {
+        profile = "intel";
       };
-      nvidia-laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/nvidia-laptop
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
+      nixstation = {
+        profile = "nvidia-laptop";
       };
-      intel = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/intel
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/vm
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
+      # example of adding an additional host
+      # my-laptop = {
+      #   profile = "nvidia-laptop";
+      # };
     };
+
+    mkHost = hostName: hostConfig: nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs;
+        inherit username;
+        host = hostName;
+        profile = hostConfig.profile;
+      };
+      modules = [
+        ./profiles/${hostConfig.profile}
+        nix-flatpak.nixosModules.nix-flatpak
+      ];
+    };
+  in {
+    nixosConfigurations = builtins.mapAttrs mkHost hosts;
   };
 }
