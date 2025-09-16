@@ -858,14 +858,87 @@ else
     print_warning "No backup found for modules/core/packages.nix - using defaults"
 fi
 
+# Function to detect and update flake.nix with user's actual configuration
+update_flake_configuration() {
+    print_header "Updating Flake Configuration"
+    
+    # Detect current username (prefer from old config, fallback to current user)
+    local detected_username
+    if [ -n "${HOST_DIRS[0]}" ] && [ -f "$BACKUP_DIR/zaneyos/hosts/${HOST_DIRS[0]}/variables.nix" ]; then
+        detected_username=$(grep 'gitUsername' "$BACKUP_DIR/zaneyos/hosts/${HOST_DIRS[0]}/variables.nix" | sed 's/.*= *"\([^"]*\)".*/\1/' | head -1)
+    fi
+    detected_username=${detected_username:-$(whoami)}
+    
+    # Detect current hostname (prefer from system, fallback to first host directory)
+    local detected_hostname=$(hostname)
+    if [[ "$detected_hostname" == "nixos" ]] || [[ -z "$detected_hostname" ]]; then
+        detected_hostname=${HOST_DIRS[0]}
+    fi
+    
+    # Detect GPU profile from hardware or ask user
+    local detected_profile="vm"  # default fallback
+    print_info "Detecting GPU profile..."
+    
+    # Check for NVIDIA
+    if lspci | grep -i nvidia >/dev/null 2>&1; then
+        # Check if it's a laptop/mobile GPU
+        if lspci | grep -i nvidia | grep -i "mobile\|laptop" >/dev/null 2>&1; then
+            detected_profile="nvidia-laptop"
+        else
+            detected_profile="nvidia"
+        fi
+    # Check for AMD
+    elif lspci | grep -i amd | grep -i "VGA\|Display" >/dev/null 2>&1; then
+        detected_profile="amd"  
+    # Check for Intel
+    elif lspci | grep -i intel | grep -i "VGA\|Display" >/dev/null 2>&1; then
+        detected_profile="intel"
+    # Check if we're in a VM environment
+    elif systemd-detect-virt >/dev/null 2>&1; then
+        detected_profile="vm"
+        print_info "Virtual machine environment detected"
+    fi
+    
+    print_info "Detected configuration:"
+    print_info "  Username: $detected_username"
+    print_info "  Hostname: $detected_hostname" 
+    print_info "  GPU Profile: $detected_profile"
+    
+    # Confirm with user before updating
+    echo ""
+    prompt_yes "Update flake.nix with detected configuration? (Y/N):"
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        print_warning "Skipping flake.nix update - using current values"
+        return 0
+    fi
+    
+    # Update flake.nix with detected values
+    print_info "Updating flake.nix..."
+    sed -i "s/username = \"[^\"]*\";/username = \"$detected_username\";/" ./flake.nix
+    sed -i "s/host = \"[^\"]*\";/host = \"$detected_hostname\";/" ./flake.nix  
+    sed -i "s/profile = \"[^\"]*\";/profile = \"$detected_profile\";/" ./flake.nix
+    
+    print_success "✓ Updated flake.nix with detected configuration"
+    
+    # Show what was updated
+    print_info "Updated flake.nix contents:"
+    echo -e "${CYAN}$(grep -A 3 -E 'host =|username =|profile =' ./flake.nix)${NC}"
+    echo ""
+}
+
+# Update flake.nix with user's actual configuration
+update_flake_configuration
+
 print_header "Building ZaneyOS 2.4"
 
 print_warning "Using 'boot' option to avoid SDDM display issues"
 print_info "This is safer than 'switch' when changing display managers"
 
-# Get the profile from flake.nix
-PROFILE=$(grep 'profile = ' ./flake.nix | sed 's/.*= *"\([^"]*\)".*/\1/')
-print_info "Detected profile: $PROFILE"
+# Get the GPU profile from flake.nix (this determines which nixosConfiguration to use)
+# The actual build target is the GPU profile (amd, nvidia, nvidia-laptop, intel, vm)
+# not the internal 'profile' variable which is just passed to modules
+GPU_PROFILE=$(grep 'profile = ' ./flake.nix | sed 's/.*= *"\([^"]*\)".*/\1/')
+print_info "Using GPU profile for build: $GPU_PROFILE"
 
 # Build the system
 echo ""
@@ -882,12 +955,12 @@ BUILD_SUCCESS=false
 
 if [ "$USE_NH" = true ]; then
     print_info "Using NH for build..."
-    if nh os boot ~/zaneyos --hostname "$PROFILE"; then
+    if nh os boot ~/zaneyos --hostname "$GPU_PROFILE"; then
         BUILD_SUCCESS=true
     fi
 else
     print_info "Using nixos-rebuild for build..."
-    if sudo nixos-rebuild boot --flake ~/zaneyos/#"$PROFILE"; then
+    if sudo nixos-rebuild boot --flake ~/zaneyos/#"$GPU_PROFILE"; then
         BUILD_SUCCESS=true
     fi
 fi
