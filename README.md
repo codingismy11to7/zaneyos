@@ -24,8 +24,11 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 ### Cheatsheets and Guides
 
-- Nix Beginner Guide: [English](cheatsheets/nix-beginner-guide.md) | [Español](cheatsheets/nix-beginner-guide.es.md)
-- Hyprland Customization Guide: [English](cheatsheets/hyprland-customization-guide.md) | [Español](cheatsheets/hyprland-customization-guide.es.md)
+- Nix Beginner Guide: [English](cheatsheets/nix-beginner-guide.md) |
+  [Español](cheatsheets/nix-beginner-guide.es.md)
+- Hyprland Customization Guide:
+  [English](cheatsheets/hyprland-customization-guide.md) |
+  [Español](cheatsheets/hyprland-customization-guide.es.md)
 
 ### Please note:
 
@@ -161,22 +164,25 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 ## Installation:
 
-> **⚠️ IMPORTANT:** These installation methods are for **NEW INSTALLATIONS ONLY**.
-> If you already have ZaneyOS installed and want to upgrade to v2.4, see the [Upgrade Instructions](#upgrading-from-zaneyos-23-to-24) below.
+> **⚠️ IMPORTANT:** These installation methods are for **NEW INSTALLATIONS
+> ONLY**. If you already have ZaneyOS installed and want to upgrade to v2.4, see
+> the [Upgrade Instructions](#upgrading-from-zaneyos-23-to-24) below. Note: Do
+> NOT use upgrade script at this time. It will be restored later.
 
 <details>
 <summary><strong> ⬇️ Install with script (NEW INSTALLATIONS ONLY)</strong></summary>
 
 ### 📜 Script:
 
-This is the easiest and recommended way of starting out for **new installations**. The script is not meant
-to allow you to change every option that you can in the flake or help you
-install extra packages. It is simply here so you can get my configuration
-installed with as little chances of breakages and then fiddle to your hearts
-content!
+This is the easiest and recommended way of starting out for **new
+installations**. The script is not meant to allow you to change every option
+that you can in the flake or help you install extra packages. It is simply here
+so you can get my configuration installed with as little chances of breakages
+and then fiddle to your hearts content!
 
-> **⚠️ WARNING:** This script will completely replace any existing ~/zaneyos directory.
-> Do NOT use this if you already have ZaneyOS installed and configured.
+> **⚠️ WARNING:** This script will completely replace any existing ~/zaneyos
+> directory. Do NOT use this if you already have ZaneyOS installed and
+> configured.
 
 Simply copy this and run it:
 
@@ -261,13 +267,15 @@ called `fr` that will rebuild the flake and you do not have to be in the
 
 </details>
 
-## Upgrading from ZaneyOS 2.3 to 2.4
+## Upgrading from ZaneyOS 2.3 to 2.4 -- Do NOT use the upgrade script at this timel.
 
-> **🚀 IMPORTANT:** If you already have ZaneyOS 2.3 installed, use the automated upgrade system instead of reinstalling!
+> **🚀 IMPORTANT:** If you already have ZaneyOS 2.3 installed, use the automated
+> upgrade system instead of reinstalling!
 
 ### ✅ Automated Upgrade Process:
 
-ZaneyOS includes a comprehensive upgrade system that safely migrates your configuration:
+ZaneyOS includes a comprehensive upgrade system that safely migrates your
+configuration:
 
 ```bash
 cd ~/zaneyos
@@ -285,7 +293,7 @@ cd ~/zaneyos
 ### 📋 What Gets Automatically Migrated:
 
 - ✅ All host configurations and variables
-- ✅ Hardware configurations  
+- ✅ Hardware configurations
 - ✅ Custom packages (both global and per-host)
 - ✅ Themes, wallpapers, and monitor settings
 - ✅ Git configuration and personal settings
@@ -302,7 +310,8 @@ cd ~/zaneyos
 For detailed upgrade instructions, troubleshooting, and safety information:
 
 - **Read**: `UPGRADE-2.3-to-2.4.md` in your zaneyos directory
-- **Analysis Report**: Saved automatically as `~/zaneyos-upgrade-analysis-TIMESTAMP.txt`
+- **Analysis Report**: Saved automatically as
+  `~/zaneyos-upgrade-analysis-TIMESTAMP.txt`
 
 ### 🔄 Easy Revert:
 
