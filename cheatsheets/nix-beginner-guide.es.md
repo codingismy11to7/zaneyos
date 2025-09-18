@@ -57,7 +57,7 @@ Preferido (específico de ZaneyOS):
   - Nota: el alias `fr` está obsoleto.
 
 Método manual de respaldo (funciona en cualquier instalación):
-- Desde la raíz del repo, reemplaza PROFILE por tu perfil (intel, nvidia, nvidia-laptop, vm):
+- Desde la raíz del repo, reemplaza PROFILE por tu perfil (intel, nvidia, nvidia-laptop, amd-hybrid, vm):
   - `sudo nixos-rebuild switch --flake .#PROFILE`
 
 Consejos

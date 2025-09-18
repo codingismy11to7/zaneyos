@@ -34,7 +34,7 @@ zcli advanced options (for rebuild/update)
 - --no-nom      disable nix-output-monitor
 
 Profiles and when to use them
-- amd, intel, nvidia, nvidia-laptop (hybrid), vm
+- amd, intel, nvidia, nvidia-laptop (intel+NVIDIA hybrid), amd-hybrid (AMD+NVIDIA hybrid), vm
 - Choose with the <profile> argument in nh/nixos-rebuild commands (e.g., .#vm)
 
 High-level architecture
@@ -49,7 +49,7 @@ High-level architecture
     - ../../modules/drivers
     - ../../modules/core
   - Flips toggles: drivers.*.enable and vm.guest-services.enable
-  - Hybrid laptops: profiles/nvidia-laptop pulls intel/nvidia Bus IDs from the host’s variables.nix and wires nvidia-prime
+  - Hybrid laptops: profiles/nvidia-laptop pulls intel/nvidia Bus IDs from the host’s variables.nix and wires nvidia-prime; profiles/amd-hybrid pulls amdgpu/nvidia Bus IDs and wires the AMD+NVIDIA offload module
 - hosts/<hostname>/
   - default.nix imports hardware.nix and host-packages.nix
   - variables.nix is the control panel for UX + feature toggles:
@@ -64,7 +64,7 @@ High-level architecture
   - nh.nix enables nh, configures GC, and pins programs.nh.flake = /home/${username}/zaneyos
 - modules/drivers
   - Aggregates AMD, Intel, NVIDIA, NVIDIA Prime, and VM guest services
-  - nvidia-prime-drivers.nix exposes options.drivers.nvidia-prime.{enable,intelBusID,nvidiaBusID} consumed by the nvidia-laptop profile
+  - nvidia-prime-drivers.nix exposes options.drivers.nvidia-prime.{enable,intelBusID,nvidiaBusID} consumed by the nvidia-laptop profile; nvidia-amd-hybrid.nix exposes options.drivers.nvidia-amd-hybrid.{enable,amdgpuBusID,nvidiaBusID} consumed by the amd-hybrid profile
   - vm-guest-services.nix enables qemu-guest, spice agents when vm.guest-services.enable = true
 - modules/home
   - default.nix composes the user environment (Hyprland, Waybar via waybarChoice, Rofi, Yazi, Kitty/WezTerm/Ghostty/Alacritty toggles, Zsh/Bash config, Git, NVF/Neovim, OBS, swaync, scripts, Stylix, optional Doom Emacs/VSCodium/Helix)

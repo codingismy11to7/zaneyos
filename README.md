@@ -254,7 +254,7 @@ nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/har
 ```
 
 7. Run this to enable flakes and install the flake replacing hostname with
-   profile. I.e. `intel`, `nvidia` `nvidia-laptop`, or `vm`
+   profile. I.e. `intel`, `nvidia`, `nvidia-laptop`, `amd-hybrid`, or `vm`
 
 ```
 NIX_CONFIG="experimental-features = nix-command flakes" 

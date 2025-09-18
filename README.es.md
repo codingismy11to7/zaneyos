@@ -238,7 +238,7 @@ git add .
 nixos-generate-config --show-hardware-config > hosts/<nombre-del-host>/hardware.nix
 ```
 
-7. Ejecuta esto para habilitar flakes e instalar, reemplazando hostname por el perfil (p. ej. `intel`, `nvidia`, `nvidia-laptop` o `vm`):
+7. Ejecuta esto para habilitar flakes e instalar, reemplazando hostname por el perfil (p. ej. `intel`, `nvidia`, `nvidia-laptop`, `amd-hybrid` o `vm`):
 
 ```
 NIX_CONFIG="experimental-features = nix-command flakes" 

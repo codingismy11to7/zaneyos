@@ -57,7 +57,7 @@ Preferred (ZaneyOS-specific):
   - Note: The `fr` alias is deprecated.
 
 Manual backup method (works anywhere):
-- From the repo root, replace PROFILE with your profile (intel, nvidia, nvidia-laptop, vm):
+- From the repo root, replace PROFILE with your profile (intel, nvidia, nvidia-laptop, amd-hybrid, vm):
   - `sudo nixos-rebuild switch --flake .#PROFILE`
 
 Tips

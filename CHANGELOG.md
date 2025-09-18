@@ -7,6 +7,17 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: September 18th, 2025**
+
+- 🧪 EXPERIMENTAL: AMD+NVIDIA hybrid support (amd-hybrid)
+  - New driver module: `modules/drivers/nvidia-amd-hybrid.nix` (options: `enable`, `amdgpuBusID`, `nvidiaBusID`)
+  - Kernel pin: `boot.kernelPackages` forced to `linuxPackages_6_12` when enabled (required for RTX 50xx open kernel module)
+  - New profile: `profiles/amd-hybrid/default.nix` (wires `amdgpuID`/`nvidiaID` from `hosts/<host>/variables.nix`)
+  - zcli detection updated to recognize `amd-hybrid`; `install-zaneyos.sh` prompts include `amd-hybrid`
+  - Added `amdgpuID` to `hosts/*/variables.nix`
+  - Docs updated (`README`, `WARP.md`, cheatsheets)
+  - Caution: Can't fully test at this time. Please verify your Bus IDs via `lspci` and use `zcli rebuild-boot` for safer activation
+
 #### 📅 **Updated: September 9th, 2025**
 
 - 🛡️ Installer: Added defensive hostname validation and sanitization

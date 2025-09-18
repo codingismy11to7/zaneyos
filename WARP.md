@@ -36,7 +36,7 @@ Common commands
   - ./upgrade-2.3-to-2.4.sh --revert
 
 Notes on profiles and hosts
-- Profiles represent hardware targets: amd, intel, nvidia, nvidia-laptop (hybrid), vm.
+- Profiles represent hardware targets: amd, intel, nvidia, nvidia-laptop (intel+NVIDIA hybrid), amd-hybrid (AMD+NVIDIA hybrid), vm.
 - Use the profile in flake targets like .#vm or .#nvidia, or via nh’s --hostname.
 - Host-specific settings live under hosts/<hostname>/; variables.nix holds UX and feature toggles.
 
@@ -47,7 +47,7 @@ High-level architecture (big picture)
   - Each configuration imports profiles/<profile>.
 - profiles/<profile>/default.nix
   - Imports host and stacks: ../../hosts/${host}, ../../modules/drivers, ../../modules/core.
-  - Toggles drivers and VM guest services per profile; the nvidia-laptop profile consumes Bus IDs from host variables.
+  - Toggles drivers and VM guest services per profile; the nvidia-laptop and amd-hybrid profiles consume Bus IDs from host variables.
 - hosts/<hostname>/
   - default.nix imports hardware.nix and host-packages.nix.
   - variables.nix is the primary control surface (display manager, terminal/browser defaults, waybarChoice, stylix image, 24h clock, Thunar/printing/NFS flags, intel/nvidia Bus IDs, etc.).
@@ -56,7 +56,7 @@ High-level architecture (big picture)
   - nh.nix enables nh and pins programs.nh.flake to ~/zaneyos.
   - user.nix integrates Home Manager and creates users.${username}, passing { inputs, username, host, profile } to the home layer.
 - modules/drivers
-  - AMD, Intel, NVIDIA, NVIDIA Prime, and VM guest services; nvidia-prime options (enable, intelBusID, nvidiaBusID) are consumed by the nvidia-laptop profile.
+  - AMD, Intel, NVIDIA, NVIDIA Prime, NVIDIA AMD-Hybrid, and VM guest services; nvidia-prime options (enable, intelBusID, nvidiaBusID) are consumed by the nvidia-laptop profile; nvidia-amd-hybrid options (enable, amdgpuBusID, nvidiaBusID) are consumed by the amd-hybrid profile.
 - modules/home
   - Composes the user environment: Hyprland, Waybar (via waybarChoice), Rofi, Yazi, terminals (Kitty/WezTerm/Ghostty/Alacritty toggles), Zsh/Bash config, Git, NVF/Neovim, OBS, swaync, scripts, Stylix, optional Doom Emacs/VSCodium/Helix.
   - scripts/default.nix installs zcli; zcli wraps rebuild/update/boot, cleanup, diagnostics, host management, and Doom lifecycle.

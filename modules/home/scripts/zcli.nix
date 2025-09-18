@@ -103,7 +103,7 @@ pkgs.writeShellScriptBin "zcli" ''
   # verify_hostname()     - Validates current hostname against flake.nix host variable
   #                        Exits with error if mismatch or missing host directory
   # detect_gpu_profile()  - Parses lspci output to identify GPU hardware
-  #                        Returns: nvidia/nvidia-laptop/amd/intel/vm/empty
+  #                        Returns: nvidia/nvidia-laptop/amd-hybrid/amd/intel/vm/empty
   # handle_backups()      - Removes files listed in BACKUP_FILES array from $HOME
   # parse_nh_args()      - Parses command-line arguments for nh operations
   # print_help()         - Outputs command usage and available operations
@@ -250,6 +250,8 @@ pkgs.writeShellScriptBin "zcli" ''
           detected_profile="vm"
         elif "$has_nvidia" && "$has_intel"; then
           detected_profile="nvidia-laptop"
+        elif "$has_nvidia" && "$has_amd"; then
+          detected_profile="amd-hybrid"
         elif "$has_nvidia"; then
           detected_profile="nvidia"
         elif "$has_amd"; then
@@ -514,7 +516,7 @@ pkgs.writeShellScriptBin "zcli" ''
       ${pkgs.coreutils}/bin/cp -r "$HOME/$PROJECT/hosts/default" "$HOME/$PROJECT/hosts/$hostname"
 
       detected_profile=""
-      if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-hybrid|vm)$ ]]; then
+      if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-hybrid|vm)$ ]]; then
         detected_profile="$profile_arg"
       else
         echo "Detecting GPU profile..."
@@ -523,9 +525,9 @@ pkgs.writeShellScriptBin "zcli" ''
         read -p "Is this correct? (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Nn]$ ]]; then
-          read -p "Enter the correct profile (intel, amd, nvidia, nvidia-hybrid, vm): " new_profile
-          while [[ ! "$new_profile" =~ ^(intel|amd|nvidia|nvidia-hybrid|vm)$ ]]; do
-            echo "Invalid profile. Please enter one of the following: intel, amd, nvidia, nvidia-hybrid, vm"
+          read -p "Enter the correct profile (intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm): " new_profile
+          while [[ ! "$new_profile" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-hybrid|vm)$ ]]; do
+            echo "Invalid profile. Please enter one of the following: intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm"
             read -p "Enter the correct profile: " new_profile
           done
           detected_profile=$new_profile
