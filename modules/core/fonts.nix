@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   fonts = {
     packages = with pkgs; [
       dejavu_fonts
@@ -22,7 +23,7 @@
       powerline-fonts
       roboto
       roboto-mono
-      #symbola
+      symbola
       terminus_font
     ];
   };
