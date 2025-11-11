@@ -10,15 +10,15 @@
   displayManager = "sddm";
 
   # Emable/disable bundled applications
-  tmuxEnable = false;
-  alacrittyEnable = false;
-  weztermEnable = false;
-  ghosttyEnable = false;
-  vscodeEnable = false;
+  tmuxEnable = true;
+  alacrittyEnable = true;
+  weztermEnable = true;
+  ghosttyEnable = true;
+  vscodeEnable = true;
   # Note: This is evil-helix with VIM keybindings by default
-  helixEnable = false;
+  helixEnable = true;
   #To install: Enable here, zcli rebuild, then run zcli doom install
-  doomEmacsEnable = false;
+  doomEmacsEnable = true;
 
   # Hyprland Settings
   # Examples:
@@ -72,9 +72,9 @@
   # This will set your color palette
   # Default background
   # Add new images to ~/zaneyos/wallpapers
-  stylixImage = ../../wallpapers/mountainscapedark.jpg;
+  #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
-  #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
+  stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
   #stylixImage = ../../wallpapers/nix-wallpapers-strips-logo.jpg;
@@ -84,7 +84,7 @@
   #  Available Options:
   #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
   # Throwback to ZaneyOS v1.0
   #waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
@@ -92,7 +92,7 @@
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
   # DWM styled waybars from Matt at TheLinuxCast
   #waybarChoice = ../../modules/home/waybar/waybar-dwm.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-dwm-2.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-dwm-2.nix;
 
   # Set Animation style
   # Available options are:
@@ -101,8 +101,8 @@
   # animations-dynamic.nix (ml4w project)
   # animations-moving.nix (ml4w project)
   #animChoice = ../../modules/home/hyprland/animations-def.nix;
-  #animChoice = ../../modules/home/hyprland/animations-end4.nix;
-  animChoice = ../../modules/home/hyprland/animations-dynamic.nix;
+  animChoice = ../../modules/home/hyprland/animations-end4.nix;
+  #animChoice = ../../modules/home/hyprland/animations-dynamic.nix;
   #animChoice = ../../modules/home/hyprland/animations-moving.nix;
 
   # Set network hostId if required (needed for zfs)
