@@ -30,7 +30,11 @@
 
     ";
 
-  # Waybar Settings
+  # Bar/Shell Settings
+  # Choose between noctalia or waybar
+  barChoice = "noctalia";
+
+  # Waybar Settings (used when barChoice = "waybar")
   clock24h = false;
 
   # Program Options

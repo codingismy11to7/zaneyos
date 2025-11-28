@@ -1,7 +1,9 @@
 { host, ... }:
 let
-  inherit (import ../../hosts/${host}/variables.nix)
+  vars = import ../../hosts/${host}/variables.nix;
+  inherit (vars)
     alacrittyEnable
+    barChoice
     ghosttyEnable
     tmuxEnable
     waybarChoice
@@ -10,6 +12,8 @@ let
     helixEnable
     doomEmacsEnable
     ;
+  # Select bar module based on barChoice
+  barModule = if barChoice == "noctalia" then ./noctalia.nix else waybarChoice;
 in
 {
   imports = [
@@ -46,7 +50,7 @@ in
     ./swaync.nix
     ./tealdeer.nix
     ./virtmanager.nix
-    waybarChoice
+    barModule
     ./wlogout
     ./xdg.nix
     ./yazi
