@@ -1,18 +1,34 @@
 { host, ... }:
 let
-  inherit
-    (import ../../../hosts/${host}/variables.nix)
+  vars = import ../../../hosts/${host}/variables.nix;
+  inherit (vars)
+    barChoice
     browser
     terminal
     ;
+  # Noctalia-specific bindings (only included when barChoice == "noctalia")
+  noctaliaBind = if barChoice == "noctalia" then [
+    "$modifier,D,exec,qs -c noctalia-shell ipc call launcher toggle"
+    "$modifier SHIFT,Return,exec,qs -c noctalia-shell ipc call launcher toggle"
+    "$modifier,M,exec,qs -c noctalia-shell ipc call notifications toggle"
+    "$modifier,V,exec,qs -c noctalia-shell ipc call launcher clipboard"
+    "$modifier ALT,P,exec,qs -c noctalia-shell ipc call settings toggle"
+    "$modifier SHIFT,comma,exec,qs -c noctalia-shell ipc call settings toggle"
+    "$modifier ALT,L,exec,qs -c noctalia-shell ipc call sessionMenu lockAndSuspend"
+    "$modifier SHIFT,Y,exec,qs -c noctalia-shell ipc call wallpaper toggle"
+    "$modifier,X,exec,dms qs -c noctalia-shell ipc call sessionMenu toggle"
+    "$modifier,C,exec,qs -c noctalia-shell ipc call controlCenter toggle"
+    "$modifier CTRL,R,exec,qs -c noctalia-shell ipc call screenRecorder toggle"
+  ] else [];
 in
 {
   wayland.windowManager.hyprland.settings = {
-    bind = [
+    bind = noctaliaBind ++ [
       "$modifier,Return,exec,${terminal}"
       "$modifier,K,exec,list-keybinds"
-      "$modifier ,R,exec,rofi-launcher"
+      "$modifier,D,exec,rofi-launcher"
       "$modifier SHIFT,Return,exec,rofi-launcher"
+      "$modifier SHIFT,D,exec,discord"
       "$modifier SHIFT,W,exec,web-search"
       "$modifier ALT,W,exec,wallsetter"
       "$modifier SHIFT,N,exec,swaync-client -rs"
@@ -23,13 +39,12 @@ in
       "$modifier CTRL,S,exec,hyprshot -m output -o $HOME/Pictures/ScreenShots"
       "$modifier SHIFT,S,exec,hyprshot -m window -o $HOME/Pictures/ScreenShots"
       "$modifier ALT,S,exec,hyprshot -m region -o $HOME/Pictures/ScreenShots"
-      "$modifier,D,exec,discord"
       "$modifier,O,exec,obs"
-      "$modifier,C,exec,hyprpicker -a"
+      "$modifier ALT,C,exec,hyprpicker -a"
       "$modifier,G,exec,gimp"
       "$modifier shift,T,exec,pypr toggle term"
       "$modifier,T,exec, thunar"
-      "$modifier,M,exec,pavucontrol"
+      "$modifier ALT,M,exec,pavucontrol"
       "$modifier,Q,killactive,"
       "$modifier,P,pseudo,"
       "$modifier,V,exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
