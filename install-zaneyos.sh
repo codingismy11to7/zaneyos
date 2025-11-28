@@ -219,7 +219,7 @@ else
 fi
 
 print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git --depth=1  ~/zaneyos
+git clone https://gitlab.com/zaney/zaneyos.git -b migrate-25.11 --depth=1  ~/zaneyos
 cd ~/zaneyos || exit 1
 
 print_header "Git Configuration"
