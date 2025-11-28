@@ -54,8 +54,9 @@ High-level architecture (big picture)
 - hosts/<hostname>/
   - default.nix imports hardware.nix and host-packages.nix.
   - variables.nix is the primary control surface (display manager, terminal/browser defaults, waybarChoice, stylix image, 24h clock, Thunar/printing/NFS flags, intel/nvidia Bus IDs, etc.).
-- modules/core
-  - Composes NixOS modules: boot, flatpak, fonts, hardware, network, nfs, nh, packages, printing, display manager (greetd/sddm), security, services (PipeWire/SSH/Bluetooth/fstrim; smartd conditional), steam, stylix, syncthing, system (nix settings, locales, env), thunar, user (Home Manager), virtualization, xserver.
+|- modules/core
+  - Composes NixOS modules: boot, flatpak, fonts, hardware, network, nfs, nh, quickshell, packages, printing, display manager (greetd/sddm), security, services (PipeWire/SSH/Bluetooth/fstrim; smartd conditional), steam, stylix, syncthing, system (nix settings, locales, env), thunar, user (Home Manager), virtualization, xserver.
+  - quickshell.nix installs quickshell with Qt6 dependencies and required environment variables (needed for noctalia-shell).
   - nh.nix enables nh and pins programs.nh.flake to ~/zaneyos.
   - user.nix integrates Home Manager and creates users.${username}, passing { inputs, username, host, profile } to the home layer.
 - modules/drivers
