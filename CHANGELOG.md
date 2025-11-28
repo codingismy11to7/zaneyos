@@ -5,26 +5,56 @@
 
 ---
 
-# 🚀 **Current Release - ZaneyOS v2.4**
+# 🚀 **Current Release - ZaneyOS v2.5**
+
+#### 📅 **Updated: November 28th, 2025**
+
+- Set ZaneyOS to NixOS v25.11 stable branch
+- Moved to `nixvim` for NeoVIM configuration
+  - Works better
+  - Fewer issues vs. `nvf.nix`
+  - `nvf.nix` still included, but commented out
+- Added `alacritty.nix` from ddubsOS
+- Added `tmux.nix` from ddubosOS (courtesy of Tony,btw)
+- Fixed gestures errors from Hyprland Upgrade
+- Added Noctalia Shell as default
+- Added Additional waybars from dddubsOS
+- Added Addtional Animations from ddubsOS
+- Switched to `bindd` for friendlier binding descriptions
+- Updated keybind parser to use these descriptions
+- Keybinds are now conditional on waybar or noctalia shell
+- Updated `README.md` and `README.es.md`
+  - New screenshots
+  - Updated Keybindings
+  - Moved screenshots into a markdown suummary to reduce clutter
+- Added script to fix `doom iedit` update error
 
 #### 📅 **Updated: September 18th, 2025**
 
 - 🧪 EXPERIMENTAL: AMD+NVIDIA hybrid support (amd-hybrid)
-  - New driver module: `modules/drivers/nvidia-amd-hybrid.nix` (options: `enable`, `amdgpuBusID`, `nvidiaBusID`)
-  - Kernel pin: `boot.kernelPackages` forced to `linuxPackages_6_12` when enabled (required for RTX 50xx open kernel module)
-  - New profile: `profiles/amd-hybrid/default.nix` (wires `amdgpuID`/`nvidiaID` from `hosts/<host>/variables.nix`)
-  - zcli detection updated to recognize `amd-hybrid`; `install-zaneyos.sh` prompts include `amd-hybrid`
+  - New driver module: `modules/drivers/nvidia-amd-hybrid.nix` (options:
+    `enable`, `amdgpuBusID`, `nvidiaBusID`)
+  - Kernel pin: `boot.kernelPackages` forced to `linuxPackages_6_12` when
+    enabled (required for RTX 50xx open kernel module)
+  - New profile: `profiles/amd-hybrid/default.nix` (wires `amdgpuID`/`nvidiaID`
+    from `hosts/<host>/variables.nix`)
+  - zcli detection updated to recognize `amd-hybrid`; `install-zaneyos.sh`
+    prompts include `amd-hybrid`
   - Added `amdgpuID` to `hosts/*/variables.nix`
   - Docs updated (`README`, `WARP.md`, cheatsheets)
-  - Caution: Can't fully test at this time. Please verify your Bus IDs via `lspci` and use `zcli rebuild-boot` for safer activation
+  - Caution: Can't fully test at this time. Please verify your Bus IDs via
+    `lspci` and use `zcli rebuild-boot` for safer activation
 
 #### 📅 **Updated: September 9th, 2025**
 
 - 🛡️ Installer: Added defensive hostname validation and sanitization
-  - Prevents invalid hostnames (e.g., with dots) from causing Nix evaluation errors
-  - Auto-sanitizes to a compliant hostname (letters/digits with '-' or '_', 1–63 chars) and prompts for confirmation
+  - Prevents invalid hostnames (e.g., with dots) from causing Nix evaluation
+    errors
+  - Auto-sanitizes to a compliant hostname (letters/digits with '-' or '_', 1–63
+    chars) and prompts for confirmation
   - Explicitly rejects 'default' to avoid template overwrites
-- 🧩 Nix: Added assertion in modules/core/network.nix for clearer errors if an invalid hostname is provided
+- 🧩 Nix: Added assertion in modules/core/network.nix for clearer errors if an
+  invalid hostname is provided
 
 #### 📅 **Updated: August 30th, 2025**
 
