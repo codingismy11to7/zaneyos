@@ -32,7 +32,8 @@ in
     ./kitty.nix
     ./lazygit.nix
     ./obs-studio.nix
-    ./nvf.nix
+    #./nvf.nix
+    ./nixvim.nix
     ./obs-studio.nix
     ./rofi
     ./qt.nix

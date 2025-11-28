@@ -11,6 +11,12 @@
     stylix.url = "github:danth/stylix/release-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
+    # Checking nixvim to see if it's better
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # QuickShell (optional add quickshell to outputs to enable)
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -22,29 +28,32 @@
     {
       nixpkgs,
       home-manager,
+      nixvim,
       nix-flatpak,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-    host = "zaneyos-24-vm";
-    profile = "vm";
+      host = "zaneyos-24-vm";
+      profile = "vm";
       username = "dwilliams";
 
       # Deduplicate nixosConfigurations while preserving the top-level 'profile'
-      mkNixosConfig = gpuProfile: nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile; # keep using the let-bound profile for modules/scripts
+      mkNixosConfig =
+        gpuProfile:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile; # keep using the let-bound profile for modules/scripts
+          };
+          modules = [
+            ./profiles/${gpuProfile}
+            nix-flatpak.nixosModules.nix-flatpak
+          ];
         };
-        modules = [
-          ./profiles/${gpuProfile}
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
     in
     {
       nixosConfigurations = {
