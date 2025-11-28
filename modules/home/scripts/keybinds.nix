@@ -7,15 +7,16 @@ pkgs.writeShellScriptBin "list-keybinds" ''
 
   msg='☣️ NOTE ☣️: Clicking with Mouse or Pressing ENTER will have NO function'
   
-  # Parse bindd entries from the Nix config and format for rofi display
+  # Parse keybind entries from the Nix config and format for rofi display
   BIND_NIX="$HOME/zaneyos/modules/home/hyprland/binds.nix"
   if [[ -f "$BIND_NIX" ]]; then
     display_keybinds=$(
       ${pkgs.gawk}/bin/awk '
-        /bindd[ ]*= *\[/ {
-          in_block = 1
-          next
-        }
+        # Track when we enter any keybind array
+        /noctaliaBind/ { in_block = 1; next }
+        /rofiBind/ { in_block = 1; next }
+        /bindd[ ]*=/ && /\[/ { in_block = 1; next }
+        
         in_block {
           # Check for end of array
           if (/^[ ]*\]/) {
