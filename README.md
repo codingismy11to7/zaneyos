@@ -125,14 +125,18 @@ Please do yourself a favor and
 
 # Hyprland Keybindings
 
-Below are the keybindings for Hyprland, formatted for easy reference.
+Below are the keybindings for Hyprland, formatted for easy reference. The right column shows keybindings that are specific to **Noctalia Shell** (only available when `barChoice = "noctalia"`).
 
-## Application Launching
+<table>
+<tr>
+<td width="50%">
+
+## Standard Keybindings
+
+### Application Launching
 
 - `$modifier + Return` → Launch `terminal`
 - `$modifier + K` → List keybinds
-- `$modifier + Shift + Return` → Launch `Application Launcher`
-- `$modifier + D` → Launch `Application Launcher`
 - `$modifier + Shift + W` → Open `web-search`
 - `$modifier + Alt + W` → Open `wallsetter`
 - `$modifier + Shift + N` → Run `swaync-client -rs`
@@ -142,13 +146,12 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + S` → Take a screenshot
 - `$modifier + Shift + D` → Open `Discord`
 - `$modifier + O` → Launch `OBS Studio`
-- `$modifier + C` → Run `hyprpicker -a`
+- `$modifier + Alt + C` → Color Picker
 - `$modifier + G` → Open `GIMP`
-- `$modifier + V` → Show clipboard history via `cliphist`
 - `$modifier + T` → Toggle terminal with `pypr`
-- `$modifier + M` → Open `pavucontrol`
+- `$modifier + Alt + M` → Open `pavucontrol`
 
-## Window Management
+### Window Management
 
 - `$modifier + Q` → Kill active window
 - `$modifier + P` → Toggle pseudo tiling
@@ -158,19 +161,18 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Alt + F` → Float all windows
 - `$modifier + Shift + C` → Exit Hyprland
 
-## Window Movement
+### Window Movement
 
-- `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
-- `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
-- `$modifier + Alt + ← / → / ↑ / ↓` → Swap window left/right/up/down
-- `$modifier + Alt + 43 / 46 / 45 / 44` → Swap window left/right/up/down
+- `$modifier + Shift + ← / → / ↑ / ↓` → Move left/right/up/down
+- `$modifier + Shift + H / L / K / J` → Move left/right/up/down
+- `$modifier + Alt + ← / → / ↑ / ↓` → Swap left/right/up/down
 
-## Focus Movement
+### Focus Movement
 
 - `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
 - `$modifier + H / L / K / J` → Move focus left/right/up/down
 
-## Workspaces
+### Workspaces
 
 - `$modifier + 1-10` → Switch to workspace 1-10
 - `$modifier + Shift + Space` → Move window to special workspace
@@ -178,10 +180,44 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Shift + 1-10` → Move window to workspace 1-10
 - `$modifier + Control + → / ←` → Switch workspace forward/backward
 
-## Window Cycling
+### Window Cycling
 
-- `Alt + Tab` → Cycle to next window
-- `Alt + Tab` → Bring active window to top
+- `Alt + Tab` → Cycle to next window / Bring active to top
+
+</td>
+<td width="50%">
+
+## 🎨 Noctalia Shell Keybindings
+
+*Available when `barChoice = "noctalia"` in `variables.nix`*
+
+- `$modifier + D` → Launcher Toggle
+- `$modifier + Shift + Return` → Launcher Toggle
+- `$modifier + M` → Notifications Menu
+- `$modifier + V` → Clipboard Manager
+- `$modifier + Alt + P` → Settings Panel
+- `$modifier + Shift + ,` → Settings Panel
+- `$modifier + Alt + L` → Lock Screen
+- `$modifier + Shift + Y` → Wallpaper Manager
+- `$modifier + X` → Power Menu
+- `$modifier + C` → Control Center
+- `$modifier + Ctrl + R` → Screen Recorder
+
+### Rofi Launcher (Waybar Mode)
+
+*Available when `barChoice = "waybar"` in `variables.nix`*
+
+- `$modifier + D` → Launch Rofi Launcher
+- `$modifier + Shift + Return` → Launch Rofi Launcher
+
+### Other Features
+
+- `$modifier + Shift + Return` (Waybar) → Application Launcher
+- `$modifier + V` (Waybar) → Clipboard History via `cliphist`
+
+</td>
+</tr>
+</table>
 
 ## Installation:
 
