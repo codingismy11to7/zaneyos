@@ -1,7 +1,17 @@
 {
   pkgs,
+  host,
   ...
 }:
+let
+  vars = import ../../hosts/${host}/variables.nix;
+  inherit (vars) barChoice;
+  # Noctalia-specific packages
+  noctaliaPkgs = if barChoice == "noctalia" then with pkgs; [
+    matugen # color palette generator needed for noctalia-shell
+    app2unit # launcher for noctalia-shell
+  ] else [];
+in
 {
   programs = {
     neovim = {
@@ -27,7 +37,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; noctaliaPkgs ++ [
 
     amfora # Fancy Terminal Browser For Gemini Protocol
     appimage-run # Needed For AppImage Support
