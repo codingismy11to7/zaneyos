@@ -20,14 +20,17 @@ let
     "$modifier,C,exec,qs -c noctalia-shell ipc call controlCenter toggle"
     "$modifier CTRL,R,exec,qs -c noctalia-shell ipc call screenRecorder toggle"
   ] else [];
+  # Rofi launcher bindings (only included when barChoice != "noctalia")
+  rofiBind = if barChoice != "noctalia" then [
+    "$modifier,D,exec,rofi-launcher"
+    "$modifier SHIFT,Return,exec,rofi-launcher"
+  ] else [];
 in
 {
   wayland.windowManager.hyprland.settings = {
-    bind = noctaliaBind ++ [
+    bind = noctaliaBind ++ rofiBind ++ [
       "$modifier,Return,exec,${terminal}"
       "$modifier,K,exec,list-keybinds"
-      "$modifier,D,exec,rofi-launcher"
-      "$modifier SHIFT,Return,exec,rofi-launcher"
       "$modifier SHIFT,D,exec,discord"
       "$modifier SHIFT,W,exec,web-search"
       "$modifier ALT,W,exec,wallsetter"
