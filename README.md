@@ -9,18 +9,35 @@
 ZaneyOS is a simple way of reproducing my configuration on any NixOS system.
 This includes the wallpaper, scripts, applications, config files, and more.
 
-<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo.png" />
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/ZaneyOS-Floating.png" />
 
-**Inspiration for the Waybar config
-[here](https://github.com/justinlime/dotfiles).**
+</div>
+
+## More Screenshots
+
+### Waybar Themes
 
 <img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo-img2.png" />
 
-**Third waybar option**
-
 <img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo-img3.png" />
 
-</div>
+### Noctalia Shell Integration
+
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/ZaneyOS-noctalia-panel.png" />
+
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/ZaneyOS-noctalia-app.png" />
+
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/ZaneyOS-noctalia-settings.png" />
+
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/ZaneyOS-noctalia-weather.png" />
+
+### Additional Features
+
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/ZaneyOS-keybind-search.png" />
+
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/ZaneyOS-nivim-emacs.png" />
+
+<div align="center">
 
 ### Cheatsheets and Guides
 
