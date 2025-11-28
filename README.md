@@ -4,7 +4,7 @@
 
 ## ZaneyOS 🟰 Best ❄️ NixOS Configs
 
-** Updated: June 3rd,2025
+\*\* Updated: November 28th,2025
 
 ZaneyOS is a simple way of reproducing my configuration on any NixOS system.
 This includes the wallpaper, scripts, applications, config files, and more.
@@ -40,7 +40,7 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 #### 🍖 Requirements
 
-- You must be running on NixOS, version 23.11+.
+- You must be running on NixOS, version 24.05+.
 - The `zaneyos` folder (this repo) is expected to be in your home directory.
 - You must have installed NIXOS using **GPT** parition with booting with
   **UEFI**.
@@ -111,7 +111,8 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 - `$modifier + Return` → Launch `terminal`
 - `$modifier + K` → List keybinds
-- `$modifier + Shift + Return` → Launch `rofi-launcher`
+- `$modifier + Shift + Return` → Launch `Application Launcher`
+- `$modifier + D` → Launch `Application Launcher`
 - `$modifier + Shift + W` → Open `web-search`
 - `$modifier + Alt + W` → Open `wallsetter`
 - `$modifier + Shift + N` → Run `swaync-client -rs`
@@ -119,7 +120,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Y` → Open `kitty` with `yazi`
 - `$modifier + E` → Open `emopicker9000`
 - `$modifier + S` → Take a screenshot
-- `$modifier + D` → Open `Discord`
+- `$modifier + Shift + D` → Open `Discord`
 - `$modifier + O` → Launch `OBS Studio`
 - `$modifier + C` → Run `hyprpicker -a`
 - `$modifier + G` → Open `GIMP`
@@ -228,7 +229,7 @@ nix-shell -p git vim
 2. Clone this repo & enter it:
 
 ```
-cd && git clone https://gitlab.com/zaney/zaneyos.git -b stable-2.4 --depth=1 ~/zaneyos 
+cd && git clone https://gitlab.com/zaney/zaneyos.git -b stable-2.4 --depth=1 ~/zaneyos
 cd zaneyos
 
 You can still run the `install.sh` script if you want to.
@@ -257,7 +258,7 @@ nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/har
    profile. I.e. `intel`, `nvidia`, `nvidia-laptop`, `amd-hybrid`, or `vm`
 
 ```
-NIX_CONFIG="experimental-features = nix-command flakes" 
+NIX_CONFIG="experimental-features = nix-command flakes"
 sudo nixos-rebuild switch --flake .#profile
 ```
 
