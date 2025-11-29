@@ -17,8 +17,8 @@
 - Added `alacritty.nix` from ddubsOS
 - Added `tmux.nix` from ddubosOS (courtesy of Tony,btw)
 - Added `vscode.nix` from ddubsOS.
-- Pre-configured with many useful plugins
-- Also works as template to add more
+  - Pre-configured with many useful plugins
+  - Also works as template to add more
 - Added `antigravity` IDE from Google based on vscodium
 - Created `modules/core/overlays.nix`
   - Currently only has `antigravity` but more maybe be needed later
@@ -26,7 +26,7 @@
 - Added Noctalia Shell as default
 - Added Additional waybars from dddubsOS
 - Added Addtional Animations from ddubsOS
-- Switched to `bindd` for friendlier binding descriptions
+- Switched to `bindd` for friendlier keybinds descriptions
 - Updated keybind parser to use these descriptions
 - Keybinds are now conditional on waybar or noctalia shell
 - Updated `README.md` and `README.es.md`
