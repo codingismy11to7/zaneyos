@@ -340,7 +340,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-sudo nixos-rebuild boot --flake ~/zaneyos/${profile}
+sudo nixos-rebuild boot --flake ~/zaneyos/#${profile}
 
 # Check the exit status of the last command (nixos-rebuild)
 if [ $? -eq 0 ]; then
