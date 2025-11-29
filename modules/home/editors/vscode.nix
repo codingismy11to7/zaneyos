@@ -1,7 +1,9 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (pkgs.lib) attrByPath;
-
 
   # Optional versions; set these to real versions to enable marketplace fetches.
   hyprlangVer = "0.0.3"; # fireblast.hyprlang-vscode
@@ -11,20 +13,18 @@ let
 
   # Helper: prefer Open VSX (pkgs.vscode-extensions). If missing and a version is
   # provided, fetch from the VSCode Marketplace using extensionsFromVscodeMarketplace.
-  extOrMarketplace =
-    { publisher
-    , name
-    , version ? null
-    , sha256 ? null
-    ,
-    }:
-    let
-      fromOpenVSX = attrByPath [ publisher name ] null pkgs.vscode-extensions;
-    in
+  extOrMarketplace = {
+    publisher,
+    name,
+    version ? null,
+    sha256 ? null,
+  }: let
+    fromOpenVSX = attrByPath [publisher name] null pkgs.vscode-extensions;
+  in
     if fromOpenVSX != null
-    then [ fromOpenVSX ]
+    then [fromOpenVSX]
     else if version == null
-    then [ ]
+    then []
     else
       pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
@@ -60,8 +60,7 @@ let
     version = codeRunnerVer;
     sha256 = pkgs.lib.fakeSha256;
   };
-in
-{
+in {
   programs.vscode = {
     enable = true;
     profiles = {
@@ -83,7 +82,7 @@ in
           ++ hyprlsExts
           ++ neroHyprlandExts
           ++ codeRunnerExts;
-        userSettings = lib.mkDefault {
+        userSettings = lib.mkForce {
           "workbench.colorTheme" = "Nero Hyprland";
           "workbench.iconTheme" = "catppuccin-mocha";
         };
