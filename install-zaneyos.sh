@@ -219,7 +219,7 @@ else
 fi
 
 print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git -b migrate-25.11 --depth=1  ~/zaneyos
+git clone https://gitlab.com/zaney/zaneyos.git -b migrate-2511 --depth=1  ~/zaneyos
 cd ~/zaneyos || exit 1
 
 print_header "Git Configuration"
@@ -340,7 +340,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-sudo nixos-rebuild boot --flake ~/zaneyos/#${profile}
+sudo nixos-rebuild boot --flake ~/zaneyos/${profile}
 
 # Check the exit status of the last command (nixos-rebuild)
 if [ $? -eq 0 ]; then
