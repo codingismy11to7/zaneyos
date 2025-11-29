@@ -15,6 +15,7 @@
   weztermEnable = false;
   ghosttyEnable = false;
   vscodeEnable = false;
+  antigravityEnable = false; # Google port of vscodium
   helixEnable = false;
   #To install rebuild, then run zcli doom install
   doomEmacsEnable = false;
