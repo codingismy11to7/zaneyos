@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 ######################################
-# Install script for zaneyos  
-# Author:  Don Williams 
-# Date: June 27, 2005 
+# Install script for zaneyos
+# Author:  Don Williams
+# Date: June 27, 2005
 #######################################
 
 # Define colors
@@ -54,7 +54,7 @@ print_failure_banner() {
 print_header "Verifying System Requirements"
 
 # Check for git
-if ! command -v git &> /dev/null; then
+if ! command -v git &>/dev/null; then
   print_error "Git is not installed."
   echo -e "Please install git and pciutils are installed, then re-run the install script."
   echo -e "Example: nix-shell -p git pciutils"
@@ -62,14 +62,14 @@ if ! command -v git &> /dev/null; then
 fi
 
 # Check for lspci (pciutils)
-if ! command -v lspci &> /dev/null; then
+if ! command -v lspci &>/dev/null; then
   print_error "pciutils is not installed."
   echo -e "Please install git and pciutils,  then re-run the install script."
   echo -e "Example: nix-shell -p git pciutils"
   exit 1
 fi
 
-if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
+if [ -n "$(grep -i nixos </etc/os-release)" ]; then
   echo -e "${GREEN}Verified this is NixOS.${NC}"
 else
   print_error "This is not NixOS or the distribution information is not available."
@@ -186,20 +186,17 @@ if [ -d "zaneyos" ]; then
   echo -e "${RED}║  An existing ZaneyOS installation was detected at ~/zaneyos           ║${NC}"
   echo -e "${RED}║                                                                       ║${NC}"
   echo -e "${RED}║  This installer will COMPLETELY REPLACE your existing configuration!  ║${NC}"
-  echo -e "${RED}║  All customizations, packages, and settings will be LOST!            ║${NC}"
+  echo -e "${RED}║  All customizations, packages, and settings will be LOST!             ║${NC}"
   echo -e "${RED}║                                                                       ║${NC}"
-  echo -e "${RED}║  If you want to UPGRADE from ZaneyOS 2.3 to 2.4:                    ║${NC}"
-  echo -e "${RED}║  1. Press Ctrl+C to cancel this installer                            ║${NC}"
-  echo -e "${RED}║  2. Run: cd ~/zaneyos && ./upgrade-2.3-to-2.4.sh                     ║${NC}"
+  echo -e "${RED}║     ** A backup copy of your config will be created **                ║${NC}"
+  echo -e "${RED}║      * You will have to merge your changes back **                    ║${NC}"
   echo -e "${RED}║                                                                       ║${NC}"
-  echo -e "${RED}║  The upgrade script preserves ALL your customizations!               ║${NC}"
   echo -e "${RED}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
   echo ""
   echo -e "${YELLOW}If you REALLY want to do a fresh installation (losing all customizations):${NC}"
   read -p "Type 'REPLACE' to continue with fresh install or Ctrl+C to cancel: " confirmation
   if [ "$confirmation" != "REPLACE" ]; then
-    echo -e "${GREEN}Installation cancelled. Use the upgrade script instead!${NC}"
-    echo -e "${GREEN}Run: cd ~/zaneyos && ./upgrade-2.3-to-2.4.sh${NC}"
+    echo -e "${GREEN}Installation cancelled. ${NC}"
     exit 0
   fi
   echo -e "${GREEN}zaneyos exists, backing up to .config/zaneyos-backups folder.${NC}"
@@ -219,7 +216,7 @@ else
 fi
 
 print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git -b migrate-2511 --depth=1  ~/zaneyos
+git clone https://gitlab.com/zaney/zaneyos.git -b migrate-2511 --depth=1 ~/zaneyos
 cd ~/zaneyos || exit 1
 
 print_header "Git Configuration"
@@ -303,31 +300,31 @@ echo "Updating configuration files with working awk commands..."
 cp ./flake.nix ./flake.nix.bak
 # Use sed for hostname (more reliable)
 sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix.bak
-awk -v newprof="$profile" '/^    profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak > ./flake.nix
+awk -v newprof="$profile" '/^    profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak >./flake.nix
 cp ./flake.nix ./flake.nix.bak
-awk -v newuser="$installusername" '/^      username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak > ./flake.nix
+awk -v newuser="$installusername" '/^      username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak >./flake.nix
 rm ./flake.nix.bak
 
-# Update timezone in system.nix  
+# Update timezone in system.nix
 cp ./modules/core/system.nix ./modules/core/system.nix.bak
-awk -v newtz="$timezone" '/^  time\.timeZone = / { gsub(/"[^"]*"/, "\"" newtz "\""); } { print }' ./modules/core/system.nix.bak > ./modules/core/system.nix
+awk -v newtz="$timezone" '/^  time\.timeZone = / { gsub(/"[^"]*"/, "\"" newtz "\""); } { print }' ./modules/core/system.nix.bak >./modules/core/system.nix
 rm ./modules/core/system.nix.bak
 
 # Update variables in host file
 cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
-awk -v newuser="$gitUsername" '/^  gitUsername = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+awk -v newuser="$gitUsername" '/^  gitUsername = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./hosts/$hostName/variables.nix.bak >./hosts/$hostName/variables.nix
 cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
-awk -v newemail="$gitEmail" '/^  gitEmail = / { gsub(/"[^"]*"/, "\"" newemail "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+awk -v newemail="$gitEmail" '/^  gitEmail = / { gsub(/"[^"]*"/, "\"" newemail "\""); } { print }' ./hosts/$hostName/variables.nix.bak >./hosts/$hostName/variables.nix
 cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
-awk -v newkb="$keyboardLayout" '/^  keyboardLayout = / { gsub(/"[^"]*"/, "\"" newkb "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+awk -v newkb="$keyboardLayout" '/^  keyboardLayout = / { gsub(/"[^"]*"/, "\"" newkb "\""); } { print }' ./hosts/$hostName/variables.nix.bak >./hosts/$hostName/variables.nix
 cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
-awk -v newckm="$consoleKeyMap" '/^  consoleKeyMap = / { gsub(/"[^"]*"/, "\"" newckm "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+awk -v newckm="$consoleKeyMap" '/^  consoleKeyMap = / { gsub(/"[^"]*"/, "\"" newckm "\""); } { print }' ./hosts/$hostName/variables.nix.bak >./hosts/$hostName/variables.nix
 rm ./hosts/$hostName/variables.nix.bak
 
 echo "Configuration files updated successfully!"
 
 print_header "Generating Hardware Configuration -- Ignore ERROR: cannot access /bin"
-sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
+sudo nixos-generate-config --show-hardware-config >./hosts/$hostName/hardware.nix
 
 print_header "Setting Nix Configuration"
 NIX_CONFIG="experimental-features = nix-command flakes"
@@ -336,8 +333,8 @@ print_header "Initiating NixOS Build"
 read -p "Ready to run initial build? (Y/N): " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo -e "${RED}Build cancelled.${NC}"
-    exit 1
+  echo -e "${RED}Build cancelled.${NC}"
+  exit 1
 fi
 
 sudo nixos-rebuild boot --flake ~/zaneyos/#${profile}
