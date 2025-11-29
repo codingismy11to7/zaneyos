@@ -38,13 +38,10 @@ in
     ./obs-studio.nix
     #./nvf.nix
     ./nixvim.nix
-    ./obs-studio.nix
     ./rofi
     ./qt.nix
     ./scripts
     ./scripts/gemini-cli.nix
-    #./starship.nix
-    #./starship-ddubs-1.nix
     ./stylix.nix
     ./swappy.nix
     ./swaync.nix
@@ -57,8 +54,8 @@ in
     ./zoxide.nix
     ./zsh
   ]
-  ++ (if helixEnable then [ ./evil-helix.nix ] else [ ])
-  ++ (if vscodeEnable then [ ./vscode.nix ] else [ ])
+  ++ (if helixEnable then [ ./editors/evil-helix.nix ] else [ ])
+  ++ (if vscodeEnable then [ ./editors/vscode.nix ] else [ ])
   ++ (
     if doomEmacsEnable then
       [
