@@ -1,7 +1,6 @@
 {
   pkgs,
   host,
-  input,
   ...
 }: let
   vars = import ../../hosts/${host}/variables.nix;
@@ -43,8 +42,6 @@ in {
   environment.systemPackages = with pkgs;
     noctaliaPkgs
     ++ [
-      # Provide pkgs.google-antigravity via antigravity-nix overlay
-      inputs.antigravity-nix.overlays.default
       amfora # Fancy Terminal Browser For Gemini Protocol
       appimage-run # Needed For AppImage Support
       brave # Brave Browser
