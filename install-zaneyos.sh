@@ -9,6 +9,9 @@
 # Define colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Define log file
@@ -23,6 +26,19 @@ print_header() {
   echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
   echo -e "${GREEN}║ ${1} ${NC}"
   echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
+}
+
+# Function to print a configuration summary
+print_summary() {
+  echo -e "${CYAN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
+  echo -e "${CYAN}║                 📋 Installation Configuration Summary                 ║${NC}"
+  echo -e "${CYAN}╠═══════════════════════════════════════════════════════════════════════╣${NC}"
+  echo -e "${CYAN}║  🖥️  Hostname:        ${BLUE}${1}${NC}"
+  echo -e "${CYAN}║  🎮 GPU Profile:      ${BLUE}${2}${NC}"
+  echo -e "${CYAN}║  👤 System Username:  ${BLUE}${3}${NC}"
+  echo -e "${CYAN}║  🌐 Timezone:         ${BLUE}${4}${NC}"
+  echo -e "${CYAN}║  ⌨️  Keyboard Layout:  ${BLUE}${5}${NC}"
+  echo -e "${CYAN}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }
 
 # Function to print an error message
@@ -287,7 +303,27 @@ print_header "Configuring Host and Profile"
 mkdir -p hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 
-echo "Updating configuration files with working sed commands..."
+# Show a nice summary and ask for confirmation before making changes
+echo ""
+print_summary "$hostName" "$profile" "$installusername" "$timezone" "$keyboardLayout"
+echo ""
+echo -e "${YELLOW}Please review the configuration above.${NC}"
+read -p "$(echo -e "${YELLOW}Continue with installation? (Y/N): ${NC}")" -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo -e "${RED}Installation cancelled.${NC}"
+  exit 1
+fi
+
+echo ""
+echo -e "${GREEN}✓ Configuration accepted. Starting installation...${NC}"
+echo ""
+echo -e "${BLUE}Updating configuration files...${NC}"
+echo -e "  ${CYAN}installusername:${NC} $installusername"
+echo -e "  ${CYAN}hostName:${NC} $hostName"
+echo -e "  ${CYAN}profile:${NC} $profile"
+echo -e "  ${CYAN}timezone:${NC} $timezone"
+echo -e "  ${CYAN}keyboardLayout:${NC} $keyboardLayout"
 echo "  installusername: $installusername"
 echo "  hostName: $hostName"
 echo "  profile: $profile"
@@ -301,7 +337,7 @@ sed -i 's|^[[:space:]]*host[[:space:]]*=[[:space:]]*"[^"]*"|    host = "'$hostNa
 sed -i 's|^[[:space:]]*profile[[:space:]]*=[[:space:]]*"[^"]*";|    profile = "'$profile'";|' ./flake.nix.bak
 # Use sed for username (handles variable indentation)
 sed -i 's|^[[:space:]]*username[[:space:]]*=[[:space:]]*"[^"]*";|    username = "'$installusername'";|' ./flake.nix.bak
-echo "After sed replacements:"
+echo -e "${GREEN}After sed replacements:${NC}"
 grep -E "(host|profile|username) =" ./flake.nix.bak
 cp ./flake.nix.bak ./flake.nix
 rm ./flake.nix.bak
