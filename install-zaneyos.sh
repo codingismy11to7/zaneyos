@@ -288,6 +288,9 @@ mkdir -p hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 
 echo "Updating configuration files with working sed commands..."
+echo "  installusername: $installusername"
+echo "  hostName: $hostName"
+echo "  profile: $profile"
 
 # Update flake.nix (simple pattern replacements that work)
 # Create backup first, before any changes
@@ -298,6 +301,8 @@ sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"[^\"]*\"/\"$hostName\"
 sed -i "s/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"[^\"]*\";/    profile = \"$profile\";"/" ./flake.nix.bak
 # Use sed for username (handles variable indentation)
 sed -i "s/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"[^\"]*\";/    username = \"$installusername\";"/" ./flake.nix.bak
+echo "After sed replacements:"
+grep -E "(host|profile|username) =" ./flake.nix.bak
 cp ./flake.nix.bak ./flake.nix
 rm ./flake.nix.bak
 
