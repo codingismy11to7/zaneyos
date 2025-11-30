@@ -1,4 +1,5 @@
-{host, ...}: let
+{ host, ... }:
+let
   vars = import ../../hosts/${host}/variables.nix;
   inherit
     (vars)
@@ -18,30 +19,31 @@
     if barChoice == "noctalia"
     then ./noctalia.nix
     else waybarChoice;
-in {
+in
+{
   imports =
     [
       ./amfora.nix
       ./bash.nix
       ./bashrc-personal.nix
-      ./bat.nix
-      ./btop.nix
-      ./bottom.nix
-      ./cava.nix
+      ./cli/bat.nix
+      ./cli/btop.nix
+      ./cli/bottom.nix
+      ./cli/cava.nix
       ./emoji.nix
       ./eza.nix
       ./fastfetch
-      ./fzf.nix
-      ./gh.nix
-      ./git.nix
+      ./cli/fzf.nix
+      ./cli/gh.nix
+      ./cli/git.nix
       ./gtk.nix
-      ./htop.nix
+      ./cli/htop.nix
       ./hyprland
-      ./kitty.nix
-      ./lazygit.nix
+      ./terminals/kitty.nix
+      ./cli/lazygit.nix
       ./obs-studio.nix
-      #./nvf.nix
-      ./nixvim.nix
+      #./editors/nvf.nix
+      ./editors/nixvim.nix
       ./rofi
       ./qt.nix
       ./scripts
@@ -60,18 +62,18 @@ in {
     ]
     ++ (
       if helixEnable
-      then [./editors/evil-helix.nix]
-      else []
+      then [ ./editors/evil-helix.nix ]
+      else [ ]
     )
     ++ (
       if vscodeEnable
-      then [./editors/vscode.nix]
-      else []
+      then [ ./editors/vscode.nix ]
+      else [ ]
     )
     ++ (
       if antigravityEnable
-      then [./editors/antigravity.nix]
-      else []
+      then [ ./editors/antigravity.nix ]
+      else [ ]
     )
     ++ (
       if doomEmacsEnable
@@ -79,26 +81,26 @@ in {
         ./editors/doom-emacs-install.nix
         ./editors/doom-emacs.nix
       ]
-      else []
+      else [ ]
     )
     ++ (
       if weztermEnable
-      then [./wezterm.nix]
-      else []
+      then [ ./terminals/wezterm.nix ]
+      else [ ]
     )
     ++ (
       if ghosttyEnable
-      then [./ghostty.nix]
-      else []
+      then [ ./terminals/ghostty.nix ]
+      else [ ]
     )
     ++ (
       if tmuxEnable
-      then [./tmux.nix]
-      else []
+      then [ ./terminals/tmux.nix ]
+      else [ ]
     )
     ++ (
       if alacrittyEnable
-      then [./alacritty.nix]
-      else []
+      then [ ./terminals/alacritty.nix ]
+      else [ ]
     );
 }
