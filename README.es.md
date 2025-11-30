@@ -9,18 +9,38 @@
 ZaneyOS es una forma sencilla de reproducir mi configuración en cualquier sistema NixOS.
 Incluye el fondo de pantalla, scripts, aplicaciones, archivos de configuración y más.
 
-<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo.png" />
-
-**Inspiración para la configuración de Waybar
-[aquí](https://github.com/justinlime/dotfiles).**
-
-<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo-img2.png" />
-
-**Tercera opción de waybar**
-
-<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo-img3.png" />
+<img align="center" width="80%" src="img/ZaneyOS-Floating.png" />
 
 </div>
+
+<details>
+<summary><strong>📸 Más capturas de pantalla</strong></summary>
+
+### Temas de Waybar
+
+<img align="center" width="80%" src="img/demo-img2.png" />
+
+<img align="center" width="80%" src="img/demo-img3.png" />
+
+### Integración de Noctalia Shell
+
+<img align="center" width="80%" src="img/ZaneyOS-noctalia-panel.png" />
+
+<img align="center" width="80%" src="img/ZaneyOS-noctalia-app.png" />
+
+<img align="center" width="80%" src="img/ZaneyOS-noctalia-settings.png" />
+
+<img align="center" width="80%" src="img/ZaneyOS-noctalia-weather.png" />
+
+### Características adicionales
+
+<img align="center" width="80%" src="img/ZaneyOS-keybind-search.png" />
+
+<img align="center" width="80%" src="img/ZaneyOS-nivim-emacs.png" />
+
+</details>
+
+<div align="center">
 
 ### Chuletas y Guías
 
@@ -95,13 +115,18 @@ Hazte un favor y
 
 # Atajos de Hyprland
 
-A continuación los atajos de Hyprland, en formato de referencia rápida.
+A continuación los atajos de Hyprland, en formato de referencia rápida. La columna de la derecha muestra atajos específicos de **Noctalia Shell** (solo disponibles cuando `barChoice = "noctalia"`).
 
-## Lanzamiento de aplicaciones
+<table>
+<tr>
+<td width="50%">
+
+## Atajos estándar
+
+### Lanzamiento de aplicaciones
 
 - `$modifier + Return` → Lanzar `terminal`
 - `$modifier + K` → Listar atajos
-- `$modifier + Shift + Return` → Lanzar `rofi-launcher`
 - `$modifier + Shift + W` → Abrir `web-search`
 - `$modifier + Alt + W` → Abrir `wallsetter`
 - `$modifier + Shift + N` → Ejecutar `swaync-client -rs`
@@ -109,15 +134,14 @@ A continuación los atajos de Hyprland, en formato de referencia rápida.
 - `$modifier + Y` → Abrir `kitty` con `yazi`
 - `$modifier + E` → Abrir `emopicker9000`
 - `$modifier + S` → Tomar captura de pantalla
-- `$modifier + D` → Abrir `Discord`
+- `$modifier + Shift + D` → Abrir `Discord`
 - `$modifier + O` → Lanzar `OBS Studio`
-- `$modifier + C` → Ejecutar `hyprpicker -a`
+- `$modifier + Alt + C` → Selector de color
 - `$modifier + G` → Abrir `GIMP`
-- `$modifier + V` → Historial del portapapeles con `cliphist`
 - `$modifier + T` → Alternar terminal con `pypr`
-- `$modifier + M` → Abrir `pavucontrol`
+- `$modifier + Alt + M` → Abrir `pavucontrol`
 
-## Gestión de ventanas
+### Gestión de ventanas
 
 - `$modifier + Q` → Cerrar ventana activa
 - `$modifier + P` → Alternar pseudo tiling
@@ -127,30 +151,63 @@ A continuación los atajos de Hyprland, en formato de referencia rápida.
 - `$modifier + Alt + F` → Flotar todas las ventanas
 - `$modifier + Shift + C` → Salir de Hyprland
 
-## Movimiento de ventanas
+### Movimiento de ventanas
 
-- `$modifier + Shift + ← / → / ↑ / ↓` → Mover ventana izq./der./arriba/abajo
-- `$modifier + Shift + H / L / K / J` → Mover ventana izq./der./arriba/abajo
-- `$modifier + Alt + ← / → / ↑ / ↓` → Intercambiar ventana izq./der./arriba/abajo
-- `$modifier + Alt + 43 / 46 / 45 / 44` → Intercambiar ventana izq./der./arriba/abajo
+- `$modifier + Shift + ← / → / ↑ / ↓` → Mover izq./der./arriba/abajo
+- `$modifier + Shift + H / L / K / J` → Mover izq./der./arriba/abajo
+- `$modifier + Alt + ← / → / ↑ / ↓` → Intercambiar izq./der./arriba/abajo
 
-## Movimiento de foco
+### Movimiento de foco
 
 - `$modifier + ← / → / ↑ / ↓` → Mover foco izq./der./arriba/abajo
 - `$modifier + H / L / K / J` → Mover foco izq./der./arriba/abajo
 
-## Espacios de trabajo
+### Espacios de trabajo
 
 - `$modifier + 1-10` → Cambiar al espacio 1-10
 - `$modifier + Shift + Space` → Mover ventana a espacio especial
 - `$modifier + Space` → Alternar espacio especial
 - `$modifier + Shift + 1-10` → Mover ventana al espacio 1-10
-- `$modifier + Control + → / ←` → Cambiar espacio hacia adelante/atrás
+- `$modifier + Control + → / ←` → Cambiar espacio adelante/atrás
 
-## Ciclo de ventanas
+### Ciclo de ventanas
 
-- `Alt + Tab` → Ir a la siguiente ventana
-- `Alt + Tab` → Traer la ventana activa al frente
+- `Alt + Tab` → Ir a siguiente ventana / Traer activa al frente
+
+</td>
+<td width="50%">
+
+## 🎨 Atajos de Noctalia Shell
+
+*Disponibles cuando `barChoice = "noctalia"` en `variables.nix`*
+
+- `$modifier + D` → Alternar iniciador
+- `$modifier + Shift + Return` → Alternar iniciador
+- `$modifier + M` → Menú de notificaciones
+- `$modifier + V` → Gestor de portapapeles
+- `$modifier + Alt + P` → Panel de configuración
+- `$modifier + Shift + ,` → Panel de configuración
+- `$modifier + Alt + L` → Bloquear pantalla
+- `$modifier + Shift + Y` → Gestor de fondos
+- `$modifier + X` → Menú de energía
+- `$modifier + C` → Centro de control
+- `$modifier + Ctrl + R` → Grabadora de pantalla
+
+### Iniciador Rofi (Modo Waybar)
+
+*Disponible cuando `barChoice = "waybar"` en `variables.nix`*
+
+- `$modifier + D` → Lanzar Rofi
+- `$modifier + Shift + Return` → Lanzar Rofi
+
+### Otras características
+
+- `$modifier + Shift + Return` (Waybar) → Iniciador de aplicaciones
+- `$modifier + V` (Waybar) → Historial del portapapeles con `cliphist`
+
+</td>
+</tr>
+</table>
 
 ## Instalación:
 

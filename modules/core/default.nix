@@ -16,7 +16,7 @@ in
     ./network.nix
     ./nfs.nix
     ./nh.nix
-    #./quickshell.nix  #Disabled for now not using it yet
+    ./quickshell.nix
     ./packages.nix
     ./printing.nix
     # Conditionally import the display manager module

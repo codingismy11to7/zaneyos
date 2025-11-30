@@ -2,14 +2,7 @@
 
 # 💬 Preguntas frecuentes de ZaneyOS para v2.4
 
-- **Revisión v1.26**
-- **Fecha:** 1 de septiembre de 2025
-
-> IMPORTANTE: ¿Actualizando de v2.3 a v2.4?
-> - Altamente recomendado: Lee `ZaneyOS-Upgrade.md` completamente antes de intentar la actualización.
-> - Explica la actualización automatizada, respaldo completo, migración de host y proceso de reversión.
-> - NO uses los alias `fu` o `fr` para esta actualización.
-> - Si has hecho modificaciones extensas, no ejecutes el script—revisa los documentos y migra manualmente.
+- **Fecha:** 28 de noviembre de 2025
 
 **⌨ ¿Dónde puedo ver los atajos de teclado de Hyprland?**
 
@@ -25,6 +18,7 @@ La utilidad `zcli` es una herramienta de línea de comandos diseñada para simpl
 Para usarlo, abre una terminal y escribe `zcli` seguido de uno de los comandos listados a continuación:
 
 ## Comandos del Sistema Core:
+
 - `cleanup`: Limpia generaciones antiguas del sistema. Puedes especificar el número de generaciones a mantener. Incluye limpieza automatizada de logs de compilaciones antiguas.
 - `diag`: Crea un reporte de diagnóstico completo del sistema usando `inxi --full`, guardado en `~/diag.txt`. Perfecto para solucionar problemas.
 - `list-gens`: Lista tanto generaciones de usuario como de sistema con información detallada.
@@ -40,7 +34,9 @@ Para usarlo, abre una terminal y escribe `zcli` seguido de uno de los comandos l
 **Perfiles de GPU:** `amd`, `intel`, `nvidia`, `nvidia-hybrid`, y `vm`
 
 ## Opciones Avanzadas de Compilación:
+
 Los comandos `rebuild`, `rebuild-boot` y `update` soportan opciones mejoradas para control granular:
+
 - `--dry, -n`: Modo preview - muestra qué se haría sin ejecutar (dry run)
 - `--ask, -a`: Prompts de confirmación interactiva para operaciones críticas de seguridad
 - `--cores N`: Limita operaciones de compilación a N núcleos de CPU (esencial para VMs y sistemas con recursos limitados)
@@ -50,7 +46,9 @@ Los comandos `rebuild`, `rebuild-boot` y `update` soportan opciones mejoradas pa
 **Múltiples opciones pueden combinarse** para control preciso sobre tu proceso de compilación.
 
 ## Gestión de Doom Emacs:
+
 Gestión completa del ciclo de vida de Doom Emacs con características de seguridad:
+
 - `doom install`: Instalación automatizada de Doom Emacs usando el script get-doom con todos los paquetes requeridos
 - `doom status`: Verifica el estado de instalación y muestra información de versión para verificación
 - `doom remove`: Remueve la instalación de Doom Emacs de forma segura con prompts de confirmación para prevenir eliminación accidental
@@ -94,6 +92,7 @@ Doom Emacs:
 ```
 
 **Ejemplos:**
+
 ```bash
 # Gestión del sistema
 zcli rebuild --dry                # Muestra qué se recompilaría
@@ -120,7 +119,8 @@ A continuación se muestran los atajos de teclado para Hyprland, formateados par
 
 - `$modifier + Return` → Lanzar `Terminal`
 - `$modifier + K` → Lista atajos
-- `$modifier + Shift + Return` → Lanzar `rofi-launcher`
+- `$modifier + D ` → Lanzar `launcher`
+- `$modifier + Shift + Return` → Lanzar `launcher`
 - `$modifier + Shift + W` → Abrir `web-search`
 - `$modifier + Alt + W` → Abrir `wallsetter`
 - `$modifier + Shift + N` → Ejecutar `swaync-client -rs`
@@ -128,7 +128,7 @@ A continuación se muestran los atajos de teclado para Hyprland, formateados par
 - `$modifier + Y` → Abrir `kitty` con `yazi`
 - `$modifier + E` → Abrir `emopicker9000`
 - `$modifier + S` → Tomar captura de pantalla
-- `$modifier + D` → Abrir `Discord`
+- `$modifier + Shift + D` → Abrir `Discord`
 - `$modifier + O` → Lanzar `OBS Studio`
 - `$modifier + C` → Ejecutar `hyprpicker -a`
 - `$modifier + G` → Abrir `GIMP`
@@ -344,9 +344,9 @@ Edita la línea `extraMonitorSettings`. **Ejemplos:**
 - Monitor Único: `extraMonitorSettings = "monitor=eDP-1,1920x1080@60,auto,1";`
 - Monitores Múltiples:
   `extraMonitorSettings = "
-            monitor=eDP-1,1920x1080@60,auto,auto
-            monitor=HDMI-A-1,2560x1440@75,auto,auto
-            ";`
+          monitor=eDP-1,1920x1080@60,auto,auto
+          monitor=HDMI-A-1,2560x1440@75,auto,auto
+          ";`
 
 - Para configuraciones multi-monitor más complejas, puedes usar la aplicación GUI, `nwg-displays` Esta mostrará tus monitores conectados actualmente permitiéndote usar el mouse para coincidir cómo están arreglados físicamente. Ej. qué monitor está a la izquierda, derecha, arriba o abajo. Es muy similar a la herramienta X11 basada, `arandr` Creará entonces un archivo de configuración compatible con Hyprland en `~/.config/hypr/monitors.conf`
 
@@ -456,7 +456,7 @@ Si el rebuild se completa exitosamente, se creará una nueva generación con tus
 
 - Usa la utilidad `zcli`. `zcli rebuild`
 - El alias legacy `fr`, Flake Rebuild está depreciado pero aún disponible **
-  NOTA: Si **creaste un nuevo archivo**
+  NOTA: Si **creaste un nuevo archivo\*\*
 - necesitarás ejecutar un comando `git add .` en la carpeta `zaneyos`
 - Si es exitoso se generará una nueva generación con tus cambios
 - Un logout o reboot podría ser requerido dependiendo de qué cambiaste
@@ -764,19 +764,24 @@ Altamente recomendado: Lee `ZaneyOS-Upgrade.md` antes de proceder. Detalla el up
 Usa el upgrade automatizado v2.3 → v2.4. Ve `ZaneyOS-Upgrade.md` y `UPGRADE-2.3-to-2.4.md`. Para evitar sobrescribir tu config antes de crear un respaldo, fetch solo el script sin modificar tu working tree:
 
 - Git (recomendado):
+
 ```bash
 git -C ~/zaneyos fetch origin
 git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
+
 - Curl:
+
 ```bash
 curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
+
 Luego ejecuta el script: `~/upgrade-2.3-to-2.4.sh`. Creará un respaldo completo antes de cambiar branches y migrará tus hosts de forma segura desde el respaldo.
 
 **IMPORTANTE:**
+
 - NO uses los alias `fu` o `fr` para este upgrade; el script usa un boot build seguro.
 - Si has hecho modificaciones extensas, no ejecutes el script. Lee los docs arriba y migra manualmente en su lugar.
 
@@ -830,13 +835,13 @@ Será anunciado en el servidor Discord de Zaney [Discord](https://discord.gg/W7e
 ~/zaneyos/
     ├── hosts/                      # Carpeta donde se guardan configs de host
     │   ├── default                 # Template de host default
-    │   └── nixstation              # Host de Zaney 
+    │   └── nixstation              # Host de Zaney
     ├── img/                        # Imágenes para README.md
     ├── modules/                    # Archivos de config Core, HomeMgr, drivers
     │   └── drivers/                # Configs AMD,NVIDA,Intel,VM
     │   └── core/                   # Servicios, paquetes, fonts, etc
     │   └── home/                   # Archivos de config Home Manager
-    │    ├── fastfetch/             # Config Fastfetch 
+    │    ├── fastfetch/             # Config Fastfetch
     │    ├── hyprland/              # Configs Hyrprland
     │    ├── rofi/                  # Configs de menú rofi
     │    ├── scripts/               # screenshots, wallpaper, etc.
@@ -850,9 +855,9 @@ Será anunciado en el servidor Discord de Zaney [Discord](https://discord.gg/W7e
     │    ├── nvidia/                # Configs video NVIDIA discrete
     │    ├── nvidia-laptop/         # Configs video NVIDIA Hybrid
     │    └── vm/                    # Configs Virtual Machine
-    ├── wallpapers/                 # Agrega tus wallpapers aquí 
+    ├── wallpapers/                 # Agrega tus wallpapers aquí
     ├── CHANGELOG.md                # Lista de cambios
-    ├── CONTRIBUTING.md             # Cómo puedes ayudar 
+    ├── CONTRIBUTING.md             # Cómo puedes ayudar
     ├── FAQ.md                      # Preguntas Frecuentes
     ├── flake.lock                  # Guarda info de versión de todos los paquetes instalados
     ├── flake.nix                   # flake que controla config ZaneyOS
@@ -985,7 +990,7 @@ El keymap está en el archivo `~/zaneyos/modules/home/yazi/keymap.toml` file
       roboto-mono
       symbola
       terminus_font
-      # NERD fonts 
+      # NERD fonts
       nerd-fonts.0xproto
       nerd-fonts._3270
       nerd-fonts.agave
@@ -1177,7 +1182,7 @@ ALT es la tecla META definida para WezTerm
 ALT + t                 Abrir nuevo Tab
 ALT + w                 Cerrar Tab actual
 ALT + n                 Mover a siguiente Tab
-ALT + p                 Mover a Tab anterior 
+ALT + p                 Mover a Tab anterior
   -- Gestión de pane
 ALT + v                 Crear Split Vertical
 ALT + h                 Crear Split Horizontal
@@ -1272,7 +1277,7 @@ theme = Dracula
 </details>
 
 **
---> 🪧  Temas relacionados con NixOS general
+--> 🪧 Temas relacionados con NixOS general
 **
 
 <details>
@@ -1373,3 +1378,4 @@ Esta característica es un cornerstone de la filosofía de diseño declarativo y
 </div>
 
 </details>
+

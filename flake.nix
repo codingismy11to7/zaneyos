@@ -3,39 +3,53 @@
 
   inputs = {
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
     nvf.url = "github:notashelf/nvf";
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix.url = "github:danth/stylix/release-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
-    # Hypersysinfo  (Optional)
-    #hyprsysteminfo.url = "github:hyprwm/hyprsysteminfo";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Checking nixvim to see if it's better
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # QuickShell (optional add quickshell to outputs to enable)
-    #quickshell = {
-    #  url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Google Antigravity (IDE)
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      nix-flatpak,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-    host = "zaneyos-oem";
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixvim,
+    nix-flatpak,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    host = "zaneyos-24-vm";
     profile = "vm";
-      username = "dwilliams";
+    username = "dwilliams";
 
-      # Deduplicate nixosConfigurations while preserving the top-level 'profile'
-      mkNixosConfig = gpuProfile: nixpkgs.lib.nixosSystem {
+    # Deduplicate nixosConfigurations while preserving the top-level 'profile'
+    mkNixosConfig = gpuProfile:
+      nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
@@ -44,19 +58,19 @@
           inherit profile; # keep using the let-bound profile for modules/scripts
         };
         modules = [
+          ./modules/core/overlays.nix
           ./profiles/${gpuProfile}
           nix-flatpak.nixosModules.nix-flatpak
         ];
       };
-    in
-    {
-      nixosConfigurations = {
-        amd = mkNixosConfig "amd";
-        nvidia = mkNixosConfig "nvidia";
-        nvidia-laptop = mkNixosConfig "nvidia-laptop";
-        amd-hybrid = mkNixosConfig "amd-hybrid";
-        intel = mkNixosConfig "intel";
-        vm = mkNixosConfig "vm";
-      };
+  in {
+    nixosConfigurations = {
+      amd = mkNixosConfig "amd";
+      nvidia = mkNixosConfig "nvidia";
+      nvidia-laptop = mkNixosConfig "nvidia-laptop";
+      amd-hybrid = mkNixosConfig "amd-hybrid";
+      intel = mkNixosConfig "intel";
+      vm = mkNixosConfig "vm";
     };
+  };
 }

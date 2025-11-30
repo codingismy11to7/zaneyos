@@ -1,15 +1,8 @@
 [English](FAQ.md) | [Español](FAQ.es.md)
 
-# 💬 ZaneyOS FAQ for v2.4
+# 💬 ZaneyOS FAQ for v2.5
 
-- **Revision v1.26**
-- **Date:** 01-September-2025
-
-> IMPORTANT: Upgrading from v2.3 to v2.4?
-> - Strongly recommended: Read `ZaneyOS-Upgrade.md` fully before attempting the upgrade.
-> - It explains the automated upgrade, full backup, host migration, and revert process.
-> - Do NOT use the `fu` or `fr` aliases for this upgrade.
-> - If you've made extensive modifications, do not run the script—review the docs and migrate manually.
+- **Date:** 28-November-2025
 
 **⌨ Where can I see the Hyprland keybindings?**
 
@@ -29,6 +22,7 @@ To use it, open a terminal and type `zcli` followed by one of the commands
 listed below:
 
 ## Core System Commands:
+
 - `cleanup`: Clean up old system generations. You can specify the number of generations to keep. Includes automated log cleanup for old build logs.
 - `diag`: Create a comprehensive system diagnostic report using `inxi --full`, saved to `~/diag.txt`. Perfect for troubleshooting.
 - `list-gens`: List both user and system generations with detailed information.
@@ -38,6 +32,7 @@ listed below:
 - `update`: Update the flake and rebuild the system with comprehensive error handling.
 
 ## Host Management:
+
 - `update-host`: Automatically set the host and profile in `flake.nix`. Features intelligent GPU detection and hostname validation.
 - `add-host`: Create new host configurations with automated GPU detection, hardware.nix generation, and git integration.
 - `del-host`: Safely delete host configurations with confirmation prompts to prevent accidental removal.
@@ -46,7 +41,9 @@ listed below:
 **GPU Profiles:** `amd`, `intel`, `nvidia`, `nvidia-hybrid`, and `vm`
 
 ## Advanced Build Options:
+
 The `rebuild`, `rebuild-boot`, and `update` commands support enhanced options for fine-grained control:
+
 - `--dry, -n`: Preview mode - shows what would be done without executing (dry run)
 - `--ask, -a`: Interactive confirmation prompts for safety-critical operations
 - `--cores N`: Limit build operations to N CPU cores (essential for VMs and resource-constrained systems)
@@ -56,7 +53,9 @@ The `rebuild`, `rebuild-boot`, and `update` commands support enhanced options fo
 **Multiple options can be combined** for precise control over your build process.
 
 ## Doom Emacs Management:
+
 Complete Doom Emacs lifecycle management with safety features:
+
 - `doom install`: Automated Doom Emacs installation using the get-doom script with all required packages
 - `doom status`: Check installation status and display version information for verification
 - `doom remove`: Safely remove Doom Emacs installation with confirmation prompts to prevent accidental deletion
@@ -100,6 +99,7 @@ Doom Emacs:
 ```
 
 **Examples:**
+
 ```bash
 # System management
 zcli rebuild --dry                # Show what would be rebuilt
@@ -126,7 +126,8 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 - `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
-- `$modifier + Shift + Return` → Launch `rofi-launcher`
+- `$modifier + D ` → Application Launcher
+- `$modifier + Shift + Return` → Application Launcher
 - `$modifier + Shift + W` → Open `web-search`
 - `$modifier + Alt + W` → Open `wallsetter`
 - `$modifier + Shift + N` → Run `swaync-client -rs`
@@ -134,7 +135,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Y` → Open `kitty` with `yazi`
 - `$modifier + E` → Open `emopicker9000`
 - `$modifier + S` → Take a screenshot
-- `$modifier + D` → Open `Discord`
+- `$modifier + Shift + D` → Open `Discord`
 - `$modifier + O` → Launch `OBS Studio`
 - `$modifier + C` → Run `hyprpicker -a`
 - `$modifier + G` → Open `GIMP`
@@ -354,9 +355,9 @@ Edit the `extraMonitorSettings` line. **Examples:**
 - Single Monitor: `extraMonitorSettings = "monitor=eDP-1,1920x1080@60,auto,1";`
 - Multiple Monitors:
   `extraMonitorSettings = "
-            monitor=eDP-1,1920x1080@60,auto,auto
-            monitor=HDMI-A-1,2560x1440@75,auto,auto
-            ";`
+          monitor=eDP-1,1920x1080@60,auto,auto
+          monitor=HDMI-A-1,2560x1440@75,auto,auto
+          ";`
 
 - For more complex, multi-monitor configurations, you may wish to use the GUI
   application, `nwg-displays` This will show your currently connected monitors
@@ -407,7 +408,7 @@ packages.
     ...
     virt-viewer
     wget
-    ###  My Apps ### 
+    ###  My Apps ###
     bottom
     dua
     emacs-nox
@@ -479,7 +480,7 @@ will be created.
 
 - Use the `zcli` utility. `zcli rebuild`
 - The legacy `fr`, Flake Rebuild alias, is depreciated but still available **
-  NOTE: If you **created a new file**
+  NOTE: If you **created a new file\*\*
 - you will need to run a `git add .` command in the `zaneyos` folder
 - If successful a new generation will be generated with your changes
 - A logout or reboot could be required depending on what you changed
@@ -816,19 +817,24 @@ Strongly recommended: Read `ZaneyOS-Upgrade.md` before proceeding. It details th
 Use the automated v2.3 → v2.4 upgrade. See `ZaneyOS-Upgrade.md` and `UPGRADE-2.3-to-2.4.md`. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
 
 - Git (recommended):
+
 ```bash
 git -C ~/zaneyos fetch origin
 git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
+
 - Curl:
+
 ```bash
 curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
+
 Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup before switching branches and migrate your hosts safely from the backup.
 
 **IMPORTANT:**
+
 - Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe boot build.
 - If you have made extensive modifications, do not run the script. Read the docs above and migrate manually instead.
 
@@ -887,13 +893,13 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 ~/zaneyos/
     ├── hosts/                      # Folder where host configs are saved
     │   ├── default                 # Default host template
-    │   └── nixstation              # Zaney's host 
+    │   └── nixstation              # Zaney's host
     ├── img/                        # Images for README.md
     ├── modules/                    # Core, HomeMgr, drivers config files
     │   └── drivers/                # AMD,NVIDA,Intel,VM config files
     │   └── core/                   # Services, packages, fonts, etc
     │   └── home/                   # Home Manager config files
-    │    ├── fastfetch/             # Fastfetch config 
+    │    ├── fastfetch/             # Fastfetch config
     │    ├── hyprland/              # Hyrprland configs
     │    ├── rofi/                  # rofi menu configs
     │    ├── scripts/               # screenshots, wallpaper, etc.
@@ -907,9 +913,9 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
     │    ├── nvidia/                # NVIDIA discrete video config files
     │    ├── nvidia-laptop/         # NVIDIA Hybrid video config files
     │    └── vm/                    # Virtual Machine config files
-    ├── wallpapers/                 # Add your wallpapers here 
+    ├── wallpapers/                 # Add your wallpapers here
     ├── CHANGELOG.md                # List of changes
-    ├── CONTRIBUTING.md             # How you can help 
+    ├── CONTRIBUTING.md             # How you can help
     ├── FAQ.md                      # Frequently Asked Questions
     ├── flake.lock                  # Saves version info on all installed packages
     ├── flake.nix                   # flake that controls ZaneyOS config
@@ -1052,7 +1058,7 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
       roboto-mono
       symbola
       terminus_font
-      # NERD fonts 
+      # NERD fonts
       nerd-fonts.0xproto
       nerd-fonts._3270
       nerd-fonts.agave
@@ -1248,7 +1254,7 @@ ALT is the defined META key for WezTerm
 ALT + t                 Open new Tab
 ALT + w                 Close current Tab
 ALT + n                 Move to next Tab
-ALT + p                 Move to previous Tab 
+ALT + p                 Move to previous Tab
   -- Pane management
 ALT + v                 Create Vertical Split
 ALT + h                 Create Horizontal Split
@@ -1344,7 +1350,7 @@ theme = Dracula
 </details>
 
 **
---> 🪧  General NixOS related topics
+--> 🪧 General NixOS related topics
 **
 
 <details>
@@ -1540,9 +1546,9 @@ Edit the `extraMonitorSettings` line. **Examples:**
 - Single Monitor: `extraMonitorSettings = "monitor=eDP-1,1920x1080@60,auto,1";`
 - Multiple Monitors:
   `extraMonitorSettings = "
-            monitor=eDP-1,1920x1080@60,auto,auto
-            monitor=HDMI-A-1,2560x1440@75,auto,auto
-            ";`
+          monitor=eDP-1,1920x1080@60,auto,auto
+          monitor=HDMI-A-1,2560x1440@75,auto,auto
+          ";`
 
 - For more complex, multi-monitor configurations, you may wish to use the GUI
   application, `nwg-displays` This will show your currently connected monitors
@@ -1593,7 +1599,7 @@ packages.
     ...
     virt-viewer
     wget
-    ###  My Apps ### 
+    ###  My Apps ###
     bottom
     dua
     emacs-nox
@@ -1996,19 +2002,24 @@ settings = {
 Use the automated v2.3 → v2.4 upgrade. See ZaneyOS-Upgrade.md and UPGRADE-2.3-to-2.4.md. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
 
 - Git (recommended):
+
 ```bash
 git -C ~/zaneyos fetch origin
 git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
+
 - Curl:
+
 ```bash
 curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
+
 Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup before switching branches and migrate your hosts safely from the backup.
 
 **IMPORTANT:**
+
 - Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe boot build.
 - If you have made extensive modifications, do not run the script. Read the docs above and migrate manually instead.
 
@@ -2067,13 +2078,13 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 ~/zaneyos/
     ├── hosts/                      # Folder where host configs are saved
     │   ├── default                 # Default host template
-    │   └── nixstation              # Zaney's host 
+    │   └── nixstation              # Zaney's host
     ├── img/                        # Images for README.md
     ├── modules/                    # Core, HomeMgr, drivers config files
     │   └── drivers/                # AMD,NVIDA,Intel,VM config files
     │   └── core/                   # Services, packages, fonts, etc
     │   └── home/                   # Home Manager config files
-    │    ├── fastfetch/             # Fastfetch config 
+    │    ├── fastfetch/             # Fastfetch config
     │    ├── hyprland/              # Hyrprland configs
     │    ├── rofi/                  # rofi menu configs
     │    ├── scripts/               # screenshots, wallpaper, etc.
@@ -2087,9 +2098,9 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
     │    ├── nvidia/                # NVIDIA discrete video config files
     │    ├── nvidia-laptop/         # NVIDIA Hybrid video config files
     │    └── vm/                    # Virtual Machine config files
-    ├── wallpapers/                 # Add your wallpapers here 
+    ├── wallpapers/                 # Add your wallpapers here
     ├── CHANGELOG.md                # List of changes
-    ├── CONTRIBUTING.md             # How you can help 
+    ├── CONTRIBUTING.md             # How you can help
     ├── FAQ.md                      # Frequently Asked Questions
     ├── flake.lock                  # Saves version info on all installed packages
     ├── flake.nix                   # flake that controls ZaneyOS config
@@ -2226,7 +2237,7 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
       roboto-mono
       symbola
       terminus_font
-      # NERD fonts 
+      # NERD fonts
       nerd-fonts.0xproto
       nerd-fonts._3270
       nerd-fonts.agave
@@ -2423,7 +2434,7 @@ ALT is the defined META key for WezTerm
 ALT + t                 Open new Tab
 ALT + w                 Close current Tab
 ALT + n                 Move to next Tab
-ALT + p                 Move to previous Tab 
+ALT + p                 Move to previous Tab
   -- Pane management
 ALT + v                 Create Vertical Split
 ALT + h                 Create Horizontal Split
@@ -2519,7 +2530,7 @@ theme = Dracula
 </details>
 
 **
---> 🪧  General NixOS related topics
+--> 🪧 General NixOS related topics
 **
 
 <details>
