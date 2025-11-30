@@ -1,8 +1,8 @@
 [English](FAQ.md) | [Español](FAQ.es.md)
 
-# 💬 ZaneyOS FAQ for v2.5
+# 💬 ZaneyOS FAQ for v2.5.1
 
-- **Date:** 28-November-2025
+- **Date:** 30-November-2025
 
 **⌨ Where can I see the Hyprland keybindings?**
 
@@ -14,54 +14,72 @@
 <div style="margin-left: 20px;">
 
 The `zcli` utility is a command-line tool designed to simplify the management of
-your `zaneyos` environment. It provides a comprehensive set of commands to perform common
-tasks such as updating your system, managing hosts, cleaning up old generations,
-and managing Doom Emacs.
+your `zaneyos` environment. It provides a comprehensive set of commands to
+perform common tasks such as updating your system, managing hosts, cleaning up
+old generations, and managing Doom Emacs.
 
 To use it, open a terminal and type `zcli` followed by one of the commands
 listed below:
 
 ## Core System Commands:
 
-- `cleanup`: Clean up old system generations. You can specify the number of generations to keep. Includes automated log cleanup for old build logs.
-- `diag`: Create a comprehensive system diagnostic report using `inxi --full`, saved to `~/diag.txt`. Perfect for troubleshooting.
+- `cleanup`: Clean up old system generations. You can specify the number of
+  generations to keep. Includes automated log cleanup for old build logs.
+- `diag`: Create a comprehensive system diagnostic report using `inxi --full`,
+  saved to `~/diag.txt`. Perfect for troubleshooting.
 - `list-gens`: List both user and system generations with detailed information.
-- `rebuild`: Rebuild the NixOS system configuration with enhanced safety checks and backup file handling.
-- `rebuild-boot`: Rebuild and set as boot default (activates on next restart). Safer for major system changes and kernel updates.
-- `trim`: Trim filesystems to improve SSD performance with user confirmation prompts.
-- `update`: Update the flake and rebuild the system with comprehensive error handling.
+- `rebuild`: Rebuild the NixOS system configuration with enhanced safety checks
+  and backup file handling.
+- `rebuild-boot`: Rebuild and set as boot default (activates on next restart).
+  Safer for major system changes and kernel updates.
+- `trim`: Trim filesystems to improve SSD performance with user confirmation
+  prompts.
+- `update`: Update the flake and rebuild the system with comprehensive error
+  handling.
 
 ## Host Management:
 
-- `update-host`: Automatically set the host and profile in `flake.nix`. Features intelligent GPU detection and hostname validation.
-- `add-host`: Create new host configurations with automated GPU detection, hardware.nix generation, and git integration.
-- `del-host`: Safely delete host configurations with confirmation prompts to prevent accidental removal.
+- `update-host`: Automatically set the host and profile in `flake.nix`. Features
+  intelligent GPU detection and hostname validation.
+- `add-host`: Create new host configurations with automated GPU detection,
+  hardware.nix generation, and git integration.
+- `del-host`: Safely delete host configurations with confirmation prompts to
+  prevent accidental removal.
 
-**Usage:** `zcli add-host [hostname] [profile]`  
+**Usage:** `zcli add-host [hostname] [profile]`\
 **GPU Profiles:** `amd`, `intel`, `nvidia`, `nvidia-hybrid`, and `vm`
 
 ## Advanced Build Options:
 
-The `rebuild`, `rebuild-boot`, and `update` commands support enhanced options for fine-grained control:
+The `rebuild`, `rebuild-boot`, and `update` commands support enhanced options
+for fine-grained control:
 
-- `--dry, -n`: Preview mode - shows what would be done without executing (dry run)
+- `--dry, -n`: Preview mode - shows what would be done without executing (dry
+  run)
 - `--ask, -a`: Interactive confirmation prompts for safety-critical operations
-- `--cores N`: Limit build operations to N CPU cores (essential for VMs and resource-constrained systems)
-- `--verbose, -v`: Enable detailed operation logs and verbose output for troubleshooting
+- `--cores N`: Limit build operations to N CPU cores (essential for VMs and
+  resource-constrained systems)
+- `--verbose, -v`: Enable detailed operation logs and verbose output for
+  troubleshooting
 - `--no-nom`: Disable nix-output-monitor for traditional command-line output
 
-**Multiple options can be combined** for precise control over your build process.
+**Multiple options can be combined** for precise control over your build
+process.
 
 ## Doom Emacs Management:
 
 Complete Doom Emacs lifecycle management with safety features:
 
-- `doom install`: Automated Doom Emacs installation using the get-doom script with all required packages
-- `doom status`: Check installation status and display version information for verification
-- `doom remove`: Safely remove Doom Emacs installation with confirmation prompts to prevent accidental deletion
+- `doom install`: Automated Doom Emacs installation using the get-doom script
+  with all required packages
+- `doom status`: Check installation status and display version information for
+  verification
+- `doom remove`: Safely remove Doom Emacs installation with confirmation prompts
+  to prevent accidental deletion
 - `doom update`: Update Doom Emacs packages and configuration via `doom sync`
 
-**Features:** Built-in safety checks, comprehensive error handling, and automatic dependency management.
+**Features:** Built-in safety checks, comprehensive error handling, and
+automatic dependency management.
 
 ```text
 ❯ zcli
@@ -126,7 +144,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 - `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
-- `$modifier + D ` → Application Launcher
+- `$modifier + D` → Application Launcher
 - `$modifier + Shift + Return` → Application Launcher
 - `$modifier + Shift + W` → Open `web-search`
 - `$modifier + Alt + W` → Open `wallsetter`
@@ -812,9 +830,12 @@ settings = {
 <details>
 <summary> For version v2.3 </summary>
 
-Strongly recommended: Read `ZaneyOS-Upgrade.md` before proceeding. It details the safe, automated upgrade, backup, and revert process.
+Strongly recommended: Read `ZaneyOS-Upgrade.md` before proceeding. It details
+the safe, automated upgrade, backup, and revert process.
 
-Use the automated v2.3 → v2.4 upgrade. See `ZaneyOS-Upgrade.md` and `UPGRADE-2.3-to-2.4.md`. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
+Use the automated v2.3 → v2.4 upgrade. See `ZaneyOS-Upgrade.md` and
+`UPGRADE-2.3-to-2.4.md`. To avoid overwriting your config before a backup is
+created, fetch just the script without modifying your working tree:
 
 - Git (recommended):
 
@@ -831,12 +852,15 @@ curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o 
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
 
-Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup before switching branches and migrate your hosts safely from the backup.
+Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup
+before switching branches and migrate your hosts safely from the backup.
 
 **IMPORTANT:**
 
-- Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe boot build.
-- If you have made extensive modifications, do not run the script. Read the docs above and migrate manually instead.
+- Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe
+  boot build.
+- If you have made extensive modifications, do not run the script. Read the docs
+  above and migrate manually instead.
 
 </details>
 
@@ -1349,9 +1373,7 @@ theme = Dracula
 </div>
 </details>
 
-**
---> 🪧 General NixOS related topics
-**
+** --> 🪧 General NixOS related topics **
 
 <details>
 <summary>**❄  What are Flakes in NixOS? **</summary>
@@ -1999,7 +2021,9 @@ settings = {
 <details>
 <summary> For version v2.3 </summary>
 
-Use the automated v2.3 → v2.4 upgrade. See ZaneyOS-Upgrade.md and UPGRADE-2.3-to-2.4.md. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
+Use the automated v2.3 → v2.4 upgrade. See ZaneyOS-Upgrade.md and
+UPGRADE-2.3-to-2.4.md. To avoid overwriting your config before a backup is
+created, fetch just the script without modifying your working tree:
 
 - Git (recommended):
 
@@ -2016,12 +2040,15 @@ curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o 
 chmod +x ~/upgrade-2.3-to-2.4.sh
 ```
 
-Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup before switching branches and migrate your hosts safely from the backup.
+Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup
+before switching branches and migrate your hosts safely from the backup.
 
 **IMPORTANT:**
 
-- Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe boot build.
-- If you have made extensive modifications, do not run the script. Read the docs above and migrate manually instead.
+- Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe
+  boot build.
+- If you have made extensive modifications, do not run the script. Read the docs
+  above and migrate manually instead.
 
 </details>
 
@@ -2529,9 +2556,7 @@ theme = Dracula
 </div>
 </details>
 
-**
---> 🪧 General NixOS related topics
-**
+** --> 🪧 General NixOS related topics **
 
 <details>
 <summary>**❄  What are Flakes in NixOS? **</summary>

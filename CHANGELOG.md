@@ -5,10 +5,11 @@
 
 ---
 
-# 🚀 **Current Release - ZaneyOS v2.5**
+# 🚀 **Current Release - ZaneyOS v2.5.1**
 
 #### 📅 **Updated: November 28th, 2025**
 
+- FIXED: Username wasn't reliably being set in `flake.nix`
 - Set ZaneyOS to NixOS v25.11 stable branch
 - Moved to `nixvim` for NeoVIM configuration
   - Works better
@@ -35,28 +36,28 @@
   - Moved screenshots into a markdown suummary to reduce clutter
 - Added script to fix `doom iedit` update error
 - Moved some modules/home/*.nix files to their own subdir
-  - Terminals 
+  - Terminals
     - Alacritty
     - ghostty
     - Kitty
     - tmux
-    - Wezterm 
-  - Editors 
+    - Wezterm
+  - Editors
     - antigravity
-    - emacs 
+    - emacs
     - evil-helix
-    - nixvim 
-    - nvf 
-    - vscode 
-  - CLI/Utils 
+    - nixvim
+    - nvf
+    - vscode
+  - CLI/Utils
     - bat
-    - Btop 
-    - Bottom 
-    - cava 
-    - fzf 
-    - git 
-    - gh 
-    - lazygit  
+    - Btop
+    - Bottom
+    - cava
+    - fzf
+    - git
+    - gh
+    - lazygit
 
 #### 📅 **Updated: September 18th, 2025**
 
