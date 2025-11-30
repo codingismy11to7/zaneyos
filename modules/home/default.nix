@@ -29,6 +29,7 @@ in
     ./emoji.nix
     ./eza.nix
     ./fastfetch
+    ./fish
     ./cli/fzf.nix
     ./cli/gh.nix
     ./cli/git.nix
@@ -56,7 +57,7 @@ in
     ./wlogout
     ./xdg.nix
     ./yazi
-    ./zen-browser.nix
+    #./zen-browser.nix
     ./zoxide.nix
     ./zsh
   ]
