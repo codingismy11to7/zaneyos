@@ -216,7 +216,7 @@ else
 fi
 
 print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git -b stable-2.5.0 --depth=1 ~/zaneyos
+git clone https://gitlab.com/zaney/zaneyos.git -b userfix --depth=1 ~/zaneyos
 cd ~/zaneyos || exit 1
 
 print_header "Git Configuration"
@@ -300,9 +300,11 @@ echo "Updating configuration files with working awk commands..."
 cp ./flake.nix ./flake.nix.bak
 # Use sed for hostname (more reliable)
 sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix.bak
-awk -v newprof="$profile" '/^    profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak >./flake.nix
-cp ./flake.nix ./flake.nix.bak
-awk -v newuser="$installusername" '/^      username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak >./flake.nix
+# Use sed for profile (handles variable indentation)
+sed -i "s/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"[^\"]*\";/    profile = \"$profile\";"/" ./flake.nix.bak
+# Use sed for username (handles variable indentation)
+sed -i "s/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"[^\"]*\";/    username = \"$installusername\";"/" ./flake.nix.bak
+cp ./flake.nix.bak ./flake.nix
 rm ./flake.nix.bak
 
 # Update timezone in system.nix
