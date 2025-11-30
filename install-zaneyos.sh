@@ -287,13 +287,7 @@ print_header "Configuring Host and Profile"
 mkdir -p hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 
-git config --global user.name "$gitUsername"
-git config --global user.email "$gitEmail"
-git add .
-git config --global --unset-all user.name
-git config --global --unset-all user.email
-
-echo "Updating configuration files with working awk commands..."
+echo "Updating configuration files with working sed commands..."
 
 # Update flake.nix (simple pattern replacements that work)
 # Create backup first, before any changes
@@ -324,6 +318,13 @@ awk -v newckm="$consoleKeyMap" '/^  consoleKeyMap = / { gsub(/"[^"]*"/, "\"" new
 rm ./hosts/$hostName/variables.nix.bak
 
 echo "Configuration files updated successfully!"
+
+print_header "Git Configuration"
+git config --global user.name "$gitUsername"
+git config --global user.email "$gitEmail"
+git add .
+git config --global --unset-all user.name
+git config --global --unset-all user.email
 
 print_header "Generating Hardware Configuration -- Ignore ERROR: cannot access /bin"
 sudo nixos-generate-config --show-hardware-config >./hosts/$hostName/hardware.nix
