@@ -34,6 +34,29 @@
   - Updated Keybindings
   - Moved screenshots into a markdown suummary to reduce clutter
 - Added script to fix `doom iedit` update error
+- Moved some modules/home/*.nix files to their own subdir
+  - Terminals 
+    - Alacritty
+    - ghostty
+    - Kitty
+    - tmux
+    - Wezterm 
+  - Editors 
+    - antigravity
+    - emacs 
+    - evil-helix
+    - nixvim 
+    - nvf 
+    - vscode 
+  - CLI/Utils 
+    - bat
+    - Btop 
+    - Bottom 
+    - cava 
+    - fzf 
+    - git 
+    - gh 
+    - lazygit  
 
 #### 📅 **Updated: September 18th, 2025**
 
