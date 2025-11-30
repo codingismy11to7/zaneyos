@@ -70,7 +70,7 @@ in
       # discord # Stable client
       # discord-canary # beta  client
       # docker-compose # Allows Controlling Docker From A Single File
-      duf # Utility For Viewing Disk Usage In Terminal
+      # duf # Utility For Viewing Disk Usage In Terminal
       dysk # Disk space util nice formattting
       eza # Beautiful ls Replacement
       ffmpeg # Terminal Video / Audio Editing
@@ -78,7 +78,7 @@ in
       gedit # Simple Graphical Text Editor
       # gemini-cli # CLI AI client ONLY (optional)
       gimp # Great Photo Editor
-      gpu-screen-recorder # needed for nnoctalia-shell
+      #gpu-screen-recorder # needed for nnoctalia-shell
       power-profiles-daemon # needed for noctalia-shell power cycle
       mesa-demos # needed for inxi diag util
       tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
@@ -113,7 +113,7 @@ in
       usbutils # Good Tools For USB Devices
       upower # noctalia shell battery
       uwsm # Universal Wayland Session Manager (optional must be enabled)
-      v4l-utils # Used For Things Like OBS Virtual Camera
+      # v4l-utils # Used For Things Like OBS Virtual Camera
       # warp-terminal # Terminal with AI support build in
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links

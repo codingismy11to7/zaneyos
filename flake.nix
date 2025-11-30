@@ -75,8 +75,8 @@
       ...
     }@inputs:
     let
-      host = "zaneyos-24-vm";
-      profile = "vm";
+      host = "nixos";
+      profile = "rpi5plus";
       username = "steven";
 
       # Deduplicate nixosConfigurations while preserving the top-level 'profile'
