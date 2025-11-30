@@ -295,12 +295,12 @@ echo "  profile: $profile"
 # Update flake.nix (simple pattern replacements that work)
 # Create backup first, before any changes
 cp ./flake.nix ./flake.nix.bak
-# Use sed for hostname (more reliable)
-sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix.bak
+# Use sed for hostname (more reliable) - use | as delimiter to avoid / conflicts
+sed -i "s|^[[:space:]]*host[[:space:]]*=[[:space:]]*\"[^\"]*\"|    host = \"$hostName\"|" ./flake.nix.bak
 # Use sed for profile (handles variable indentation)
-sed -i "s/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"[^\"]*\";/    profile = \"$profile\";"/" ./flake.nix.bak
+sed -i "s|^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"[^\"]*\";|    profile = \"$profile\";"|" ./flake.nix.bak
 # Use sed for username (handles variable indentation)
-sed -i "s/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"[^\"]*\";/    username = \"$installusername\";"/" ./flake.nix.bak
+sed -i "s|^[[:space:]]*username[[:space:]]*=[[:space:]]*\"[^\"]*\";|    username = \"$installusername\";"|" ./flake.nix.bak
 echo "After sed replacements:"
 grep -E "(host|profile|username) =" ./flake.nix.bak
 cp ./flake.nix.bak ./flake.nix
