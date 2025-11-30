@@ -7,8 +7,14 @@
 
 # 🚀 **Current Release - ZaneyOS v2.5.1**
 
-#### 📅 **Updated: November 28th, 2025**
+#### 📅 **Updated: November 30th, 2025**
 
+- NEW: Added `quickshell-overview` integration
+  - Workspace overview with live window previews
+  - Toggled via `SUPER + TAB` keybind
+  - Drag-and-drop workspace navigation
+  - Uses IPC for seamless integration with Hyprland
+  - QML code managed via Home Manager activation script
 - FIXED: Username wasn't reliably being set in `flake.nix`
 - Set ZaneyOS to NixOS v25.11 stable branch
 - Moved to `nixvim` for NeoVIM configuration

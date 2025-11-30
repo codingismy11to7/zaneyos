@@ -32,6 +32,7 @@ in
       "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       "systemctl --user start hyprpolkitagent"
       "pypr &"
+      "qs -c overview" # Start quickshell-overview daemon
     ] ++ noctaliaExec ++ waybarExec;
   };
 }

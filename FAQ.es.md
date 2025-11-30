@@ -147,6 +147,7 @@ fácil referencia.
 ## Lanzamiento de Aplicaciones
 
 - `$modifier + Return` → Lanzar `Terminal`
+- `$modifier + Tab` → Alternar `Quickshell Overview` (visor de espacios con vistas en vivo)
 - `$modifier + K` → Lista atajos
 - `$modifier + D` → Lanzar `launcher`
 - `$modifier + Shift + Return` → Lanzar `launcher`

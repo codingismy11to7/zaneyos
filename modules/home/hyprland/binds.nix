@@ -37,6 +37,8 @@ in {
       noctaliaBind
       ++ rofiBind
       ++ [
+        # ============= WORKSPACE OVERVIEW =============
+        "$modifier, TAB, QS Overview, exec, qs ipc -c overview call overview toggle"
         # ============= TERMINALS =============
         "$modifier,Return, Terminal, exec, ${terminal}"
         # ============= APPLICATION LAUNCHERS =============

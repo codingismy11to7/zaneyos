@@ -143,6 +143,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 ## Application Launching
 
 - `$modifier + Return` → Launch `Terminal`
+- `$modifier + Tab` → Toggle `Quickshell Overview` (workspace overview with live previews)
 - `$modifier + K` → List keybinds
 - `$modifier + D` → Application Launcher
 - `$modifier + Shift + Return` → Application Launcher
