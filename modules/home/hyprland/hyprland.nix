@@ -79,25 +79,25 @@ in {
       enable = true;
     };
     settings = {
-      input =
-        {
-          kb_layout = hyprKbLayout;
-          kb_options = [
-            "grp:alt_caps_toggle"
-            "caps:super"
-          ];
-          numlock_by_default = true;
-          repeat_delay = 300;
-          follow_mouse = 1;
-          float_switch_override_focus = 0;
-          sensitivity = 0;
-          touchpad = {
-            natural_scroll = true;
-            disable_while_typing = true;
-            scroll_factor = 0.8;
-          };
-        }
-        // lib.optionalAttrs (hyprKbVariant != "") {kb_variant = hyprKbVariant;};
+      input = ({
+        kb_layout = hyprKbLayout;
+        kb_options = [
+          # "grp:alt_caps_toggle"
+          # "caps:super"
+          "compose:ralt"
+        ];
+        numlock_by_default = true;
+        repeat_delay = 600;
+        repeat_rate = 40;
+        follow_mouse = 1;
+        float_switch_override_focus = 0;
+        sensitivity = 0;
+        touchpad = {
+          natural_scroll = true;
+          disable_while_typing = true;
+          scroll_factor = 0.8;
+        };
+      } // lib.optionalAttrs (hyprKbVariant != "") { kb_variant = hyprKbVariant; });
 
       gestures = {
         gesture = ["3, horizontal, workspace"];
