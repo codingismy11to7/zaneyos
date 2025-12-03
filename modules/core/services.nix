@@ -1,4 +1,5 @@
-{ profile, ... }: {
+{ profile, ... }:
+{
   # Services to start
   services = {
     upower.enable = true; # noctalia shell battery
@@ -10,7 +11,7 @@
       enable = true; # Enable SSH
       settings = {
         PermitRootLogin = "no"; # Prevent root from SSH login
-        PasswordAuthentication = true; #Users can SSH using kb and password
+        PasswordAuthentication = true; # Users can SSH using kb and password
         KbdInteractiveAuthentication = true;
       };
       ports = [ 22 ];
@@ -20,10 +21,7 @@
     gnome.gnome-keyring.enable = true;
 
     smartd = {
-      enable =
-        if profile == "vm"
-        then false
-        else true;
+      enable = if profile == "vm" then false else true;
       autodetect = true;
     };
     pipewire = {

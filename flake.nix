@@ -41,12 +41,13 @@
   };
 
   outputs =
-    { nixpkgs
-    , home-manager
-    , nixvim
-    , nix-flatpak
-    , ...
-    } @ inputs:
+    {
+      nixpkgs,
+      home-manager,
+      nixvim,
+      nix-flatpak,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       host = "zaneyos-24-vm";
@@ -54,7 +55,8 @@
       username = "dwilliams";
 
       # Deduplicate nixosConfigurations while preserving the top-level 'profile'
-      mkNixosConfig = gpuProfile:
+      mkNixosConfig =
+        gpuProfile:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
