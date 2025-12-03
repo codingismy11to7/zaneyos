@@ -1,44 +1,48 @@
-{host, ...}: let
+{ host, ... }:
+let
   vars = import ../../../hosts/${host}/variables.nix;
-  inherit
-    (vars)
+  inherit (vars)
     barChoice
     browser
     terminal
     ;
   # Noctalia-specific bindings (only included when barChoice == "noctalia")
   noctaliaBind =
-    if barChoice == "noctalia"
-    then [
-      "$modifier,D, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
-      "$modifier SHIFT,Return, Noctalia Launcher, exec,  noctalia-shell ipc call launcher toggle"
-      "$modifier,M, Noctalia Notifications, exec, noctalia-shell ipc call notifications toggleHistory"
-      "$modifier,V, Noctalia Clipboard, exec, noctalia-shell ipc call launcher clipboard"
-      "$modifier ALT,P, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
-      "$modifier SHIFT,comma, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
-      "$modifier ALT,L, Noctalia Lock Screen, exec, noctalia-shell ipc call sessionMenu lockAndSuspend"
-      "$modifier SHIFT,W, Noctalia Wallpaper, exec, noctalia-shell ipc call wallpaper toggle"
-      "$modifier,X, Noctalia Power Menu, exec, noctalia-shell ipc call sessionMenu toggle"
-      "$modifier,C, Noctalia Control Center, exec, noctalia-shell ipc call controlCenter toggle"
-      "$modifier CTRL,R, Noctalia Screen Recorder, exec, noctalia-shell ipc call screenRecorder toggle"
-    ]
-    else [];
+    if barChoice == "noctalia" then
+      [
+        "$modifier,D, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
+        "$modifier SHIFT,Return, Noctalia Launcher, exec,  noctalia-shell ipc call launcher toggle"
+        "$modifier,M, Noctalia Notifications, exec, noctalia-shell ipc call notifications toggleHistory"
+        "$modifier,V, Noctalia Clipboard, exec, noctalia-shell ipc call launcher clipboard"
+        "$modifier ALT,P, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
+        "$modifier SHIFT,comma, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
+        "$modifier ALT,L, Noctalia Lock Screen, exec, noctalia-shell ipc call sessionMenu lockAndSuspend"
+        "$modifier SHIFT,W, Noctalia Wallpaper, exec, noctalia-shell ipc call wallpaper toggle"
+        "$modifier,X, Noctalia Power Menu, exec, noctalia-shell ipc call sessionMenu toggle"
+        "$modifier,C, Noctalia Control Center, exec, noctalia-shell ipc call controlCenter toggle"
+        "$modifier CTRL,R, Noctalia Screen Recorder, exec, noctalia-shell ipc call screenRecorder toggle"
+      ]
+    else
+      [ ];
   # Rofi launcher bindings (only included when barChoice != "noctalia")
   rofiBind =
-    if barChoice != "noctalia"
-    then [
-      "$modifier,D, Rofi Launcher, exec, rofi-launcher"
-      "$modifier SHIFT,Return, Rofi Launcher, exec, rofi-launcher"
-    ]
-    else [];
+    if barChoice != "noctalia" then
+      [
+        "$modifier,D, Rofi Launcher, exec, rofi-launcher"
+        "$modifier SHIFT,Return, Rofi Launcher, exec, rofi-launcher"
+      ]
+    else
+      [ ];
   # Rofi clipboard binding (only included when barChoice != "noctalia")
   rofiClipboardBind =
-    if barChoice != "noctalia"
-    then [
-      "$modifier,V, Clipboard History, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-    ]
-    else [];
-in {
+    if barChoice != "noctalia" then
+      [
+        "$modifier,V, Clipboard History, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+      ]
+    else
+      [ ];
+in
+{
   wayland.windowManager.hyprland.settings = {
     bindd =
       noctaliaBind
