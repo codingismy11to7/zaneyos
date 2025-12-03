@@ -81,11 +81,13 @@ in {
         {
           kb_layout = hyprKbLayout;
           kb_options = [
-            "grp:alt_caps_toggle"
-            "caps:super"
+            # "grp:alt_caps_toggle"
+            # "caps:super"
+            "compose:ralt"
           ];
           numlock_by_default = true;
-          repeat_delay = 300;
+          repeat_delay = 600;
+          repeat_rate = 40;
           follow_mouse = 1;
           float_switch_override_focus = 0;
           sensitivity = 0;
@@ -201,3 +203,4 @@ in {
     ";
   };
 }
+
