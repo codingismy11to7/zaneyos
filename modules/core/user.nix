@@ -40,7 +40,7 @@ in {
       "wheel" #sudo access
       "vboxusers" #Virtual Box
     ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     ignoreShellProgramCheck = true;
   };
   nix.settings.allowed-users = ["${username}"];
