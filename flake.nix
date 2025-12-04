@@ -2,6 +2,7 @@
   description = "ZaneyOS";
 
   inputs = {
+    systems.url = "github:nix-systems/default-linux";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,12 +12,18 @@
     stylix.url = "github:danth/stylix/release-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
+    secrets = {
+      url = "github:codingismy11to7/secrets";
+      inputs.systems.follows = "systems";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Checking nixvim to see if it's better
+    #  nixvim to see if it's better
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +54,7 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    username = "dwilliams";
+    username = "steven";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = host:
