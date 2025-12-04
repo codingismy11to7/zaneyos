@@ -11,6 +11,11 @@
     stylix.url = "github:danth/stylix/release-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,7 +56,7 @@
       system = "x86_64-linux";
       host = "zaneyos-24-vm";
       profile = "vm";
-      username = "dwilliams";
+      username = "steven";
 
       # Deduplicate nixosConfigurations while preserving the top-level 'profile'
       mkNixosConfig =

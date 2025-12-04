@@ -13,8 +13,8 @@ in
   imports = [ inputs.home-manager.nixosModules.home-manager ];
   home-manager = {
     useUserPackages = true;
-    useGlobalPkgs = false;
-    backupFileExtension = "backup";
+    useGlobalPkgs = true;
+    backupFileExtension = "hm-backup";
     extraSpecialArgs = {
       inherit
         inputs
@@ -25,9 +25,9 @@ in
         ;
     };
     users.${username} = {
-      imports = [ ./../home ];
+      imports = [ ../home ];
       home = {
-        username = "${username}";
+        inherit username;
         homeDirectory = "/home/${username}";
         stateVersion = "23.11";
       };
@@ -47,8 +47,14 @@ in
       "wheel" # sudo access
       "vboxusers" # Virtual Box
     ];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAxNSrwubJSzASpdG2Tb2KuqCwfv0QQHtSEySnDlxycPrtQf1LUNyItrGxBXUPf0b3lALV64DAOSoko8w2WbiwqUcQKnDAN5uOtxgO+bCprzEsyI7eIH/xUkG2p/xX3VNxaJQVnvgfesLuiJNfVdupbKFDO7xVJ2ByfViiG8EP9cBv3a62yu6bDnqyh8fXy0YTtxu6iPhQ46kt5rr2OaaKgOacokYwmJ2OW43j/GnFPpUueyRH3Zk5X7nSFbySTKUmnPjHkh4vUTcvxyEPpT1g01JOmvdVx9eCLsB0wx8Pxso1d7Nd5u+D+e7c3LWLWddw1TKwFfO5GLRHXA4fsyKSew=="
+    ];
     shell = pkgs.fish;
     ignoreShellProgramCheck = true;
   };
-  nix.settings.allowed-users = [ "${username}" ];
+  nix.settings = {
+    allowed-users = [ username ];
+    trusted-users = [ username ];
+  };
 }
