@@ -206,6 +206,11 @@ with lib; {
       example = "../../wallpapers/mountainscapedark.jpg";
       description = "Wallpaper image for Stylix.";
     };
+    fastfetchLogo = mkOption {
+      type = types.nullOr types.path;
+      default = null;
+      description = "Optional path to a custom logo for fastfetch.";
+    };
     waybarChoice = mkOption {
       type = types.path;
       example = "../../modules/home/waybar/waybar-curved.nix";
