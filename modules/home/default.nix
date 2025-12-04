@@ -30,6 +30,7 @@ in
     ./emoji.nix
     ./eza.nix
     ./fastfetch
+    ./fish
     ./cli/fzf.nix
     ./cli/gh.nix
     ./cli/git.nix
