@@ -25,7 +25,7 @@ in
         ;
     };
     users.${username} = {
-      imports = [ ./../home ];
+      imports = [ ../home ];
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
