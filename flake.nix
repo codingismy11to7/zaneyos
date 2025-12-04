@@ -75,7 +75,7 @@
       ...
     }@inputs:
     let
-      host = "nixos";
+      host = "rpi5plus";
       profile = "rpi5plus";
       username = "steven";
 
