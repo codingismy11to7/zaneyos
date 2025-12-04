@@ -45,6 +45,7 @@ in
     ./qt.nix
     ./scripts
     ./scripts/gemini-cli.nix
+    ./secrets/sops.nix
     ./stylix.nix
     ./swappy.nix
     ./swaync.nix
