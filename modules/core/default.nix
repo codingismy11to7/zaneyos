@@ -17,6 +17,7 @@
     ./scanners.nix
     ./security.nix
     ./services.nix
+    ./sops.nix
     ./steam.nix
     ./stylix.nix
     ./syncthing.nix

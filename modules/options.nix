@@ -240,5 +240,11 @@ with lib; {
       default = "5ab03f50";
       description = "Network hostId.";
     };
+
+    sopsKeyFile = mkOption {
+      type = types.str;
+      default = "/var/lib/sops/age-keys.txt";
+      description = "Path to the sops age key file.";
+    };
   };
 }
