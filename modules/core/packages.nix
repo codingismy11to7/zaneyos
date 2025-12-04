@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  inherit (config.zaneyos) barChoice;
+  inherit (config.zaneyos) barChoice enableGnuPGAgent;
 
   # Noctalia-specific packages
   # gpu-screen-recorder requires x86_64 architecture
@@ -39,9 +39,10 @@ in {
     adb.enable = true;
     hyprlock.enable = true;
     gnupg.agent = {
-      enable = true;
+      enable = enableGnuPGAgent;
       enableSSHSupport = true;
     };
+    ssh.startAgent = !enableGnuPGAgent;
   };
 
   nixpkgs.config.allowUnfree = true;

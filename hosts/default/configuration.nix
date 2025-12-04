@@ -61,6 +61,8 @@ _: {
     keyboardVariant = "";
     consoleKeyMap = "us";
 
+    enableGnuPGAgent = false;
+
     # Themes, waybar and animation.
     # Set Stylix Image
     # This will set your color palette

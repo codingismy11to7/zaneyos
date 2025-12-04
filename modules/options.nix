@@ -198,6 +198,12 @@ with lib; {
       description = "Enable scanning support.";
     };
 
+    enableGnuPGAgent = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Disable ssh-agent and use gnupg-agent & gnome-keyring";
+    };
+
     # Yazi is default File Manager.
     thunarEnable = mkOption {
       type = types.bool;
