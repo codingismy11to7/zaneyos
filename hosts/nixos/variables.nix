@@ -23,6 +23,10 @@
   
   # Python development tools are included by default
 
+  # TODO: this was more about the gnome keyring i think, reevaluate later
+  # disable the GnuPG agent and enable SSH agent instead
+  disableGnuPGAgent = true;
+
   # Hyprland Settings
   # Examples:
   # extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";

@@ -5,7 +5,7 @@
 }:
 let
   vars = import ../../hosts/${host}/variables.nix;
-  inherit (vars) barChoice;
+  inherit (vars) barChoice disableGnuPGAgent;
   # Noctalia-specific packages
   noctaliaPkgs =
     if barChoice == "noctalia" then
@@ -35,9 +35,10 @@ in
     adb.enable = true;
     hyprlock.enable = true;
     gnupg.agent = {
-      enable = true;
+      enable = !disableGnuPGAgent;
       enableSSHSupport = true;
     };
+    ssh.startAgent = disableGnuPGAgent;
   };
 
   nixpkgs.config.allowUnfree = true;
