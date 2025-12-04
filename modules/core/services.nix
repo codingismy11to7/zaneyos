@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.zaneyos) enableSmartD;
+  inherit (config.zaneyos) enableSmartD enableGnuPGAgent;
 in {
   # Services to start
   services = {
@@ -12,14 +12,14 @@ in {
       enable = true; # Enable SSH
       settings = {
         PermitRootLogin = "no"; # Prevent root from SSH login
-        PasswordAuthentication = true; #Users can SSH using kb and password
-        KbdInteractiveAuthentication = true;
+        PasswordAuthentication = false;
+        # KbdInteractiveAuthentication = true;
       };
       ports = [22];
     };
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview
-    gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = enableGnuPGAgent;
 
     smartd = {
       enable = enableSmartD;
