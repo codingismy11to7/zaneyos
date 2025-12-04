@@ -1,4 +1,12 @@
-{profile, ...}: {
+{
+  profile,
+  host,
+  ...
+}: let
+  vars = import ../../hosts/${host}/variables.nix;
+
+  inherit (vars) disableGnuPGAgent;
+in {
   # Services to start
   services = {
     upower.enable = true; # noctalia shell battery
@@ -10,14 +18,14 @@
       enable = true; # Enable SSH
       settings = {
         PermitRootLogin = "no"; # Prevent root from SSH login
-        PasswordAuthentication = true; #Users can SSH using kb and password
-        KbdInteractiveAuthentication = true;
+        PasswordAuthentication = false;
+        # KbdInteractiveAuthentication = true;
       };
       ports = [22];
     };
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview
-    gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = !disableGnuPGAgent;
 
     smartd = {
       enable =
