@@ -2,6 +2,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -11,14 +12,25 @@ in
 {
   programs.lazygit = {
     enable = true;
+    package = pkgs.unstable.lazygit;
     settings = lib.mkForce {
       disableStartupPopups = true;
       notARepository = "skip";
       promptToReturnFromSubprocess = false;
       update.method = "never";
       git = {
-        commit.signOff = true;
+        commit.signOff = false;
         parseEmoji = true;
+        ignoreWhitespaceInDiffView = true;
+        log = {
+          showGraph = "when-maximised";
+        };
+        pagers = [
+          {
+            colorArg = "always";
+            page = "delta --dark --paging=never";
+          }
+        ];
       };
       gui = {
         theme = {
@@ -28,11 +40,28 @@ in
           ];
           inactiveBorderColor = [ muted ];
         };
-        showListFooter = false;
+        # showListFooter = false;
         showRandomTip = false;
-        showCommandLog = false;
-        showBottomLine = false;
+        # showCommandLog = false;
+        # showBottomLine = false;
         nerdFontsVersion = "3";
+        spinner = {
+          rate = 250;
+          frames = [
+            "🕛 "
+            "🕐 "
+            "🕑 "
+            "🕒 "
+            "🕓 "
+            "🕔 "
+            "🕕 "
+            "🕖 "
+            "🕗 "
+            "🕘 "
+            "🕙 "
+            "🕚 "
+          ];
+        };
       };
     };
   };
