@@ -8,7 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     audacity
-    discord
+    # discord
     nodejs
   ];
 }
