@@ -1,8 +1,15 @@
-{host, ...}: let
+{
+  host,
+  inputs,
+  ...
+}: let
   vars = import ../../hosts/${host}/variables.nix;
   consoleKeyMap = vars.consoleKeyMap or "us";
 in {
   nix = {
+    registry = {
+      unstable.flake = inputs.nixpkgs-unstable;
+    };
     settings = {
       download-buffer-size = 200000000;
       auto-optimise-store = true;
