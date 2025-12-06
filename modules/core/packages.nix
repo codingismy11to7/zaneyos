@@ -45,6 +45,11 @@ in
       enableSSHSupport = true;
     };
     ssh.startAgent = disableGnuPGAgent;
+
+    # allow dynamically-linked binaries. for instance,
+    # gemini-cli ships a bundled ripgrep instead of running
+    # the already-installed one.
+    nix-ld.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
