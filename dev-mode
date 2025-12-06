@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+CMD="nh os build ."
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -a|--apply)
+      CMD="nh os test"
+      shift
+      ;;
+    -h|--help)
+      echo "Usage: $(basename "$0") [OPTIONS]"
+      echo ""
+      echo "Options:"
+      echo "  -a, --apply   Run 'nh os test' to apply changes (default is build only)"
+      echo "  -h, --help    Show this help message"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      exit 1
+      ;;
+  esac
+done
+
+echo "Starting dev-mode with command: $CMD"
+nix run nixpkgs#watchexec -- --exts nix --restart --clear --ignore result --ignore flake.lock $CMD
