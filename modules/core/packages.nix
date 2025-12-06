@@ -25,10 +25,10 @@ let
 in
 {
   programs = {
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
+    # neovim = {
+    #   enable = true;
+    #   defaultEditor = true;
+    # };
     firefox.enable = false; # Firefox is not installed by default
     hyprland = {
       enable = true; # set this so desktop file is created
