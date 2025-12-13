@@ -6,8 +6,16 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    # audacity
-    nodejs
-  ];
+  environment.systemPackages = let
+    stable = with pkgs; [
+      # audacity
+      nodejs
+    ];
+    unstable = with pkgs.unstable; [
+      heroic
+      plex-desktop
+      plexamp
+    ];
+  in
+    stable ++ unstable;
 }

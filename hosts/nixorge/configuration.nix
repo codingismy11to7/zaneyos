@@ -15,9 +15,9 @@ _: {
 
     # does not have to be the same as the directory name, but
     # would be common
-    hostName = "my-hostname";
+    hostName = "nixorge";
 
-    gpuProfile = "vm";
+    gpuProfile = "nvidia";
 
     # Set Display Manager
     # `tui` for Text login
