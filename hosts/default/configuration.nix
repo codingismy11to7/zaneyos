@@ -62,6 +62,7 @@ _: {
     consoleKeyMap = "us";
 
     enableGnuPGAgent = false;
+    scannerEnable = false;
 
     # Themes, waybar and animation
     # Set Stylix Image
