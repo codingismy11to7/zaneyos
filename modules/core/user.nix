@@ -6,7 +6,7 @@
   username,
   ...
 }: let
-  inherit (config.zaneyos) gitUsername;
+  inherit (config.zaneyos) gitUsername scannerEnable;
 in {
   imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
