@@ -15,9 +15,11 @@
     else [];
 
   unstablePkgs = with pkgs.unstable; [
+    anytype
     discord
     ripgrep
     slack
+    zellij
   ];
 in {
   programs = {
@@ -113,6 +115,7 @@ in {
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links
       ytmdl # Tool For Downloading Audio From YouTube
-      python3 # Python 3 programming language
+      # python3 # Python 3 programming language
+      zip
     ];
 }
