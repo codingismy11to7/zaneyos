@@ -60,7 +60,7 @@ in {
     ++ unstablePkgs
     ++ [
       alejandra # nix formatter
-      amfora # Fancy Terminal Browser For Gemini Protocol
+      # amfora # Fancy Terminal Browser For Gemini Protocol
       appimage-run # Needed For AppImage Support
       brave # Brave Browser
       brightnessctl # For Screen Brightness Control
@@ -79,7 +79,7 @@ in {
       gimp # Great Photo Editor
       mesa-demos # needed for inxi diag util
       tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
-      htop # Simple Terminal Based System Monitor
+      # htop # Simple Terminal Based System Monitor
       eog # For Image Viewing
       inxi # CLI System Information Tool
       killall # For Killing All Instances Of Programs

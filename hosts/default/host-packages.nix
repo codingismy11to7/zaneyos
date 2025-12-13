@@ -7,7 +7,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    audacity
+    # audacity
     nodejs
   ];
 }
