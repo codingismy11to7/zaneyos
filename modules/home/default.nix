@@ -35,7 +35,7 @@ in
     ./cli/gh.nix
     ./cli/git.nix
     ./gtk.nix
-    ./cli/htop.nix
+    # ./cli/htop.nix
     ./hyprland
     ./terminals/kitty.nix
     ./cli/lazygit.nix
@@ -47,7 +47,7 @@ in
     ./rofi
     ./qt.nix
     ./scripts
-    ./scripts/gemini-cli.nix
+    # ./scripts/gemini-cli.nix
     ./secrets/sops.nix
     ./stylix.nix
     ./swappy.nix
@@ -58,7 +58,7 @@ in
     ./wlogout
     ./xdg.nix
     ./yazi
-    ./zen-browser.nix
+    # ./zen-browser.nix
     ./zoxide.nix
     ./zsh
   ]
