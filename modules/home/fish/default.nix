@@ -18,6 +18,8 @@ in {
       bind ctrl-alt-l _lazygit_log
       bind ctrl-alt-s _lazygit_status
 
+      set -x DOCKER_HOST /run/user/1000/podman/podman.sock
+
       fastfetch
     '';
 
