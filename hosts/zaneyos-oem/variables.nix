@@ -19,7 +19,7 @@
   helixEnable = true;
   #To install rebuild, then run zcli doom install
   doomEmacsEnable = false;
-  
+
   # Python development tools
   pythonEnable = false;
 
@@ -53,6 +53,9 @@
 
   # Enable Printing Support
   printEnable = false;
+
+  # Enable Scanning Support
+  scannerEnable = false;
 
   # Enable Thunar GUI File Manager
   thunarEnable = true;

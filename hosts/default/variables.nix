@@ -20,7 +20,7 @@
   helixEnable = false;
   #To install: Enable here, zcli rebuild, then run zcli doom install
   doomEmacsEnable = false;
-  
+
   # Python development tools are included by default
 
   # Hyprland Settings
@@ -67,6 +67,9 @@
 
   # Enable Printing Support
   printEnable = false;
+
+  # Enable Scanning Support
+  scannerEnable = false;
 
   # Enable Thunar GUI File Manager
   # Yazi is default File Manager
