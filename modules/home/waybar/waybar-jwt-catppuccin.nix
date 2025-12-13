@@ -3,15 +3,11 @@
   scriptsDir = ./scripts;
   scripts = builtins.attrNames (builtins.readDir scriptsDir);
 
+  cava = "${pkgs.cava}/bin/cava";
+
   # Inline, improved Cava script packaged via Nix so we don't rely on an external bash file
   waybarCava = pkgs.writeShellScriptBin "WaybarCava" ''
     set -euo pipefail
-
-    # Ensure cava exists
-    if ! command -v cava >/dev/null 2>&1; then
-      echo "cava not found in PATH" >&2
-      exit 1
-    fi
 
     # Characters for vertical bars (0..7)
     bar="▁▂▃▄▅▆▇█"
@@ -62,7 +58,7 @@
     EOF
 
     # Stream cava output and transform
-    exec cava -p "$config_file" | sed -u "$dict"
+    exec ${cava} -p "$config_file" | sed -u "$dict"
   '';
 
   # Catppuccin Mocha palette

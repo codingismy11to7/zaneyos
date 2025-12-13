@@ -19,6 +19,8 @@
     then ./noctalia.nix
     else waybarChoice;
 in {
+  home.sessionVariables.EDITOR = "nvim";
+
   imports =
     [
       ./amfora.nix
@@ -28,7 +30,7 @@ in {
       ./python.nix
       ./cli/bat.nix
       ./cli/btop.nix
-      ./cli/bottom.nix
+      # ./cli/bottom.nix
       ./cli/cava.nix
       ./emoji.nix
       ./eza.nix
