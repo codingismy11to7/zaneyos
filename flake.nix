@@ -73,7 +73,7 @@
       };
 
     hosts = [
-      "default"
+      "nixorge"
       "nixstation"
       "zaneyos-24-vm"
       "zaneyos-oem"
