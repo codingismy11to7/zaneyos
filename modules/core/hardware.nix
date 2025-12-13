@@ -1,8 +1,12 @@
-{ pkgs, ... }:
+{ host, pkgs, ... }:
+let
+  # Import the host-specific variables.nix
+  vars = import ../../hosts/${host}/variables.nix;
+in
 {
   hardware = {
     sane = {
-      enable = true;
+      enable = vars.scannerEnable;
       extraBackends = [ pkgs.sane-airscan ];
       disabledDefaultBackends = [ "escl" ];
     };

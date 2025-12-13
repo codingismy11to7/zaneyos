@@ -72,6 +72,9 @@
   # Enable Printing Support
   printEnable = false;
 
+  # Enable Scanning Support
+  scannerEnable = false;
+
   # Enable Thunar GUI File Manager
   # Yazi is default File Manager
   thunarEnable = false;
