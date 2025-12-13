@@ -1,7 +1,14 @@
-{pkgs, ...}: {
+{
+  host,
+  pkgs,
+  ...
+}: let
+  # Import the host-specific variables.nix
+  inherit (import ../../hosts/${host}/variables.nix) scannerEnable;
+in {
   hardware = {
     sane = {
-      enable = true;
+      enable = scannerEnable;
       extraBackends = [pkgs.sane-airscan];
       disabledDefaultBackends = ["escl"];
     };
