@@ -19,6 +19,7 @@
     discord
     ripgrep
     slack
+    zellij
   ];
 in {
   programs = {
@@ -70,6 +71,7 @@ in {
       dysk # Disk space util nice formattting
       eza # Beautiful ls Replacement
       ffmpeg # Terminal Video / Audio Editing
+      file
       file-roller # Archive Manager
       gimp # Great Photo Editor
       gpu-screen-recorder # needed for nnoctalia-shell
@@ -102,6 +104,7 @@ in {
       rhythmbox # audio player
       # ripgrep # Improved Grep
       socat # Needed For Screenshots
+      systemctl-tui
       unrar # Tool For Handling .rar Files
       unzip # Tool For Handling .zip Files
       usbutils # Good Tools For USB Devices
@@ -111,6 +114,7 @@ in {
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links
       ytmdl # Tool For Downloading Audio From YouTube
-      python3 # Python 3 programming language
+      # python3 # Python 3 programming language
+      zip
     ];
 }

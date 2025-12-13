@@ -12,6 +12,7 @@
       # Use the official Flatpak application ID (e.g., from flathub.org)
       # Examples:
       packages = [
+        "io.anytype.anytype"
         #"com.github.tchx84.Flatseal" #Manage flatpak permissions - should always have this
         #"com.rtosta.zapzap"              # WhatsApp client
         #"io.github.flattool.Warehouse"   # Manage flatpaks, clean data, remove flatpaks and deps

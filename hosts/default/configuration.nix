@@ -10,8 +10,8 @@ _: {
   # and can be removed to use the project defaults.
   zaneyos = {
     # Git Configuration
-    gitUsername = "Tyler Kelley";
-    gitEmail = "tylerzanekelley@gmail.com";
+    gitUsername = "Steven Scott";
+    gitEmail = "codingismy11to7@gmail.com";
 
     # does not have to be the same as the directory name, but
     # would be common
@@ -58,8 +58,10 @@ _: {
     terminal = "kitty"; # Set Default System Terminal
 
     keyboardLayout = "us";
-    keyboardVariant = "";
-    consoleKeyMap = "us";
+    keyboardVariant = "dvorak";
+    consoleKeyMap = "dvorak";
+
+    enableNFS = false;
 
     enableGnuPGAgent = false;
     scannerEnable = false;
