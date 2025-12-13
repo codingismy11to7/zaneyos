@@ -2,25 +2,30 @@
   pkgs,
   host,
   ...
-}: let
+}:
+let
   vars = import ../../hosts/${host}/variables.nix;
   inherit (vars) barChoice disableGnuPGAgent;
   # Noctalia-specific packages
   noctaliaPkgs =
-    if barChoice == "noctalia"
-    then
-      with pkgs; [
+    if barChoice == "noctalia" then
+      with pkgs;
+      [
         matugen # color palette generator needed for noctalia-shell
         app2unit # launcher for noctalia-shell
       ]
-    else [];
+    else
+      [ ];
 
   unstablePkgs = with pkgs.unstable; [
+    anytype
     discord
     ripgrep
     slack
+    zellij
   ];
-in {
+in
+{
   programs = {
     # neovim = {
     #   enable = true;
@@ -46,7 +51,8 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     noctaliaPkgs
     ++ unstablePkgs
     ++ [
@@ -109,6 +115,7 @@ in {
       waypaper # Change wallpaper
       wget # Tool For Fetching Files With Links
       ytmdl # Tool For Downloading Audio From YouTube
-      python3 # Python 3 programming language
+      # python3 # Python 3 programming language
+      zip
     ];
 }
