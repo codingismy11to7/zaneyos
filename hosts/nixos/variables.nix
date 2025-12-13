@@ -1,7 +1,7 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "Tyler Kelley";
-  gitEmail = "tylerzanekelley@gmail.com";
+  gitUsername = "Steven Scott";
+  gitEmail = "codingismy11to7@gmail.com";
 
   # Set Displau Manager
   # `tui` for Text login
@@ -58,8 +58,8 @@
   terminal = "kitty"; # Set Default System Terminal
 
   keyboardLayout = "us";
-  keyboardVariant = "";
-  consoleKeyMap = "us";
+  keyboardVariant = "dvorak";
+  consoleKeyMap = "dvorak";
 
   # For hybrid support (Intel/NVIDIA Prime or AMD/NVIDIA)
   intelID = "PCI:1:0:0";
@@ -67,7 +67,7 @@
   nvidiaID = "PCI:0:2:0";
 
   # Enable NFS
-  enableNFS = true;
+  enableNFS = false;
 
   # Enable Printing Support
   printEnable = false;
