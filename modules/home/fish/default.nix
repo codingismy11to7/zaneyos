@@ -27,6 +27,8 @@ in {
       bind ctrl-alt-l _lazygit_log
       bind ctrl-alt-s _lazygit_status
 
+      set -x DOCKER_HOST /run/user/1000/podman/podman.sock
+
       ${fastfetchCmd}
 
       if not ${pkgs.openssh}/bin/ssh-add -l > /dev/null 2>&1
