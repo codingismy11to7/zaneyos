@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # Only enable either docker or podman -- Not both
   virtualisation = {
     docker = {
@@ -26,9 +27,15 @@
     virt-manager.enable = false;
   };
 
-  environment.systemPackages = with pkgs; [
-    virt-viewer # View Virtual Machines
-    lazydocker
-    # docker-client
-  ];
+  environment.systemPackages =
+    (with pkgs.unstable; [
+      distrobox
+      distrobox-tui
+      lazydocker
+    ])
+    ++ (with pkgs; [
+      podman-compose
+      virt-viewer # View Virtual Machines
+      # docker-client
+    ]);
 }
