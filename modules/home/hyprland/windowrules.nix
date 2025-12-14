@@ -80,7 +80,7 @@ _: {
         "size 70% 60%, initialTitle:(Add Folder to Workspace)"
         "size 70% 70%, tag:settings*"
         "size 60% 70%, class:^([Ff]erdium)$"
-        "opacity 1.0 1.0, tag:browser*"
+        "opacity 0.8 1.0, tag:browser*"
         "opacity 0.9 0.8, tag:projects*"
         "opacity 0.94 0.86, tag:im*"
         "opacity 0.9 0.8, tag:file-manager*"
