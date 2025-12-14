@@ -53,6 +53,11 @@
     makeDesktopFile appName ''${launch-or-focus-webapp} "${appName}" ${appUrl}'' iconPath;
 in {
   home.file = {
+    "${desktopFile "radarr"}".text = makeLauncher "Radarr" "https://radarr.codingismy11to7.us" ./icons/radarr.svg;
+    "${desktopFile "sabnzbd"}".text = makeLauncher "SABnzbd" "https://sabnzbd.codingismy11to7.us" ./icons/sabnzbd.svg;
+    "${desktopFile "sonarr"}".text = makeLauncher "Sonarr" "https://sonarr.codingismy11to7.us" ./icons/sonarr.svg;
+    "${desktopFile "tautulli"}".text = makeLauncher "Tautulli" "https://tautulli.codingismy11to7.us" ./icons/tautulli.svg;
+
     "${desktopFile "gmail"}".text = makeSingleton "Gmail" "https://mail.google.com" ./icons/gmail.svg;
     "${desktopFile "google-calendar"}".text = makeSingleton "Google Calendar" "https://calendar.google.com" ./icons/google-calendar.svg;
     "${desktopFile "google-contacts"}".text = makeSingleton "Google Contacts" "https://contacts.google.com" ./icons/google-contacts.svg;
