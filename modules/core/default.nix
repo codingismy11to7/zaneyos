@@ -11,6 +11,7 @@ in {
     ./flatpak.nix
     ./fonts.nix
     ./hardware.nix
+    ./nautilus.nix
     ./network.nix
     ./nfs.nix
     ./nh.nix

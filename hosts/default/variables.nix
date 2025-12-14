@@ -79,6 +79,9 @@
   # Yazi is default File Manager
   thunarEnable = false;
 
+  # Enable Nautilus GUI File Manager
+  nautilusEnable = true;
+
   # Themes, waybar and animation.
   #  Only uncomment your selection
   # The others much be commented out.
