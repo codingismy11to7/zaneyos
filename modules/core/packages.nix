@@ -88,7 +88,9 @@ in
       tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
       # htop # Simple Terminal Based System Monitor
       eog # For Image Viewing
+      gtk3 # for gtk-launch app
       inxi # CLI System Information Tool
+      jq # json manip
       killall # For Killing All Instances Of Programs
       libnotify # For Notifications
       lm_sensors # Used For Getting Hardware Temps
