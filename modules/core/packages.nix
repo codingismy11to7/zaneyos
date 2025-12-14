@@ -84,6 +84,7 @@ in {
       # htop # Simple Terminal Based System Monitor
       eog # For Image Viewing
       inxi # CLI System Information Tool
+      jq # json manip
       killall # For Killing All Instances Of Programs
       libnotify # For Notifications
       lm_sensors # Used For Getting Hardware Temps
