@@ -27,8 +27,8 @@
   rofiBind =
     if barChoice != "noctalia"
     then [
-      "$modifier,D, Rofi Launcher, exec, rofi-launcher"
-      "$modifier SHIFT,Return, Rofi Launcher, exec, rofi-launcher"
+      # "$modifier,D, Rofi Launcher, exec, rofi-launcher"
+      "$modifier,space, Rofi Launcher, exec, rofi-launcher"
     ]
     else [];
   # Rofi clipboard binding (only included when barChoice != "noctalia")
@@ -51,34 +51,37 @@ in {
         # ============= TERMINALS =============
         "$modifier,Return, Terminal, exec, ${terminal}"
         # ============= APPLICATION LAUNCHERS =============
-        "$modifier,K, Keybinds Search Tool, exec, qs-keybinds"
+        # 34 is /
+        "$modifier,code:34, Keybinds Search Tool, exec, qs-keybinds"
         "$modifier CTRL,C, Cheatsheets Viewer, exec, qs-cheatsheets"
-        "$modifier SHIFT,K, Legacy Keybinds Menu, exec, list-keybinds"
+        # "$modifier SHIFT,K, Legacy Keybinds Menu, exec, list-keybinds"
         "$modifier SHIFT,D, Discord, exec, discord"
-        "$modifier ALT,W, Web Search, exec, web-search"
+        # "$modifier ALT,W, Web Search, exec, web-search"
         "$modifier SHIFT,W, QS Wallpaper Setter, exec, qs-wallpapers-apply"
-        "$modifier SHIFT,N, Notification Reset, exec, swaync-client -rs"
-        "$modifier,W, Web Browser, exec, ${browser}"
-        "$modifier,Y, File Manager, exec, kitty -e yazi"
+        "$modifier SHIFT,N, Neovim, exec, ${terminal} -e nvim"
+        "$modifier   ALT,N, Notification Reset, exec, swaync-client -rs"
+        "$modifier SHIFT,B, Web Browser, exec, ${browser}"
+        "$modifier,Y, File Manager, exec, ${terminal} -e yazi"
         "$modifier,E, Emoji Picker, exec, emopicker9000"
         "$modifier,S, Screenshot, exec, screenshootin"
         # ============= SCREENSHOTS =============
         "$modifier CTRL,S, Screenshot Output, exec, hyprshot -m output -o $HOME/Pictures/ScreenShots"
         "$modifier SHIFT,S, Screenshot Window, exec, hyprshot -m window -o $HOME/Pictures/ScreenShots"
         "$modifier ALT,S, Screenshot Region, exec, hyprshot -m region -o $HOME/Pictures/ScreenShots"
-        "$modifier,O, OBS Studio, exec, obs"
+        # "$modifier,O, OBS Studio, exec, obs"
         "$modifier ALT,C, Color Picker, exec, hyprpicker -a"
         "$modifier,G, GIMP, exec, gimp"
-        "$modifier shift,T, Dropdown Terminal, exec, pypr toggle term"
-        "$modifier,T, Thunar, exec, thunar"
+        "$modifier SHIFT,T, Dropdown Terminal, exec, pypr toggle term"
+        # "$modifier,T, Thunar, exec, thunar"
+        "$modifier SHIFT,F, File Manager, exec, nautilus"
         "$modifier ALT,M, Audio Control, exec, pavucontrol"
         # ============= WINDOW MANAGEMENT =============
-        "$modifier,Q, Kill Active Window, killactive,"
+        "$modifier,W, Kill Active Window, killactive,"
         "$modifier,P, Pseudo Tile, pseudo,"
-        "$modifier SHIFT,I, Toggle Split, togglesplit,"
-        "$modifier,F, Maximize, fullscreen,"
-        "$modifier SHIFT,F, Toggle Floating, togglefloating,"
-        "$modifier ALT,F, Float All Windows, workspaceopt, allfloat"
+        "$modifier,I, Toggle Split, togglesplit,"
+        "$modifier,F, Full Screen, fullscreen,"
+        "$modifier,T, Toggle Floating, togglefloating,"
+        # "$modifier ALT,F, Float All Windows, workspaceopt, allfloat"
         "$modifier SHIFT,C, Exit/Logout of Hyprland, exit,"
         # ============= WINDOW MOVEMENT (ARROW KEYS) =============
         "$modifier SHIFT,left, Move Left, movewindow, l"
@@ -122,8 +125,8 @@ in {
         "$modifier,9, Workspace 9, workspace, 9"
         "$modifier,0, Workspace 10, workspace, 10"
         # ============= MOVE WINDOW TO WORKSPACE (1-10) =============
-        "$modifier SHIFT,SPACE, Move to Special, movetoworkspace, special"
-        "$modifier,SPACE, Toggle Special, togglespecialworkspace"
+        "$modifier SHIFT,grave, Move to Special, movetoworkspace, special"
+        "$modifier,grave, Toggle Special, togglespecialworkspace"
         "$modifier SHIFT,1, Move to Workspace 1, movetoworkspace, 1"
         "$modifier SHIFT,2, Move to Workspace 2, movetoworkspace, 2"
         "$modifier SHIFT,3, Move to Workspace 3, movetoworkspace, 3"
@@ -144,8 +147,10 @@ in {
         "ALT,Tab, Bring Active To Top, bringactivetotop"
         # ============= MEDIA & HARDWARE CONTROLS =============
         ",XF86AudioRaiseVolume, Volume Up, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        "ALT,XF86AudioRaiseVolume, Volume Up Precise, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
         ",XF86AudioLowerVolume, Volume Down, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        " ,XF86AudioMute, Mute Toggle, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "ALT,XF86AudioLowerVolume, Volume Down Precise, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+        ",XF86AudioMute, Mute Toggle, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioPlay, Play Pause, exec, playerctl play-pause"
         ",XF86AudioPause, Play Pause, exec, playerctl play-pause"
         ",XF86AudioNext, Next Track, exec, playerctl next"
