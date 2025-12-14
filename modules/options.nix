@@ -210,6 +210,11 @@ with lib; {
       default = false;
       description = "Enable Thunar GUI File Manager.";
     };
+    nautilusEnable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable Nautilus file manager.";
+    };
 
     # Themes, waybar and animation
 

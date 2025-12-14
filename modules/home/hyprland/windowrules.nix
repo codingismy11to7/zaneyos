@@ -68,6 +68,7 @@ _: {
         "float, class:^([Ff]erdium)$"
         "float, title:^(Picture-in-Picture)$"
         "float, class:^(mpv|com.github.rafostar.Clapper)$"
+        "float, class:^(org\\.gnome\\.NautilusPreviewer)$"
         "float, title:^(Authentication Required)$"
         "float, class:(codium|codium-url-handler|VSCodium), title:negative:(.*codium.*|.*VSCodium.*)"
         "float, class:^(com.heroicgameslauncher.hgl)$, title:negative:(Heroic Games Launcher)"

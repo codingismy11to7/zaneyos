@@ -63,6 +63,7 @@ _: {
 
     enableGnuPGAgent = false;
     scannerEnable = false;
+    nautilusEnable = true;
 
     # Themes, waybar and animation.
     # Set Stylix Image
