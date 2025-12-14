@@ -84,7 +84,7 @@ in {
         "$modifier,F, Full Screen, fullscreen,"
         "$modifier,T, Toggle Floating, togglefloating,"
         # "$modifier ALT,F, Float All Windows, workspaceopt, allfloat"
-        "$modifier SHIFT,C, Exit/Logout of Hyprland, exit,"
+        "$modifier CTRL SHIFT,Q, Exit/Logout of Hyprland, exit,"
         # ============= WINDOW MOVEMENT (ARROW KEYS) =============
         "$modifier SHIFT,left, Move Left, movewindow, l"
         "$modifier SHIFT,right, Move Right, movewindow, r"
