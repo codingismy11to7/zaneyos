@@ -1,19 +1,38 @@
 {
   description = "ZaneyOS";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://nixos-raspberrypi.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+    ];
+  };
+
   inputs = {
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # TODO: this part i think is going to dictate two different flakes?
+    nixpkgs.url = "github:nvmd/nixpkgs/modules-with-keys-25.11";
+    nixpkgs-unstable.url = "github:nvmd/nixpkgs/modules-with-keys-unstable";
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-raspberrypi = {
+      url = "github:nvmd/nixos-raspberrypi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,21 +65,24 @@
 
   outputs = {
     nixpkgs,
+    nixos-raspberrypi,
+    disko,
     home-manager,
     nixvim,
     nix-flatpak,
     alejandra,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
+    system = "aarch64-linux";
     username = "steven";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = host:
-      nixpkgs.lib.nixosSystem {
+      nixos-raspberrypi.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
+          inherit nixos-raspberrypi;
           inherit username;
         };
         modules = [
@@ -73,7 +95,7 @@
       };
 
     hosts = [
-      "default"
+      "rpi5plus"
       "nixstation"
       "zaneyos-24-vm"
       "zaneyos-oem"
