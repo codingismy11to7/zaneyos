@@ -1,10 +1,17 @@
-{zaneyos, ...}: let
+{
+  pkgs,
+  zaneyos,
+  ...
+}: let
   inherit
     (zaneyos)
     barChoice
     browser
     terminal
     ;
+
+  launch-desktop-file = "${pkgs.gtk3}/bin/gtk-launch";
+
   # Noctalia-specific bindings (only included when barChoice == "noctalia")
   noctaliaBind =
     if barChoice == "noctalia"
@@ -59,6 +66,12 @@ in {
         "$modifier SHIFT,D, Discord, exec, discord"
         # "$modifier ALT,W, Web Search, exec, web-search"
         "$modifier SHIFT,W, QS Wallpaper Setter, exec, qs-wallpapers-apply"
+        "$modifier SHIFT,A, Google Gemini - New Chat, exec, ${launch-desktop-file} google-gemini"
+        "$modifier SHIFT,M, Google Messages, exec, ${launch-desktop-file} google-messages"
+        "$modifier SHIFT,P, Google Photos, exec, ${launch-desktop-file} google-photos"
+        "$modifier SHIFT,E, Gmail, exec, ${launch-desktop-file} gmail"
+        "$modifier SHIFT,C, Google Calendar, exec, ${launch-desktop-file} google-calendar"
+        "$modifier SHIFT,X, Plex, exec, ${launch-desktop-file} plex-web-app"
         "$modifier SHIFT,N, Neovim, exec, ${terminal} -e nvim"
         "$modifier   ALT,N, Notification Reset, exec, swaync-client -rs"
         "$modifier SHIFT,B, Web Browser, exec, ${browser}"
