@@ -34,7 +34,7 @@ in {
 
   programs.ghostty = {
     enable = true;
-    package = pkgs.ghostty;
+    package = pkgs.unstable.ghostty;
     enableFishIntegration = true;
     enableZshIntegration = true;
     enableBashIntegration = true;
@@ -42,12 +42,11 @@ in {
     settings = {
       custom-shader = shaderFile;
       custom-shader-animation = "always";
-      term = "xterm-256color";
       confirm-close-surface = "false";
-      font-family = "Maple Mono NF";
-      font-size = 12;
+      font-family = "FiraCode Nerd Font";
+      font-size = 13;
       theme = "dark:catppuccin-mocha,light:catppuccin-mocha";
-      adjust-cell-height = "10%";
+      # adjust-cell-height = "10%";
       window-theme = "dark";
       window-height = "32";
       window-width = "110";
