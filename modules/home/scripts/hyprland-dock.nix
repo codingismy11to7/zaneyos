@@ -20,7 +20,7 @@ pkgs.writeShellScriptBin "dock" ''
   # Masked apps won't show in DOCK.
   # I am running pyprland scratchpads
   # They don't show up correctly so I mask it off
-  MASK_APPS="kitty-dropterm"
+  # MASK_APPS="kitty-dropterm"
 
   ICON_SIZE=32
   MARGIN_BOTTOM=10
