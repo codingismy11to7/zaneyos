@@ -52,6 +52,8 @@ in {
         # ============= APPLICATION LAUNCHERS =============
         # 34 is /
         "$modifier,code:34, Keybinds Search Tool, exec, qs-keybinds"
+        # not sure why /, but got used to it on omarchy
+        "$modifier SHIFT,code:34, Bitwarden, exec, bitwarden"
         "$modifier CTRL,C, Cheatsheets Viewer, exec, qs-cheatsheets"
         # "$modifier SHIFT,K, Legacy Keybinds Menu, exec, list-keybinds"
         "$modifier SHIFT,D, Discord, exec, discord"

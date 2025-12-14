@@ -21,6 +21,8 @@
   # bleeding edge packages from nixpkgs-unstable
   unstablePkgs = with pkgs.unstable; [
     anytype
+    bitwarden-cli
+    bitwarden-desktop
     discord
     ripgrep
     slack
