@@ -39,7 +39,7 @@ _: {
 
     # Bar/Shell Settings
     # Choose between noctalia or waybar
-    barChoice = "noctalia";
+    barChoice = "waybar";
 
     # Waybar Settings (used when barChoice = "waybar")
     clock24h = false;
@@ -73,13 +73,7 @@ _: {
     # This will set your color palette
     # Default background
     # Add new images to ~/zaneyos/wallpapers
-    stylixImage = ../../wallpapers/mountainscapedark.jpg;
-    #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
-    #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
-    #stylixImage = ../../wallpapers/Rainnight.jpg;
-    #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
-    #stylixImage = ../../wallpapers/nix-wallpapers-strips-logo.jpg;
-    #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
+    stylixImage = ../../wallpapers/astralbed.jpg;
 
     # Set Waybar
     #  Available Options:
@@ -107,8 +101,8 @@ _: {
 
     # Set Animation style
     # Available options are:
-    #animChoice = ../../modules/home/hyprland/animations-def.nix;
-    animChoice = ../../modules/home/hyprland/animations-end4.nix;
+    # animChoice = ../../modules/home/hyprland/animations-def.nix;
+    #animChoice = ../../modules/home/hyprland/animations-end4.nix;
     #animChoice = ../../modules/home/hyprland/animations-end4-slide.nix;
     #animChoice = ../../modules/home/hyprland/animations-end-slide.nix;
     #animChoice = ../../modules/home/hyprland/animations-dynamic.nix;
@@ -117,7 +111,7 @@ _: {
     #animChoice = ../../modules/home/hyprland/animations-mahaveer-me-1.nix;
     #animChoice = ../../modules/home/hyprland/animations-mahaveer-me-2.nix;
     #animChoice = ../../modules/home/hyprland/animations-ml4w-classic.nix;
-    #animChoice = ../../modules/home/hyprland/animations-ml4w-fast.nix;
+    animChoice = ../../modules/home/hyprland/animations-ml4w-fast.nix;
     #animChoice = ../../modules/home/hyprland/animations-ml4w-high.nix;
 
     # Set network hostId if required (needed for zfs)
