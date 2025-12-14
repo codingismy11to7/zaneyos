@@ -34,6 +34,8 @@ _: {
         "tag +settings, class:(.blueman-manager-wrapped)"
         "tag +settings, class:(nwg-displays)"
         "move 72% 7%,title:^(Picture-in-Picture)$"
+        "float, class:Bitwarden"
+        "center, class:Bitwarden"
         # qs-keybinds floating viewer
         "float, title:^(Hyprland Keybinds|Emacs Leader Keybinds|Kitty Configuration|WezTerm Configuration|Ghostty Configuration|Yazi Configuration)$"
         "center, title:^(Hyprland Keybinds|Emacs Leader Keybinds|Kitty Configuration|WezTerm Configuration|Ghostty Configuration|Yazi Configuration)$"
