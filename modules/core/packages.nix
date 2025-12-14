@@ -16,6 +16,8 @@
     else [];
 
   unstablePkgs = with pkgs.unstable; [
+    bitwarden-cli
+    bitwarden-desktop
     discord
     ripgrep
     slack
