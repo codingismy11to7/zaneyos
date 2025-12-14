@@ -60,6 +60,7 @@ in {
       ./tealdeer.nix
       ./virtmanager.nix
       barModule
+      ./webapps
       ./wlogout
       ./xdg.nix
       ./yazi
