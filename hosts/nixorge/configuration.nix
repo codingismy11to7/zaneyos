@@ -29,7 +29,7 @@ _: {
     tmuxEnable = false;
     alacrittyEnable = false;
     weztermEnable = false;
-    ghosttyEnable = false;
+    ghosttyEnable = true;
     vscodeEnable = false;
     antigravityEnable = false; # Google port of vscodium
     # Note: This is evil-helix with VIM keybindings by default
@@ -55,7 +55,7 @@ _: {
     # Kitty, ghostty, wezterm, aalacrity
     # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
     # Setting it here does not enable it. Kitty is installed by default
-    terminal = "kitty"; # Set Default System Terminal
+    terminal = "ghostty"; # Set Default System Terminal
 
     keyboardLayout = "us";
     keyboardVariant = "dvorak";
