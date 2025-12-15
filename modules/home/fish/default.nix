@@ -19,7 +19,6 @@ in {
       bind ctrl-alt-s _lazygit_status
 
       set -x DOCKER_HOST /run/user/1000/podman/podman.sock
-      set -x YDOTOOL_SOCKET /run/ydotool/socket
 
       fastfetch
     '';
@@ -29,6 +28,7 @@ in {
       _lazygit_status = builtins.readFile ./functions/_lazygit_status.fish;
       _lazygit_log = builtins.readFile ./functions/_lazygit_log.fish;
       _run_cmd_in_zellij_popup = builtins.readFile ./functions/_run_cmd_in_zellij_popup.fish;
+      repeat_key_toggle = builtins.readFile ./functions/repeat_key_toggle.fish;
     };
 
     shellAliases = {
