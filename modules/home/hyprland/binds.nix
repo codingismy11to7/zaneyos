@@ -51,6 +51,8 @@ in {
       ++ rofiBind
       ++ rofiClipboardBind
       ++ [
+        "CTRL,F11, Melt Faces, exec, repeat_key_toggle"
+
         # ============= WORKSPACE OVERVIEW =============
         "$modifier CTRL,D, Toggle Dock, exec, dock"
         "$modifier, TAB, QS Overview, exec, qs ipc -c overview call overview toggle"
