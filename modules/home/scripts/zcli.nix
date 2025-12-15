@@ -187,6 +187,7 @@ in
       echo "  list-gens       - List user and system generations."
       echo "  rebuild         - Rebuild the NixOS system configuration."
       echo "  rebuild-boot    - Rebuild and set as boot default (activates on next restart)."
+      echo "  test            - Test the NixOS system configuration (without bootloader update)."
       echo "  trim            - Trim filesystems to improve SSD performance."
       echo "  update          - Update the flake and rebuild the system."
       echo "  update-host     - Auto set host and profile in flake.nix."
@@ -416,6 +417,21 @@ in
           echo "New configuration set as boot default - restart to activate"
         else
           echo "Rebuild-boot Failed" >&2
+          exit 1
+        fi
+        ;;
+      test)
+        verify_hostname
+        handle_backups
+
+        # Parse additional arguments
+        extra_args=$(parse_nh_args "$@")
+
+        echo "Starting NixOS test for host: $(${pkgs.nettools}/bin/hostname)"
+        if eval "${pkgs.nh}/bin/nh os test --diff always --hostname '$PROFILE' $extra_args"; then
+          echo "Test build finished successfully"
+        else
+          echo "Test build Failed" >&2
           exit 1
         fi
         ;;
