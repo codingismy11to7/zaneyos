@@ -458,6 +458,21 @@ in
           exit 1
         fi
         ;;
+      test)
+        verify_hostname
+        handle_backups
+
+        # Parse additional arguments
+        extra_args=$(parse_nh_args "$@")
+
+        echo "Starting NixOS test for host: $(${pkgs.nettools}/bin/hostname)"
+        if eval "${pkgs.nh}/bin/nh os test --diff always --hostname '$PROFILE' $extra_args"; then
+          echo "Test build finished successfully"
+        else
+          echo "Test build Failed" >&2
+          exit 1
+        fi
+        ;;
       trim)
         echo "Running 'sudo fstrim -v /' may take a few minutes and impact system performance."
         read -p "Enter (y/Y) to run now or enter to exit (y/N): " -n 1 -r
