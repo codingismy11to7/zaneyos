@@ -13,7 +13,15 @@ in {
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "hm-backup";
-    extraSpecialArgs = {inherit inputs username host profile pkgs;};
+    extraSpecialArgs = {
+      inherit
+        inputs
+        username
+        host
+        profile
+        pkgs
+        ;
+    };
     users.${username} = {
       imports = [../home];
       home = {

@@ -6,6 +6,8 @@
   xdg.configFile."nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/zaneyos/modules/home/editors/lazyvim/config";
 
+  home.sessionVariables.EDITOR = "nvim";
+
   home.packages = let
     stablePkgs = with pkgs; [
       cargo

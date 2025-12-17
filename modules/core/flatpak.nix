@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-    configPackages = [pkgs.hyprland];
+    # enable = true;
+    # extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+    # configPackages = [pkgs.hyprland];
   };
   services = {
     flatpak = {
-      enable = true;
+      # enable = true;
 
       # List the Flatpak applications you want to install
       # Use the official Flatpak application ID (e.g., from flathub.org)

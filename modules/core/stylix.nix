@@ -29,11 +29,11 @@ in {
     # };
     polarity = "dark";
     opacity.terminal = 1.0;
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24;
-    };
+    # cursor = {
+    #   package = pkgs.bibata-cursors;
+    #   name = "Bibata-Modern-Ice";
+    #   size = 24;
+    # };
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.fira-code;

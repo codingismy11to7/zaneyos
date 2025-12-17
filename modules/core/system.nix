@@ -1,4 +1,5 @@
 {
+  lib,
   host,
   inputs,
   ...
@@ -41,4 +42,5 @@ in {
   };
   console.keyMap = "${consoleKeyMap}";
   system.stateVersion = "23.11"; # Do not change!
+  systemd.defaultUnit = "multi-user.target";
 }

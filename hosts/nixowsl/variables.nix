@@ -49,7 +49,7 @@
   # This does NOT install your browser
   # You need to install it by adding it to the `packages.nix`
   # or as a flatpak
-  browser = "brave";
+  browser = "wsl-open";
 
   # Available Options:
   # Kitty, ghostty, wezterm, aalacrity
@@ -80,7 +80,7 @@
   thunarEnable = false;
 
   # Enable Nautilus GUI File Manager
-  nautilusEnable = true;
+  nautilusEnable = false;
 
   # Themes, waybar and animation.
   #  Only uncomment your selection
@@ -90,7 +90,8 @@
   # This will set your color palette
   # Default background
   # Add new images to ~/zaneyos/wallpapers
-  stylixImage = ../../wallpapers/mountainscapedark.jpg;
+  stylixImage = ../../wallpapers/darkorb.jpg;
+  # stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
   #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
   #stylixImage = ../../wallpapers/Rainnight.jpg;

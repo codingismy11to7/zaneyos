@@ -1,8 +1,10 @@
-{ config, inputs, ... }:
-let
-  ageKeyFile = "${config.home.homeDirectory}/zaneyos/modules/home/secrets/keys.txt";
-in
 {
+  config,
+  inputs,
+  ...
+}: let
+  ageKeyFile = "${config.home.homeDirectory}/zaneyos/modules/home/secrets/keys.txt";
+in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
@@ -17,7 +19,7 @@ in
       mode = "0600";
     };
 
-    secrets.githubNixToken = { };
+    secrets.githubNixToken = {};
     templates."nix.conf".content = ''
       access-tokens = github.com=${config.sops.placeholder.githubNixToken}
     '';
@@ -27,5 +29,5 @@ in
 
   xdg.configFile."nix/nix.conf".source =
     config.lib.file.mkOutOfStoreSymlink
-      config.sops.templates."nix.conf".path;
+    config.sops.templates."nix.conf".path;
 }

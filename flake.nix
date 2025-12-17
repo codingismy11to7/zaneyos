@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,8 +57,8 @@
     alejandra,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-    host = "zaneyos-24-vm";
+    system = "aarch64-linux";
+    host = "nixowsl";
     profile = "vm";
     username = "steven";
 
@@ -76,11 +81,11 @@
   in {
     nixosConfigurations = {
       amd = mkNixosConfig "amd";
-      nvidia = mkNixosConfig "nvidia";
+      nixorge = mkNixosConfig "nvidia";
       nvidia-laptop = mkNixosConfig "nvidia-laptop";
       amd-hybrid = mkNixosConfig "amd-hybrid";
       intel = mkNixosConfig "intel";
-      vm = mkNixosConfig "vm";
+      nixowsl = mkNixosConfig "vm";
     };
 
     formatter.x86_64-linux = inputs.alejandra.packages.x86_64-linux.default;
