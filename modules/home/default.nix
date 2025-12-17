@@ -38,6 +38,7 @@ in {
     # ./cli/htop.nix
     # ./hyprland
     # ./terminals/kitty.nix
+    ./komorebi.nix
     ./cli/lazygit.nix
     # ./obs-studio.nix
     # ./editors/lazyvim
