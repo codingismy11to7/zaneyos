@@ -74,7 +74,10 @@ _: {
     # This will set your color palette
     # Default background
     # Add new images to ~/zaneyos/wallpapers
-    stylixImage = ../../wallpapers/darkorb.jpg;
+    stylixImage = builtins.fetchurl {
+      url = "file:///mnt/c/Windows/Web/Wallpaper/ThemeA/img23.jpg";
+      sha256 = "38795e3adab04932e79a87bdd33ec5724a16106cbcb6e8b0aafba7916f4396bb";
+    };
 
     # Set Waybar
     #  Available Options:
