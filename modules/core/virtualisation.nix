@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Only enable either docker or podman -- Not both
   virtualisation = {
     docker = {
@@ -14,7 +13,7 @@
     };
 
     libvirtd = {
-      enable = true;
+      # enable = true;
     };
 
     virtualbox.host = {
@@ -35,7 +34,7 @@
     ])
     ++ (with pkgs; [
       podman-compose
-      virt-viewer # View Virtual Machines
+      # virt-viewer # View Virtual Machines
       # docker-client
     ]);
 }

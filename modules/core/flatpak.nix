@@ -5,7 +5,7 @@
 
   services = {
     flatpak = {
-      enable = true;
+      # enable = true;
 
       # List the Flatpak applications you want to install
       # Use the official Flatpak application ID (e.g., from flathub.org)

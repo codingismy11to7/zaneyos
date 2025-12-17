@@ -9,8 +9,8 @@ in {
   networking = {
     inherit hostName;
     inherit hostId;
-    networkmanager.enable = true;
-    timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
+    # networkmanager.enable = true;
+    # timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
     firewall = {
       enable = false;
       allowedTCPPorts = [
@@ -28,5 +28,5 @@ in {
     };
   };
 
-  environment.systemPackages = with pkgs; [networkmanagerapplet];
+  # environment.systemPackages = with pkgs; [networkmanagerapplet];
 }

@@ -6,4 +6,3 @@ in {
     nfs.server.enable = enableNFS;
   };
 }
-
