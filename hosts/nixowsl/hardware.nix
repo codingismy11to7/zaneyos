@@ -20,6 +20,8 @@
     useWindowsDriver = true;
     defaultUser = username;
     interop.register = true;
+    # passthrough to windows ssh agent
+    ssh-agent.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

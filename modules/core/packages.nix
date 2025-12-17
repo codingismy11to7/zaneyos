@@ -43,9 +43,9 @@ in {
     hyprlock.enable = true;
     gnupg.agent = {
       enable = !disableGnuPGAgent;
-      enableSSHSupport = true;
+      enableSSHSupport = false;
     };
-    ssh.startAgent = disableGnuPGAgent;
+    ssh.startAgent = false;
 
     # allow dynamically-linked binaries. for instance,
     # gemini-cli ships a bundled ripgrep instead of running
