@@ -31,6 +31,7 @@ in {
       ./cli/btop.nix
       ./cli/bottom.nix
       ./cli/cava.nix
+      ./direnv.nix
       ./emoji.nix
       ./eza.nix
       ./fastfetch
