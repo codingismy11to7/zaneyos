@@ -20,7 +20,7 @@ in {
 
       set -x DOCKER_HOST /run/user/1000/podman/podman.sock
 
-      fastfetch
+      ${pkgs.unstable.fastfetch}/bin/fastfetch
     '';
 
     functions = {

@@ -34,7 +34,7 @@ in {
       ./direnv.nix
       ./emoji.nix
       ./eza.nix
-      ./fastfetch
+      # ./fastfetch
       ./fish
       ./cli/fzf.nix
       ./cli/gh.nix
