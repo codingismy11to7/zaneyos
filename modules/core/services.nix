@@ -3,11 +3,11 @@
 in {
   # Services to start
   services = {
-    upower.enable = true; # noctalia shell battery
-    libinput.enable = true; # Input Handling
-    fstrim.enable = true; # SSD Optimizer
-    gvfs.enable = true; # For Mounting USB & More
-    power-profiles-daemon.enable = true;
+    # upower.enable = true; # noctalia shell battery
+    # libinput.enable = true; # Input Handling
+    # fstrim.enable = true; # SSD Optimizer
+    # gvfs.enable = true; # For Mounting USB & More
+    # power-profiles-daemon.enable = true;
     openssh = {
       enable = true; # Enable SSH
       settings = {
@@ -17,7 +17,7 @@ in {
       };
       ports = [22];
     };
-    blueman.enable = true; # Bluetooth Support
+    # blueman.enable = true; # Bluetooth Support
     gnome.gnome-keyring.enable = enableGnuPGAgent;
 
     smartd = {
@@ -25,7 +25,7 @@ in {
       autodetect = true;
     };
     pipewire = {
-      enable = true;
+      enable = false;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;

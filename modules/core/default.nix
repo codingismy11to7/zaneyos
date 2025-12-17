@@ -9,16 +9,16 @@
     ./network.nix
     ./nfs.nix
     ./nh.nix
-    ./quickshell.nix
+    # ./quickshell.nix
     ./overlays.nix
     ./packages.nix
     ./printing.nix
-    ./ly.nix
-    ./sddm.nix
+    # ./ly.nix
+    # ./sddm.nix
     ./security.nix
     ./services.nix
     ./sops.nix
-    ./steam.nix
+    # ./steam.nix
     ./stylix.nix
     ./syncthing.nix
     ./system.nix
@@ -26,7 +26,7 @@
     ./user.nix
     ./virtualisation.nix
     ./xserver.nix
-    ./ydotool.nix
+    # ./ydotool.nix
     ./cachix.nix
     inputs.stylix.nixosModules.stylix
   ];

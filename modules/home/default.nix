@@ -17,18 +17,18 @@ in {
     ./bashrc-personal.nix
     ./nix-your-shell.nix
     ./overview.nix
-    ./python.nix
+    # ./python.nix
     ./cli/bat.nix
     ./cli/btop.nix
     # ./cli/bottom.nix
-    ./cli/cava.nix
+    # ./cli/cava.nix
     ./direnv.nix
     ./editors/doom-emacs.nix
     ./editors/doom-emacs-install.nix
     ./emoji.nix
     ./editors/evil-helix.nix
     ./eza.nix
-    ./fastfetch
+    # ./fastfetch
     ./fish
     ./cli/fzf.nix
     ./cli/gh.nix
@@ -36,28 +36,28 @@ in {
     ./cli/git.nix
     ./gtk.nix
     # ./cli/htop.nix
-    ./hyprland
-    ./terminals/kitty.nix
+    # ./hyprland
+    # ./terminals/kitty.nix
     ./cli/lazygit.nix
-    ./obs-studio.nix
+    # ./obs-studio.nix
     # ./editors/lazyvim
     #./editors/nvf.nix
     # ./editors/nixvim.nix
     ./editors/nvim-flake.nix
-    ./editors/nano.nix
-    ./rofi
+    # ./editors/nano.nix
+    # ./rofi
     ./qt.nix
     ./scripts
     # ./scripts/gemini-cli.nix
     ../../secrets/sops.nix
     ./stylix.nix
-    ./swappy.nix
-    ./swaync.nix
+    # ./swappy.nix
+    # ./swaync.nix
     ./tealdeer.nix
     ./terminals/tmux.nix
     ./virtmanager.nix
     ./editors/vscode.nix
-    barModule
+    # barModule
     ./webapps
     ./terminals/wezterm.nix
     ./wlogout

@@ -15,7 +15,7 @@ _: {
 
     # does not have to be the same as the directory name, but
     # would be common
-    hostName = "my-hostname";
+    hostName = "nixowsl";
 
     gpuProfile = "vm";
 
@@ -49,7 +49,7 @@ _: {
     # This does NOT install your browser
     # You need to install it by adding it to the `packages.nix`
     # or as a flatpak
-    browser = "brave";
+    browser = "wsl-open";
 
     # Available Options:
     # Kitty, ghostty, wezterm, aalacrity
@@ -65,15 +65,16 @@ _: {
 
     enableGnuPGAgent = false;
     scannerEnable = false;
-    nautilusEnable = true;
+    nautilusEnable = false;
     obsStudioEnable = false;
+    enableSmartD = false;
 
     # Themes, waybar and animation
     # Set Stylix Image
     # This will set your color palette
     # Default background
     # Add new images to ~/zaneyos/wallpapers
-    stylixImage = ../../wallpapers/mountainscapedark.jpg;
+    stylixImage = ../../wallpapers/darkorb.jpg;
 
     # Set Waybar
     #  Available Options:

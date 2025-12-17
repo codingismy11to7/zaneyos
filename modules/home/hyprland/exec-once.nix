@@ -36,4 +36,3 @@ in {
       ++ noctaliaExec ++ waybarExec;
   };
 }
-
