@@ -1,0 +1,13 @@
+{
+  "general": {
+    "previewFeatures": true
+  },
+  "ui": {
+    "showModelInfoInChat": true
+  },
+  "tools": {
+    "shell": {
+      "showColor": true
+    }
+  }
+}
