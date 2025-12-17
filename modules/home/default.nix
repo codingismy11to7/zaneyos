@@ -24,6 +24,7 @@ in {
       ./amfora.nix
       ./bash.nix
       ./bashrc-personal.nix
+      ./nix-your-shell.nix
       ./overview.nix
       ./python.nix
       ./cli/bat.nix
