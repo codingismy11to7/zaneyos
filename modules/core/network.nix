@@ -1,14 +1,14 @@
 {
   pkgs,
-  host,
   options,
+  config,
   ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) hostId;
+  inherit (config.zaneyos) hostName hostId;
 in {
   networking = {
-    hostName = "${host}";
-    hostId = hostId;
+    inherit hostName;
+    inherit hostId;
     networkmanager.enable = true;
     timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
     firewall = {

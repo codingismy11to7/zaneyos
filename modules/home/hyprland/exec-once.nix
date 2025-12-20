@@ -1,10 +1,5 @@
-{host, ...}: let
-  vars = import ../../../hosts/${host}/variables.nix;
-  inherit
-    (vars)
-    barChoice
-    stylixImage
-    ;
+{zaneyos, ...}: let
+  inherit (zaneyos) barChoice stylixImage;
   # Noctalia-specific startup commands
   noctaliaExec =
     if barChoice == "noctalia"
@@ -44,3 +39,4 @@ in {
       ++ noctaliaExec ++ waybarExec;
   };
 }
+

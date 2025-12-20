@@ -1,8 +1,9 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) enableNFS;
+{config, ...}: let
+  inherit (config.zaneyos) enableNFS;
 in {
   services = {
     rpcbind.enable = enableNFS;
     nfs.server.enable = enableNFS;
   };
 }
+

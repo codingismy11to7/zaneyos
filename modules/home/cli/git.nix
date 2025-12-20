@@ -1,5 +1,5 @@
-{host, ...}: let
-  inherit (import ../../../hosts/${host}/variables.nix) gitUsername gitEmail;
+{zaneyos, ...}: let
+  inherit (zaneyos) gitUsername gitEmail;
 in {
   programs.git = {
     enable = true;
@@ -33,3 +33,4 @@ in {
     };
   };
 }
+
