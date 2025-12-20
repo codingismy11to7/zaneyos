@@ -1,11 +1,10 @@
 {
-  pkgs,
-  lib,
-  host,
   config,
+  lib,
+  pkgs,
   ...
 }: let
-  inherit (import ../../../hosts/${host}/variables.nix) clock24h;
+  inherit (config.zaneyos) clock24h;
   scriptsDir = ./scripts;
   scripts = builtins.attrNames (builtins.readDir scriptsDir);
 in

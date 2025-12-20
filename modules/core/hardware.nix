@@ -1,7 +1,13 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (config.zaneyos) scannerEnable;
+in {
   hardware = {
     sane = {
-      enable = true;
+      enable = scannerEnable;
       extraBackends = [pkgs.sane-airscan];
       disabledDefaultBackends = ["escl"];
     };

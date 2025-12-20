@@ -1,7 +1,6 @@
-{host, ...}: let
-  vars = import ../../hosts/${host}/variables.nix;
-  keyboardLayout = vars.keyboardLayout or "us";
-  keyboardVariant = vars.keyboardVariant or "";
+{config, ...}: let
+  inherit (config.zaneyos) keyboardLayout;
+  inherit (config.zaneyos) keyboardVariant;
 
   # Treat only known US-based variants as implying layout = "us".
   usVariants = ["dvorak" "colemak" "workman" "intl" "us-intl" "altgr-intl"];
@@ -43,3 +42,4 @@ in {
     };
   };
 }
+
