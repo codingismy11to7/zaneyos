@@ -1,6 +1,5 @@
-{host, ...}: let
-  vars = import ../../hosts/${host}/variables.nix;
-  consoleKeyMap = vars.consoleKeyMap or "us";
+{config, ...}: let
+  inherit (config.zaneyos) consoleKeyMap;
 in {
   nix = {
     settings = {

@@ -1,4 +1,6 @@
-{profile, ...}: {
+{zaneyos, ...}: let
+  profile = zaneyos.hostName;
+in {
   programs.bash = {
     enable = false;
     enableCompletion = true;

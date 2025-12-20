@@ -1,6 +1,5 @@
-{host, ...}: {
+_: {
   imports = [
-    ../../hosts/${host}
     ../../modules/drivers
     ../../modules/core
   ];

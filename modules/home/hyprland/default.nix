@@ -1,5 +1,5 @@
-{host, ...}: let
-  inherit (import ../../../hosts/${host}/variables.nix) animChoice;
+{zaneyos, ...}: let
+  inherit (zaneyos) animChoice;
 in {
   imports = [
     animChoice
@@ -13,3 +13,4 @@ in {
     ./windowrules.nix
   ];
 }
+

@@ -1,15 +1,13 @@
 {
-  host,
+  zaneyos,
   config,
   pkgs,
   lib,
   ...
 }: let
-  vars = import ../../../hosts/${host}/variables.nix;
-  extraMonitorSettings = vars.extraMonitorSettings or "";
-  keyboardLayout = vars.keyboardLayout or "us";
-  keyboardVariant = vars.keyboardVariant or "";
-  stylixImage = vars.stylixImage or null;
+  inherit (zaneyos) extraMonitorSettings;
+  keyboardLayout = zaneyos.keyboardLayout;
+  keyboardVariant = zaneyos.keyboardVariant;
 
   # Treat only known US-based variants as implying layout = "us".
   usVariants = ["dvorak" "colemak" "workman" "intl" "us-intl" "altgr-intl"];
