@@ -1,4 +1,6 @@
-{profile, ...}: {
+{config, ...}: let
+  inherit (config.zaneyos) enableSmartD;
+in {
   # Services to start
   services = {
     upower.enable = true; # noctalia shell battery
@@ -20,10 +22,7 @@
     gnome.gnome-keyring.enable = true;
 
     smartd = {
-      enable =
-        if profile == "vm"
-        then false
-        else true;
+      enable = enableSmartD;
       autodetect = true;
     };
     pipewire = {

@@ -47,35 +47,37 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "zaneyos-24-vm";
-    profile = "vm";
     username = "dwilliams";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
-    mkNixosConfig = gpuProfile:
+    mkNixosConfig = host:
       nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
           inherit username;
-          inherit host;
-          inherit profile; # keep using the let-bound profile for modules/scripts
         };
         modules = [
-          ./modules/core/overlays.nix
-          ./profiles/${gpuProfile}
+          ./modules/core
+          ./modules/drivers
           nix-flatpak.nixosModules.nix-flatpak
+          ./hosts/${host}
+          ./profiles
         ];
       };
+
+    hosts = [
+      "default"
+      "nixstation"
+      "zaneyos-24-vm"
+      "zaneyos-oem"
+    ];
   in {
-    nixosConfigurations = {
-      amd = mkNixosConfig "amd";
-      nvidia = mkNixosConfig "nvidia";
-      nvidia-laptop = mkNixosConfig "nvidia-laptop";
-      amd-hybrid = mkNixosConfig "amd-hybrid";
-      intel = mkNixosConfig "intel";
-      vm = mkNixosConfig "vm";
-    };
+    nixosConfigurations = builtins.listToAttrs (map (host: {
+        name = host;
+        value = mkNixosConfig host;
+      })
+      hosts);
 
     formatter.x86_64-linux = inputs.alejandra.packages.x86_64-linux.default;
   };

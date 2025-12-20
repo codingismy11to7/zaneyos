@@ -1,9 +1,11 @@
 {
-  profile,
   pkgs,
   lib,
+  zaneyos,
   ...
-}: {
+}: let
+  profile = zaneyos.hostName;
+in {
   imports = [
     ./zshrc-personal.nix
   ];

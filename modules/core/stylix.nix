@@ -1,9 +1,9 @@
 {
   pkgs,
-  host,
+  config,
   ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) stylixImage;
+  inherit (config.zaneyos) stylixImage;
 in {
   # Styling Options
   stylix = {
@@ -56,3 +56,4 @@ in {
     };
   };
 }
+

@@ -1,10 +1,9 @@
 {
   pkgs,
-  host,
+  config,
   ...
 }: let
-  vars = import ../../hosts/${host}/variables.nix;
-  inherit (vars) barChoice;
+  inherit (config.zaneyos) barChoice ;
   # Noctalia-specific packages
   noctaliaPkgs =
     if barChoice == "noctalia"
