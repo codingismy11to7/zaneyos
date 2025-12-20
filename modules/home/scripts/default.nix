@@ -2,7 +2,7 @@
   config,
   pkgs,
   username,
-  profile,
+  zaneyos,
   ...
 }: {
   home.packages = [
@@ -39,7 +39,8 @@
     (import ./launch-nwg-menu.nix {inherit pkgs;})
     (import ./hyprland-dock.nix {inherit pkgs;})
     (import ./zcli.nix {
-      inherit pkgs profile;
+      inherit pkgs;
+      inherit zaneyos;
       backupFiles = [
         ".config/mimeapps.list.backup"
       ];

@@ -1,11 +1,8 @@
 {
   pkgs,
   lib,
-  host,
-  config,
   ...
 }: let
-  inherit (import ../../../hosts/${host}/variables.nix) clock24h;
   scriptsDir = ./scripts;
   scripts = builtins.attrNames (builtins.readDir scriptsDir);
 in

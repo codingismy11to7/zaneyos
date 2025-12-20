@@ -1,5 +1,5 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) printEnable;
+{config, ...}: let
+  inherit (config.zaneyos) printEnable;
 in {
   services = {
     printing = {
