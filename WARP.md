@@ -41,7 +41,7 @@ Common commands
 Notes on profiles and hosts
 |- Profiles represent hardware targets: amd, intel, nvidia, nvidia-laptop (intel+NVIDIA hybrid), amd-hybrid (AMD+NVIDIA hybrid), vm.
 |- Use the profile in flake targets like .#vm or .#nvidia, or via nh's --hostname.
-|- Host-specific settings live under hosts/<hostname>/; variables.nix holds UX and feature toggles: barChoice (noctalia or waybar), waybarChoice (when barChoice="waybar"), clock24h, etc.
+|- Host-specific settings live under hosts/<hostname>/; configuration.nix holds UX and feature toggles: barChoice (noctalia or waybar), waybarChoice (when barChoice="waybar"), clock24h, etc.
 
 High-level architecture (big picture)
 |- flake.nix
@@ -50,10 +50,12 @@ High-level architecture (big picture)
   - Each configuration imports profiles/<profile>.
 - profiles/<profile>/default.nix
   - Imports host and stacks: ../../hosts/${host}, ../../modules/drivers, ../../modules/core.
-  - Toggles drivers and VM guest services per profile; the nvidia-laptop and amd-hybrid profiles consume Bus IDs from host variables.
+  - Toggles drivers and VM guest services per profile; the nvidia-laptop and amd-hybrid profiles consume Bus IDs from host configuration.
 - hosts/<hostname>/
   - default.nix imports hardware.nix and host-packages.nix.
-  - variables.nix is the primary control surface (display manager, terminal/browser defaults, waybarChoice, stylix image, 24h clock, Thunar/printing/NFS flags, intel/nvidia Bus IDs, etc.).
+  - configuration.nix is the primary control surface (display manager, terminal/browser defaults, waybarChoice, stylix image, 24h clock, Thunar/printing/NFS flags, intel/nvidia Bus IDs, etc.).
+|- modules/options.nix
+  - Defines the schema for `zaneyos` configuration options (e.g. enable flags, theme choices).
 |- modules/core
   - Composes NixOS modules: boot, flatpak, fonts, hardware, network, nfs, nh, quickshell, packages, printing, display manager (greetd/sddm), security, services (PipeWire/SSH/Bluetooth/fstrim; smartd conditional), steam, stylix, syncthing, system (nix settings, locales, env), thunar, user (Home Manager), virtualization, xserver.
   - quickshell.nix installs quickshell with Qt6 dependencies and required environment variables (needed for noctalia-shell).

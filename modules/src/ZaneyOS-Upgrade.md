@@ -106,7 +106,7 @@ The manual process below is **incomplete and risky** because:
 ZaneyOS v2.4 introduces new features in the host configuration, giving you more
 control. This requires a manual update to your host files.
 
-- **New options in `hosts/hostname/variables.nix`:**
+- **New options in `hosts/hostname/configuration.nix`:**
 
   ```nix
   # Set Display Manager: `tui` for Text, `sddm` for graphical GUI

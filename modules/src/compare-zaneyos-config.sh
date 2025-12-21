@@ -218,7 +218,7 @@ perform_comparison() {
     # Compare default host template
     echo "📋 Default host template comparison:"
     if [ -d "./hosts/default" ] && [ -d "$TEMP_DIR/reference/hosts/default" ]; then
-      for file in variables.nix hardware.nix host-packages.nix default.nix; do
+      for file in configuration.nix hardware.nix host-packages.nix default.nix; do
         if [ -f "./hosts/default/$file" ] && [ -f "$TEMP_DIR/reference/hosts/default/$file" ]; then
           if cmp -s "./hosts/default/$file" "$TEMP_DIR/reference/hosts/default/$file"; then
             echo "  ✅ default/$file is identical"
@@ -240,7 +240,7 @@ perform_comparison() {
         echo "📋 Host: $hostname"
         
         # Compare each file against the reference default
-        for file in variables.nix hardware.nix host-packages.nix default.nix; do
+        for file in configuration.nix hardware.nix host-packages.nix default.nix; do
           local_file="./hosts/$hostname/$file"
           ref_default="$TEMP_DIR/reference/hosts/default/$file"
           
@@ -250,8 +250,8 @@ perform_comparison() {
             else
               echo "  📝 $file: Customized (differs from default template)"
               
-              # Show key customizations for variables.nix
-              if [ "$file" = "variables.nix" ]; then
+              # Show key customizations for configuration.nix
+              if [ "$file" = "configuration.nix" ]; then
                 echo "     🔍 Key customizations detected:"
                 
                 # Extract important variables

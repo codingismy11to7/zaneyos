@@ -9,7 +9,7 @@ Para cambios cotidianos, basta con conocer algunos archivos y directorios clave:
 - `flake.nix`: archivo principal del sistema. Normalmente no necesitas editarlo para cambios comunes.
 - `hosts/`: configuración por equipo (host).
   - `hosts/<tu-hostname>/`:
-    - `variables.nix`: panel principal para activar/desactivar funciones y cambiar opciones.
+    - `configuration.nix`: panel principal para activar/desactivar funciones y cambiar opciones.
     - `host-packages.nix`: paquetes solo para ese equipo.
 - `modules/`: configuración modular reutilizable.
   - `modules/core/global-packages.nix`: paquetes para todos tus equipos ZaneyOS.
@@ -37,7 +37,7 @@ Edita `modules/core/global-packages.nix` y añade el paquete igual que arriba.
 
 ## Cambiar ajustes de monitores
 
-En `hosts/<tu-hostname>/variables.nix` busca `extraMonitorSettings`:
+En `hosts/<tu-hostname>/configuration.nix` busca `extraMonitorSettings`:
 ```nix path=null start=null
 extraMonitorSettings = "monitor=DP-1,1920x1080@144";
 ```

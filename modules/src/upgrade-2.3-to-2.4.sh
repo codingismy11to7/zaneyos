@@ -162,7 +162,7 @@ print_failure_banner() {
   echo -e "${RED}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }
 
-# Cleanup helper: remove duplicate attribute keys in variables.nix
+# Cleanup helper: remove duplicate attribute keys in configuration.nix
 cleanup_duplicates() {
   local file_path="$1"
   # Keep only the first non-comment occurrence of specific keys
@@ -318,15 +318,15 @@ CURRENT_BRANCH=$(git branch --show-current)
 print_info "Current branch: $CURRENT_BRANCH"
 
 # Verify this appears to be version 2.3
-if [ ! -f "./hosts/default/variables.nix" ]; then
-  print_error "Cannot find default variables.nix file"
+if [ ! -f "./hosts/default/configuration.nix" ]; then
+  print_error "Cannot find default configuration.nix file"
   exit 1
 fi
 
 # Check if we have 2.4 features (this indicates the TEMPLATE is 2.4)
 # Do NOT abort: users may still have 2.3 host files to migrate.
-if grep -q "displayManager" ./hosts/default/variables.nix; then
-  print_warning "Template variables.nix includes 2.4+ fields (displayManager found)."
+if grep -q "displayManager" ./hosts/default/configuration.nix; then
+  print_warning "Template configuration.nix includes 2.4+ fields (displayManager found)."
   print_info "Proceeding: we will still migrate host files from your 2.3 backup."
 else
   print_success "Verified: Template appears to be ZaneyOS 2.3-style"
@@ -375,7 +375,7 @@ perform_precheck_analysis() {
                 echo "  📂 Host: $hostname"
                 
                 # Check which files exist
-                [ -f "$dir/variables.nix" ] && echo "    ✅ variables.nix (WILL BE MIGRATED)"
+                [ -f "$dir/configuration.nix" ] && echo "    ✅ configuration.nix (WILL BE MIGRATED)"
                 [ -f "$dir/hardware.nix" ] && echo "    ✅ hardware.nix (WILL BE PRESERVED)"
                 [ -f "$dir/host-packages.nix" ] && echo "    ✅ host-packages.nix (WILL BE PRESERVED)"
                 
@@ -548,7 +548,7 @@ perform_precheck_analysis() {
         echo "============================================"
         echo ""
         echo "✅ WILL BE AUTOMATICALLY MIGRATED:"
-        echo "   • All host configurations (variables.nix with 2.4 format conversion)"
+        echo "   • All host configurations (configuration.nix with 2.4 format conversion)"
         echo "   • Hardware configurations (hardware.nix)"
         echo "   • Host-specific packages (host-packages.nix)"
         echo "   • Customized host imports (default.nix if modified)"
@@ -657,8 +657,8 @@ print_header "Upgrading Host Configurations"
 # Function to merge variables from 2.3 to 2.4
 merge_variables() {
     local hostname=$1
-    local old_vars_file="$BACKUP_DIR/zaneyos/hosts/$hostname/variables.nix"
-    local new_vars_file="./hosts/$hostname/variables.nix"
+    local old_vars_file="$BACKUP_DIR/zaneyos/hosts/$hostname/configuration.nix"
+    local new_vars_file="./hosts/$hostname/configuration.nix"
     
     print_info "Processing host: $hostname"
     
@@ -666,7 +666,7 @@ merge_variables() {
     mkdir -p "./hosts/$hostname"
     
     # Copy the new 2.4 template
-    cp "./hosts/default/variables.nix" "$new_vars_file"
+    cp "./hosts/default/configuration.nix" "$new_vars_file"
     
     # Extract values from old 2.3 configuration
     if [ -f "$old_vars_file" ]; then
@@ -864,8 +864,8 @@ update_flake_configuration() {
     
     # Detect current username (prefer from old config, fallback to current user)
     local detected_username
-    if [ -n "${HOST_DIRS[0]}" ] && [ -f "$BACKUP_DIR/zaneyos/hosts/${HOST_DIRS[0]}/variables.nix" ]; then
-        detected_username=$(grep 'gitUsername' "$BACKUP_DIR/zaneyos/hosts/${HOST_DIRS[0]}/variables.nix" | sed 's/.*= *"\([^"]*\)".*/\1/' | head -1)
+    if [ -n "${HOST_DIRS[0]}" ] && [ -f "$BACKUP_DIR/zaneyos/hosts/${HOST_DIRS[0]}/configuration.nix" ]; then
+        detected_username=$(grep 'gitUsername' "$BACKUP_DIR/zaneyos/hosts/${HOST_DIRS[0]}/configuration.nix" | sed 's/.*= *"\([^"]*\)".*/\1/' | head -1)
     fi
     detected_username=${detected_username:-$(whoami)}
     

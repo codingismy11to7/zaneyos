@@ -101,7 +101,7 @@ El proceso manual es **incompleto y riesgoso** porque:
 
 ### 2. 🔄 Convertir hosts 2.3 a 2.4
 
-- **Nuevas opciones en `hosts/<hostname>/variables.nix`:**
+- **Nuevas opciones en `hosts/<hostname>/configuration.nix`:**
   ```nix
   displayManager = "sddm";
   tmuxEnable = false;

@@ -66,7 +66,7 @@ _: {
 
     # Available Options:
     # Kitty, ghostty, wezterm, aalacrity
-    # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
+    # Note: kitty, wezterm, alacritty have to be enabled in `configuration.nix`
     # Setting it here does not enable it. Kitty is installed by default
     terminal = "kitty"; # Set Default System Terminal
 

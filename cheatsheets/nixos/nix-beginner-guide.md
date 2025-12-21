@@ -9,7 +9,7 @@ NixOS configurations can seem complex, but for day-to-day changes, you only need
 -   `flake.nix`: This is the main file for the entire system. You shouldn't need to edit this file directly for most common changes.
 -   `hosts/`: This directory contains the configuration for each individual computer (or "host") you've installed ZaneyOS on.
     -   `hosts/<your-hostname>/`: This is where you'll make most of your changes.
-        -   `variables.nix`: This is your main control panel. You can enable/disable features, change settings, and more.
+        -   `configuration.nix`: This is your main control panel. You can enable/disable features, change settings, and more.
         -   `host-packages.nix`: This is where you can add packages that you only want on this specific computer.
 -   `modules/`: This directory contains the bulk of the configuration, broken down into smaller, reusable pieces ("modules").
     -   `modules/core/global-packages.nix`: You can add packages here if you want them to be installed on *all* of your ZaneyOS computers.
@@ -55,9 +55,9 @@ If you want a package to be installed on every computer you use ZaneyOS on, you'
 
 ## How to Change Monitor Settings
 
-You can change your monitor settings in `hosts/<your-hostname>/variables.nix`.
+You can change your monitor settings in `hosts/<your-hostname>/configuration.nix`.
 
-1.  Open `hosts/<your-hostname>/variables.nix`.
+1.  Open `hosts/<your-hostname>/configuration.nix`.
 2.  Look for the `extraMonitorSettings` line.
 3.  You can add your monitor settings here. For example, to set the resolution and refresh rate for a monitor named `DP-1`, you would change this:
 

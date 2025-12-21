@@ -125,7 +125,7 @@ with lib; {
       default = "brave";
       description = "Default browser.";
     };
-    # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
+    # Note: kitty, wezterm, alacritty have to be enabled in `configuration.nix`
     # Setting it here does not enable it. Kitty is installed by default
     # refactor TODO: combine package insallation and default and options,
     # and make this a package argument so unstable can be given

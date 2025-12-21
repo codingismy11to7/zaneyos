@@ -197,7 +197,7 @@ when `barChoice = "noctalia"`).
 
 ## 🎨 Noctalia Shell Keybindings
 
-_Available when `barChoice = "noctalia"` in `variables.nix`_
+_Available when `barChoice = "noctalia"` in `configuration.nix`_
 
 - `$modifier + D` → Launcher Toggle
 - `$modifier + Shift + Return` → Launcher Toggle
@@ -213,7 +213,7 @@ _Available when `barChoice = "noctalia"` in `variables.nix`_
 
 ### Rofi Launcher (Waybar Mode)
 
-_Available when `barChoice = "waybar"` in `variables.nix`_
+_Available when `barChoice = "waybar"` in `configuration.nix`_
 
 - `$modifier + D` → Launch Rofi Launcher
 - `$modifier + Shift + Return` → Launch Rofi Launcher
@@ -308,7 +308,7 @@ cp -r hosts/default hosts/<your-desired-hostname>
 git add .
 ```
 
-4. Edit `hosts/<your-desired-hostname>/variables.nix`.
+4. Edit `hosts/<your-desired-hostname>/configuration.nix`.
 
 5. Edit `flake.nix` and fill in your username, profile, and hostname.
 

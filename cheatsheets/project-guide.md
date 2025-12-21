@@ -49,10 +49,10 @@ High-level architecture
     - ../../modules/drivers
     - ../../modules/core
   - Flips toggles: drivers.*.enable and vm.guest-services.enable
-  - Hybrid laptops: profiles/nvidia-laptop pulls intel/nvidia Bus IDs from the host’s variables.nix and wires nvidia-prime; profiles/amd-hybrid pulls amdgpu/nvidia Bus IDs and wires the AMD+NVIDIA offload module
+  - Hybrid laptops: profiles/nvidia-laptop pulls intel/nvidia Bus IDs from the host’s configuration.nix and wires nvidia-prime; profiles/amd-hybrid pulls amdgpu/nvidia Bus IDs and wires the AMD+NVIDIA offload module
 - hosts/<hostname>/
   - default.nix imports hardware.nix and host-packages.nix
-  - variables.nix is the control panel for UX + feature toggles:
+  - configuration.nix is the control panel for UX + feature toggles:
     - displayManager (greetd vs sddm)
     - terminal/browser defaults (enable per-terminal via flags)
     - waybarChoice, animChoice, stylixImage
@@ -72,13 +72,13 @@ High-level architecture
 
 Where to change what
 - flake.nix: set username, host, profile; add inputs; wire outputs
-- hosts/<hostname>/{variables.nix,hardware.nix,host-packages.nix}: per-machine behavior, theming, and hardware
+- hosts/<hostname>/{configuration.nix,hardware.nix,host-packages.nix}: per-machine behavior, theming, and hardware
 - modules/core/*: system-level settings, services, packages
 - modules/home/*: user apps, shell, window manager, UI
 
 Common workflows
-- Small UX tweaks: edit hosts/<hostname>/variables.nix → fr
-- Theme swap: edit stylixImage/waybarChoice in variables.nix → fr (or zcli rebuild-boot)
+- Small UX tweaks: edit hosts/<hostname>/configuration.nix → fr
+- Theme swap: edit stylixImage/waybarChoice in configuration.nix → fr (or zcli rebuild-boot)
 - GPU/VM switch: choose nixos-rebuild/nh profile (e.g., nh os switch --hostname vm) and optionally update host/profile constants with zcli update-host
 
 Validation and troubleshooting

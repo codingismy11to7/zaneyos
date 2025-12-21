@@ -392,7 +392,7 @@ awk -v newtz="$timezone" '/^  time\.timeZone = / { sub(/"[^"]*"/, "\"" newtz "\"
 rm ./modules/core/system.nix.bak
 
 # Update variables in host file (do all keys in one pass to avoid quoting issues)
-cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
+cp ./hosts/$hostName/configuration.nix ./hosts/$hostName/configuration.nix.bak
 awk -v v_user="$gitUsername" \
   -v v_email="$gitEmail" \
   -v v_kb="$keyboardLayout" \
@@ -404,8 +404,8 @@ awk -v v_user="$gitUsername" \
   /^  keyboardVariant = / { sub(/"[^"]*"/, "\"" v_kv "\"") }
   /^  consoleKeyMap = /   { sub(/"[^"]*"/, "\"" v_ckm "\"") }
   { print }
-' ./hosts/$hostName/variables.nix.bak >./hosts/$hostName/variables.nix
-rm ./hosts/$hostName/variables.nix.bak
+' ./hosts/$hostName/configuration.nix.bak >./hosts/$hostName/configuration.nix
+rm ./hosts/$hostName/configuration.nix.bak
 
 echo "Configuration files updated successfully!"
 

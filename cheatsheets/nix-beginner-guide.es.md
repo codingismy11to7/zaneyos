@@ -7,7 +7,7 @@
 - `flake.nix`: Punto de entrada del sistema. Normalmente no necesitas editarlo para ajustes cotidianos.
 - `hosts/`: Configuración por máquina.
   - `hosts/<tu-hostname>/`
-    - `variables.nix`: Tu panel principal (activar/desactivar funciones, establecer opciones).
+    - `configuration.nix`: Tu panel principal (activar/desactivar funciones, establecer opciones).
     - `host-packages.nix`: Paquetes extra solo para esta máquina.
 - `modules/`: Bloques reutilizables para el sistema y Home Manager.
   - `modules/core/global-packages.nix`: Paquetes instalados en todas las máquinas.
@@ -35,7 +35,7 @@ Edita `modules/core/global-packages.nix` y añade el paquete a la lista.
 
 ## Ajustes de monitores (por host)
 
-Edita `hosts/<tu-hostname>/variables.nix` y define la(s) línea(s) extra del monitor:
+Edita `hosts/<tu-hostname>/configuration.nix` y define la(s) línea(s) extra del monitor:
 
 ```nix
 # Ejemplo: 1080p a 144 Hz en DP-1

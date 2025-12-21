@@ -579,14 +579,14 @@ in
           exit 1
         fi
 
-        # Ensure we're acting on a valid host and we can locate variables.nix
+        # Ensure we're acting on a valid host and we can locate configuration.nix
         verify_hostname
         current_hostname="$(hostname)"
-        host_vars_file="$HOME/$PROJECT/hosts/$current_hostname/variables.nix"
+        host_vars_file="$HOME/$PROJECT/hosts/$current_hostname/configuration.nix"
 
         if [ ! -f "$host_vars_file" ]; then
           echo "Error: Host variables file not found: $host_vars_file" >&2
-          echo "Please ensure your host folder exists and contains variables.nix." >&2
+          echo "Please ensure your host folder exists and contains configuration.nix." >&2
           exit 1
         fi
 

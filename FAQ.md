@@ -310,7 +310,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 <summary>**How to I change the waybar?**</summary>
 
 - Go to the `~/zaneyos/host/HOSTNAME`
-- Edit the `variables.nix` file
+- Edit the `configuration.nix` file
 - Find the line that starts `waybarChoice`
 - Change the name to one of the available files
 - `waybar-simple.nix`, `waybar-curved.nix`, or `waybar-ddubs.nix`
@@ -338,7 +338,7 @@ waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 <details>
 <summary>**How do I change the monitor settings? **</summary>
 
-Monitor settings are in the file: `~/zaneyos/hosts/<HOSTNAME>/variables.nix`
+Monitor settings are in the file: `~/zaneyos/hosts/<HOSTNAME>/configuration.nix`
 
 Inside the quotes the syntax is "monitor=video apapter,resolution@refresh rate,
 auto,scale" Monitor must be in all lowercase. If you are not sure of your video
@@ -399,7 +399,7 @@ monitor=eDP-1,1920x1080@144.0,216x268,1.0
 ```
 
 You only need to copy the `monitor=` lines and paste them into the
-`variables.nix` file as described in the process above.
+`configuration.nix` file as described in the process above.
 
 Once you have that done. Run the command alias `fr` to build a new generation to
 make the chnages effective.
@@ -639,7 +639,7 @@ make the change effective.
    template or if configuring manually, set the template in the `flake.nix` to
    `nvidia-prime`
 
-2. In the `~/zaneyos/hosts/HYBRID-HOST/variables.nix` file you will need to set
+2. In the `~/zaneyos/hosts/HYBRID-HOST/configuration.nix` file you will need to set
    the PCI IDs for the Intel and NVIDIA GPUs. Refer to
    [this page](https://nixos.wiki/wiki/Nvidia) to help determine those values.
 
@@ -1504,7 +1504,7 @@ philosophy, ensuring that system management is predictable and stress-free.
 <summary>**How to I change the waybar?**</summary>
 
 - Go to the `~/zaneyos/host/HOSTNAME`
-- Edit the `variables.nix` file
+- Edit the `configuration.nix` file
 - Find the line that starts `waybarChoice`
 - Change the name to one of the available files
 - `waybar-simple.nix`, `waybar-curved.nix`, or `waybar-ddubs.nix`
@@ -1533,7 +1533,7 @@ waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 <details>
 <summary>**How do I change the monitor settings? **</summary>
 
-Monitor settings are in the file: `~/zaneyos/hosts/<HOSTNAME>/variables.nix`
+Monitor settings are in the file: `~/zaneyos/hosts/<HOSTNAME>/configuration.nix`
 
 Inside the quotes the syntax is "monitor=video apapter,resolution@refresh rate,
 auto,scale" Monitor must be in all lowercase. If you are not sure of your video
@@ -1594,7 +1594,7 @@ monitor=eDP-1,1920x1080@144.0,216x268,1.0
 ```
 
 You only need to copy the `monitor=` lines and paste them into the
-`variables.nix` file as described in the process above.
+`configuration.nix` file as described in the process above.
 
 Once you have that done. Run the command `zcli rebuild` or alias `fr` to build a
 new generation to make the changes effective.
@@ -1830,7 +1830,7 @@ make the change effective.
    template or if configuring manually, set the template in the `flake.nix` to
    `nvidia-prime`
 
-2. In the `~/zaneyos/hosts/HYBRID-HOST/variables.nix` file you will need to set
+2. In the `~/zaneyos/hosts/HYBRID-HOST/configuration.nix` file you will need to set
    the PCI IDs for the Intel and NVIDIA GPUs. Refer to
    [this page](https://nixos.wiki/wiki/Nvidia) to help determine those values.
 

@@ -17,8 +17,8 @@ Guardados en modules/home/waybar/:
 - Jerry-waybar.nix
 
 ## Dónde seleccionas tu Waybar
-Selecciona el módulo en hosts/default/variables.nix vía waybarChoice. Ejemplo (extracto real):
-```nix path=/home/dwilliams/ZaneyOS/hosts/default/variables.nix start=73
+Selecciona el módulo en hosts/default/configuration.nix vía waybarChoice. Ejemplo (extracto real):
+```nix path=/home/dwilliams/ZaneyOS/hosts/default/configuration.nix start=73
   # Set Waybar
   # Includes alternates such as:
   # Comment out the current choice and uncomment the one you want
@@ -104,8 +104,8 @@ Puntos clave:
 cp modules/home/waybar/waybar-simple.nix modules/home/waybar/my-waybar.nix
 ```
 2) (Opcional) Añade scripts auxiliares en modules/home/waybar/scripts/.
-3) Apunta variables.nix a tu módulo:
-```nix path=/home/dwilliams/ZaneyOS/hosts/default/variables.nix start=81
+3) Apunta configuration.nix a tu módulo:
+```nix path=/home/dwilliams/ZaneyOS/hosts/default/configuration.nix start=81
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
   waybarChoice = ../../modules/home/waybar/waybar-tony.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
@@ -198,14 +198,14 @@ Copia todo desde ./scripts a ~/.config/waybar/scripts y marca ejecutable.
 
 ## Solución de problemas
 - Fallo de ruta: asegúrate de hacer git add de los archivos nuevos.
-- Nombre incorrecto en variables.nix: usa exactamente el nombre real.
+- Nombre incorrecto en configuration.nix: usa exactamente el nombre real.
 - Iconos faltan: instala una Nerd Font (p. ej., JetBrainsMono Nerd Font) y selecciónala en CSS.
 - Widgets faltan: confírmalos en modules-left/center/right y su bloque de config.
 
 ## Receta rápida
 1) Crea modules/home/waybar/my-waybar.nix (copia uno y edítalo)
 2) Añade scripts en modules/home/waybar/scripts/
-3) En variables.nix:
+3) En configuration.nix:
 ```nix path=null start=null
 waybarChoice = ../../modules/home/waybar/my-waybar.nix;
 ```

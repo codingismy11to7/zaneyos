@@ -7,7 +7,7 @@ Welcome! This guide is for users who are new to Nix and want to make common, saf
 - `flake.nix`: Entry point for the whole system. You generally don’t need to edit this for day‑to‑day tweaks.
 - `hosts/`: Per‑machine configuration.
   - `hosts/<your-hostname>/`
-    - `variables.nix`: Your main control panel (enable/disable features, set options).
+    - `configuration.nix`: Your main control panel (enable/disable features, set options).
     - `host-packages.nix`: Extra packages only for this one machine.
 - `modules/`: Reusable building blocks for the system and Home Manager.
   - `modules/core/global-packages.nix`: Packages installed on all machines.
@@ -35,7 +35,7 @@ Edit `modules/core/global-packages.nix` and add the package to the list.
 
 ## Monitor settings (per host)
 
-Edit `hosts/<your-hostname>/variables.nix` and set the extra monitor line(s):
+Edit `hosts/<your-hostname>/configuration.nix` and set the extra monitor line(s):
 
 ```nix
 # Example: 1080p at 144 Hz on DP-1

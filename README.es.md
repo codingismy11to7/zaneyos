@@ -180,7 +180,7 @@ A continuación los atajos de Hyprland, en formato de referencia rápida. La col
 
 ## 🎨 Atajos de Noctalia Shell
 
-_Disponibles cuando `barChoice = "noctalia"` en `variables.nix`_
+_Disponibles cuando `barChoice = "noctalia"` en `configuration.nix`_
 
 - `$modifier + D` → Alternar iniciador
 - `$modifier + Shift + Return` → Alternar iniciador
@@ -196,7 +196,7 @@ _Disponibles cuando `barChoice = "noctalia"` en `variables.nix`_
 
 ### Iniciador Rofi (Modo Waybar)
 
-_Disponible cuando `barChoice = "waybar"` en `variables.nix`_
+_Disponible cuando `barChoice = "waybar"` en `configuration.nix`_
 
 - `$modifier + D` → Lanzar Rofi
 - `$modifier + Shift + Return` → Lanzar Rofi
@@ -286,7 +286,7 @@ cp -r hosts/default hosts/<nombre-del-host>
 git add .
 ```
 
-4. Edita `hosts/<nombre-del-host>/variables.nix`.
+4. Edita `hosts/<nombre-del-host>/configuration.nix`.
 
 5. Edita `flake.nix` y completa tu username, perfil y hostname.
 

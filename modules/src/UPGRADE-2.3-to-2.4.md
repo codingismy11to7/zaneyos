@@ -8,7 +8,7 @@ This guide provides safe upgrade scripts to migrate from ZaneyOS 2.3 to 2.4, han
 
 - **SDDM** is now the default display manager (was previously tui-greetd)
 - **Terminal Selection**: Individual terminal applications can be enabled/disabled
-- **New Variables**: Additional configuration variables added to `variables.nix`
+- **New Variables**: Additional configuration variables added to `configuration.nix`
 - **Breaking Changes**: Direct upgrade causes build failures due to missing variables
 
 ## 📋 What the Upgrade Script Does
@@ -171,7 +171,7 @@ cd ~/zaneyos
 - Login and run `systemctl status display-manager`
 
 ### Missing Applications
-- Check if your preferred terminal is enabled in `~/zaneyos/hosts/[hostname]/variables.nix`
+- Check if your preferred terminal is enabled in `~/zaneyos/hosts/[hostname]/configuration.nix`
 - Verify browser and other applications are still available
 - Some applications may need to be re-enabled in the new configuration
 
@@ -184,7 +184,7 @@ Your host configuration will be updated with new 2.4 structure:
 ```
 ~/zaneyos/hosts/[your-hostname]/
 ├── hardware.nix          (preserved from 2.3)
-└── variables.nix         (updated to 2.4 format with your settings)
+└── configuration.nix         (updated to 2.4 format with your settings)
 ```
 
 ## 🆘 Emergency Recovery

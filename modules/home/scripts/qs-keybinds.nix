@@ -61,7 +61,7 @@ pkgs.writeShellScriptBin "qs-keybinds" ''
     # Detect WM availability (simple heuristics)
     HAS_HYPR=0; { [ -f "$HOME/.config/hypr/hyprland.conf" ] || command -v Hyprland >/dev/null 2>&1 || command -v hyprland >/dev/null 2>&1; } && HAS_HYPR=1 || true
 
-    # Allow host-stateful overrides via env (set to 0/1). These can be wired from hosts/<hostname>/variables.nix
+    # Allow host-stateful overrides via env (set to 0/1). These can be wired from hosts/<hostname>/configuration.nix
     [ -n "''${QS_HAS_HYPR:-}" ] && HAS_HYPR="''${QS_HAS_HYPR}"
 
     MODE_AVAILABLE=1

@@ -20,8 +20,8 @@ Saved in modules/home/waybar/:
 
 
 ## Where you select your Waybar
-Select the Waybar module in hosts/default/variables.nix via waybarChoice. Example (actual excerpt):
-```nix path=/home/dwilliams/ZaneyOS/hosts/default/variables.nix start=73
+Select the Waybar module in hosts/default/configuration.nix via waybarChoice. Example (actual excerpt):
+```nix path=/home/dwilliams/ZaneyOS/hosts/default/configuration.nix start=73
   # Set Waybar
   # Includes alternates such as:
   # Comment out the current choice and uncomment the one you want
@@ -112,8 +112,8 @@ Key takeaways:
 cp modules/home/waybar/waybar-simple.nix modules/home/waybar/my-waybar.nix
 ```
 2) (Optional) Add any helper scripts your widgets will use into modules/home/waybar/scripts/ (they will be installed to ~/.config/waybar/scripts automatically by modules using scriptsDir = ./scripts).
-3) Point variables.nix to your new module:
-```nix path=/home/dwilliams/ZaneyOS/hosts/default/variables.nix start=81
+3) Point configuration.nix to your new module:
+```nix path=/home/dwilliams/ZaneyOS/hosts/default/configuration.nix start=81
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
   waybarChoice = ../../modules/home/waybar/waybar-tony.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
@@ -235,7 +235,7 @@ This copies all files from ./scripts (next to the module file) to ~/.config/wayb
 
 ## Troubleshooting
 - Build fails with a path error: make sure any new .nix files and scripts are tracked in git (git add). Nix requires the files to be present in the store; untracked files referenced in the config will cause errors.
-- Wrong filename in variables.nix: ensure the chosen waybarChoice path exactly matches an existing file.
+- Wrong filename in configuration.nix: ensure the chosen waybarChoice path exactly matches an existing file.
 - Icons not showing: verify you have a Nerd Font installed (e.g., JetBrainsMono Nerd Font) and selected in CSS.
 - Widgets missing: confirm the widget is listed in modules-left/center/right arrays and that its settings block exists.
 
@@ -243,7 +243,7 @@ This copies all files from ./scripts (next to the module file) to ~/.config/wayb
 ## Quick recipe: add and use a new Waybar
 1) Create modules/home/waybar/my-waybar.nix (copy an existing one and edit).
 2) If needed, drop helper scripts into modules/home/waybar/scripts/.
-3) Update hosts/default/variables.nix:
+3) Update hosts/default/configuration.nix:
 ```nix path=null start=null
 waybarChoice = ../../modules/home/waybar/my-waybar.nix;
 ```

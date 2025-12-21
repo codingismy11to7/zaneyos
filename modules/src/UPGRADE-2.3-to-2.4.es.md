@@ -8,7 +8,7 @@ Esta guía proporciona scripts de actualización seguros para migrar de ZaneyOS 
 
 - **SDDM** ahora es el display manager predeterminado (antes tui-greetd)
 - **Selección de terminal**: terminales habilitables por bandera
-- **Nuevas variables**: añadidas en `variables.nix`
+- **Nuevas variables**: añadidas en `configuration.nix`
 - **Breaking changes**: actualizaciones directas fallan por variables faltantes
 
 ## 📋 Qué hace el Script de Actualización
@@ -170,7 +170,7 @@ cd ~/zaneyos
 - Inicia sesión y ejecuta `systemctl status display-manager`
 
 ### Aplicaciones faltantes
-- Verifica tu terminal preferida en `~/zaneyos/hosts/[hostname]/variables.nix`
+- Verifica tu terminal preferida en `~/zaneyos/hosts/[hostname]/configuration.nix`
 - Confirma que navegador y otras apps sigan disponibles
 
 ### Log de ejecución
@@ -181,7 +181,7 @@ Cada corrida genera un log en: `~/zaneyos-upgrade-TIMESTAMP.log`
 ```
 ~/zaneyos/hosts/[tu-hostname]/
 ├── hardware.nix          (preservado de 2.3)
-└── variables.nix         (actualizado a 2.4 con tus ajustes)
+└── configuration.nix         (actualizado a 2.4 con tus ajustes)
 ```
 
 ## 🆘 Recuperación de Emergencia

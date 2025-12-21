@@ -321,7 +321,7 @@ fácil referencia.
 <summary>**¿Cómo cambio la waybar?**</summary>
 
 - Ve al directorio `~/zaneyos/host/HOSTNAME`
-- Edita el archivo `variables.nix`
+- Edita el archivo `configuration.nix`
 - Encuentra la línea que comienza con `waybarChoice`
 - Cambia el nombre a uno de los archivos disponibles
 - `waybar-simple.nix`, `waybar-curved.nix`, o `waybar-ddubs.nix`
@@ -350,7 +350,7 @@ waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 <summary>**¿Cómo cambio la configuración del monitor? **</summary>
 
 La configuración del monitor está en el archivo:
-`~/zaneyos/hosts/<HOSTNAME>/variables.nix`
+`~/zaneyos/hosts/<HOSTNAME>/configuration.nix`
 
 Dentro de las comillas la sintaxis es "monitor=adaptador de
 video,resolución@refresh rate, auto,escala" El monitor debe estar en minúsculas.
@@ -411,7 +411,7 @@ monitor=eDP-1,1920x1080@144.0,216x268,1.0
 ```
 
 Solo necesitas copiar las líneas `monitor=` y pegarlas en el archivo
-`variables.nix` como se describe en el proceso arriba.
+`configuration.nix` como se describe en el proceso arriba.
 
 Una vez hecho eso. Ejecuta el comando alias `fr` para construir una nueva
 generación para hacer efectivos los cambios.
@@ -652,7 +652,7 @@ cambio efectivo.
    `nvidia-laptop` o si configurando manualmente, establece el template en el
    `flake.nix` a `nvidia-prime`
 
-2. En el archivo `~/zaneyos/hosts/HYBRID-HOST/variables.nix` necesitarás
+2. En el archivo `~/zaneyos/hosts/HYBRID-HOST/configuration.nix` necesitarás
    establecer los PCI IDs para las GPUs Intel y NVIDIA. Refiérete a
    [esta página](https://nixos.wiki/wiki/Nvidia) para ayudar a determinar esos
    valores.
