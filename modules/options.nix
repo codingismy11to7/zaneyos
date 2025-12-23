@@ -78,7 +78,11 @@ with lib; {
       default = false;
       description = "Enable Doom Emacs.";
     };
-
+    obsStudioEnable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable OBS Studio.";
+    };
     # Python development tools
     pythonEnable = mkOption {
       type = types.bool;
