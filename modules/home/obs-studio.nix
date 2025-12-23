@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  zaneyos,
+  ...
+}: {
   programs.obs-studio = {
-    enable = true;
+    enable = zaneyos.obsStudioEnable;
     #enableVirtualCamera = true;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
