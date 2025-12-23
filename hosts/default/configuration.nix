@@ -66,6 +66,7 @@ _: {
     enableGnuPGAgent = false;
     scannerEnable = false;
     nautilusEnable = true;
+    obsStudioEnable = false;
 
     # Themes, waybar and animation.
     # Set Stylix Image
