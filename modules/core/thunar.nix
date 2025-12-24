@@ -1,13 +1,15 @@
 {
   config,
+  lib,
   pkgs,
   ...
-}: let
-  inherit (config.zaneyos) thunarEnable;
-in {
+}:
+lib.mkIf config.zaneyos.thunarEnable {
+  services.tumbler.enable = true; # Image/video preview
+
   programs = {
     thunar = {
-      enable = thunarEnable;
+      enable = true;
       plugins = with pkgs.xfce; [
         thunar-archive-plugin
         thunar-volman
@@ -18,4 +20,3 @@ in {
     ffmpegthumbnailer # Need For Video / Image Preview
   ];
 }
-
