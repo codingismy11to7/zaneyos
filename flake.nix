@@ -66,7 +66,6 @@
         modules = [
           ./modules/core
           ./modules/drivers
-          nix-flatpak.nixosModules.nix-flatpak
           inputs.sops-nix.nixosModules.sops
           ./hosts/${host}
           ./profiles
