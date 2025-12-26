@@ -13,9 +13,9 @@
       nodejs
     ];
     unstable = with pkgs.unstable; [
-      heroic
-      plex-desktop
-      plexamp
+      # heroic
+      # plex-desktop
+      # plexamp
     ];
   in
     stable ++ unstable;

@@ -6,7 +6,7 @@
   inherit (config.zaneyos) barChoice enableGnuPGAgent;
   # Noctalia-specific packages
   noctaliaPkgs =
-    if barChoice == "noctalia"
+    if pkgs.stdenv.hostPlatform.isx86_64 && barChoice == "noctalia"
     then
       with pkgs; [
         matugen # color palette generator needed for noctalia-shell
@@ -19,9 +19,9 @@
     anytype
     bitwarden-cli
     bitwarden-desktop
-    discord
+    # discord
     ripgrep
-    slack
+    # slack
     zellij
   ];
 in {
@@ -77,7 +77,6 @@ in {
       file
       file-roller # Archive Manager
       gimp # Great Photo Editor
-      gpu-screen-recorder # needed for nnoctalia-shell
       power-profiles-daemon # needed for noctalia-shell power cycle
       mesa-demos # needed for inxi diag util
       tuigreet # The Login Manager (Sometimes Referred To As Display Manager)

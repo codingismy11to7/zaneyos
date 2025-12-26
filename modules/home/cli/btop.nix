@@ -1,10 +1,21 @@
-{pkgs, ...}: {
+{
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}: let
+  package =
+    if (!pkgs.stdenv.hostPlatform.isx86_64)
+    then pkgs.btop
+    else
+      pkgs.btop.override {
+        rocmSupport = true;
+        cudaSupport = true;
+      };
+in {
   programs.btop = {
     enable = true;
-    package = pkgs.btop.override {
-      rocmSupport = true;
-      cudaSupport = true;
-    };
+    inherit package;
     settings = {
       vim_keys = true;
       rounded_corners = true;

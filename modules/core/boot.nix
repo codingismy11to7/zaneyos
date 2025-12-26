@@ -2,14 +2,26 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  inherit (pkgs.stdenv.hostPlatform) isx86_64 isAarch64;
+in {
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages =
+      if isx86_64
+      then pkgs.linuxPackages_zen
+      else pkgs.linuxPackages;
+
     kernelModules = ["v4l2loopback"];
     extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
     kernel.sysctl = {"vm.max_map_count" = 2147483642;};
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+
+    loader = {
+      grub.enable = false;
+      systemd-boot.enable = isx86_64;
+      efi.canTouchEfiVariables = true;
+      generic-extlinux-compatible.enable = isAarch64;
+    };
+
     # Appimage Support
     binfmt.registrations.appimage = {
       wrapInterpreterInShell = false;
@@ -20,13 +32,13 @@
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
     plymouth.enable = true;
-    initrd.systemd.enable = true;
-    kernelParams = [
-      "quiet"
-      "boot.shell_on_fail"
-      # "plymouth.debug"
-    ];
-    consoleLogLevel = 0;
-    initrd.verbose = false;
+    # initrd.systemd.enable = true;
+    # kernelParams = [
+    #   "quiet"
+    #   "boot.shell_on_fail"
+    #   # "plymouth.debug"
+    # ];
+    # consoleLogLevel = 0;
+    # initrd.verbose = false;
   };
 }

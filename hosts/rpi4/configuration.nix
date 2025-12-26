@@ -15,21 +15,21 @@ _: {
 
     # does not have to be the same as the directory name, but
     # would be common
-    hostName = "nixorge";
+    hostName = "rpi4";
 
-    gpuProfile = "nvidia";
+    gpuProfile = "vm";
 
     # Set Display Manager
     # `tui` for Text login
     # `sddm` for graphical GUI (default)
     # SDDM background is set with stylixImage
-    displayManager = "sddm";
+    displayManager = "tui";
 
     # Emable/disable bundled applications
     tmuxEnable = false;
     alacrittyEnable = false;
     weztermEnable = false;
-    ghosttyEnable = true;
+    ghosttyEnable = false;
     vscodeEnable = false;
     antigravityEnable = false; # Google port of vscodium
     # Note: This is evil-helix with VIM keybindings by default
@@ -55,7 +55,7 @@ _: {
     # Kitty, ghostty, wezterm, aalacrity
     # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
     # Setting it here does not enable it. Kitty is installed by default
-    terminal = "ghostty"; # Set Default System Terminal
+    terminal = "kitty"; # Set Default System Terminal
 
     keyboardLayout = "us";
     keyboardVariant = "dvorak";
