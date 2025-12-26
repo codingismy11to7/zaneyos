@@ -47,13 +47,13 @@
     alejandra,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
+    supportedSystems = ["x86_64-linux" "aarch64-linux"];
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     username = "dwilliams";
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = host:
       nixpkgs.lib.nixosSystem {
-        inherit system;
         specialArgs = {
           inherit inputs;
           inherit username;
@@ -79,6 +79,6 @@
       })
       hosts);
 
-    formatter.x86_64-linux = inputs.alejandra.packages.x86_64-linux.default;
+    formatter = forAllSystems (system: inputs.alejandra.packages.${system}.default);
   };
 }

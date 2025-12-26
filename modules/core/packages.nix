@@ -4,13 +4,17 @@
   ...
 }: let
   inherit (config.zaneyos) barChoice;
+
   # Noctalia-specific packages
+  # gpu-screen-recorder requires x86_64 architecture
   noctaliaPkgs =
-    if barChoice == "noctalia"
+    if pkgs.stdenv.hostPlatform.isx86_64 && barChoice == "noctalia"
     then
       with pkgs; [
         matugen # color palette generator needed for noctalia-shell
         app2unit # launcher for noctalia-shell
+        gpu-screen-recorder # needed for noctalia-shell
+        power-profiles-daemon # needed for noctalia-shell power cycle
       ]
     else [];
 
@@ -65,8 +69,6 @@ in {
       file-roller # Archive Manager
       gedit # Simple Graphical Text Editor
       gimp # Great Photo Editor
-      gpu-screen-recorder # needed for nnoctalia-shell
-      power-profiles-daemon # needed for noctalia-shell power cycle
       mesa-demos # needed for inxi diag util
       tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
       htop # Simple Terminal Based System Monitor
