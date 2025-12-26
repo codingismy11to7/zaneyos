@@ -42,7 +42,7 @@ in {
       ./gtk.nix
       # ./cli/htop.nix
       ./hyprland
-      # ./terminals/kitty.nix
+      ./terminals/kitty.nix
       ./cli/lazygit.nix
       ./obs-studio.nix
       ./editors/lazyvim

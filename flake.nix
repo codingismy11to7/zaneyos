@@ -73,7 +73,7 @@
       };
 
     hosts = [
-      "nixorge"
+      "rpi4"
       "nixstation"
       "zaneyos-24-vm"
       "zaneyos-oem"

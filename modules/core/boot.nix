@@ -36,13 +36,13 @@ in {
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
     plymouth.enable = true;
-    initrd.systemd.enable = true;
-    kernelParams = [
-      "quiet"
-      "boot.shell_on_fail"
-      # "plymouth.debug"
-    ];
-    consoleLogLevel = 0;
-    initrd.verbose = false;
+    # initrd.systemd.enable = true;
+    # kernelParams = [
+    #   "quiet"
+    #   "boot.shell_on_fail"
+    #   # "plymouth.debug"
+    # ];
+    # consoleLogLevel = 0;
+    # initrd.verbose = false;
   };
 }

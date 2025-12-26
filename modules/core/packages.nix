@@ -23,9 +23,9 @@
     anytype
     bitwarden-cli
     bitwarden-desktop
-    discord
+    # discord
     ripgrep
-    slack
+    # slack
     zellij
   ];
 in {
