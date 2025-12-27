@@ -73,7 +73,7 @@ _: {
     # This will set your color palette
     # Default background
     # Add new images to ~/zaneyos/wallpapers
-    stylixImage = ../../wallpapers/astralbed.jpg;
+    stylixImage = ../../wallpapers/Plasma_Wallpaper_1955.jpg;
 
     # Set Waybar
     #  Available Options:
