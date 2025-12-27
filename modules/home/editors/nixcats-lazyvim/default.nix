@@ -1,6 +1,7 @@
 { inputs, ... }: let
-  inherit (inputs) nixpkgs nixCats;
+  inherit (inputs) nixCats;
   inherit (nixCats) utils;
+  nixpkgs = inputs.nixpkgs-unstable;
   luaPath = ./.;
 
   # the following extra_pkg_config contains any values
@@ -64,6 +65,7 @@
         LazyVim
         bufferline-nvim
         lazydev-nvim
+        copilot-vim
         conform-nvim
         flash-nvim
         friendly-snippets
@@ -71,6 +73,8 @@
         grug-far-nvim
         noice-nvim
         lualine-nvim
+        mini-files
+        mini-hipatterns
         nui-nvim
         nvim-lint
         nvim-lspconfig
@@ -90,6 +94,7 @@
         vim-startuptime
         which-key-nvim
         snacks-nvim
+        zellij-nvim
         nvim-treesitter-textobjects
         nvim-treesitter.withAllGrammars
         # This is for if you only want some of the grammars
@@ -101,7 +106,7 @@
         # ))
 
         # sometimes you have to fix some names
-        { plugin = catppuccin-nvim; name = "catppuccin"; }
+        # { plugin = catppuccin-nvim; name = "catppuccin"; }
         { plugin = mini-ai; name = "mini.ai"; }
         { plugin = mini-icons; name = "mini.icons"; }
         { plugin = mini-pairs; name = "mini.pairs"; }
@@ -224,4 +229,5 @@ in {
         ;
     })
   ];
+  nvim.enable = true;
 }
