@@ -11,6 +11,6 @@
     ".config/fastfetch/fastfetch3.config.jsonc".source = ./fastfetch3.config.jsonc;
     ".config/fastfetch/fastfetch4.config.jsonc".source = ./fastfetch4.config.jsonc;
     ".config/fastfetch/fastfetch5.config.jsonc".source = ./fastfetch5.config.jsonc;
-    ".config/fastfetch/nixos.png".source = ./nixos.png;
+    # ".config/fastfetch/nixos.png".source = ./nixos.png;
   };
 }
