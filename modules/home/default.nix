@@ -45,7 +45,8 @@ in {
       # ./terminals/kitty.nix
       ./cli/lazygit.nix
       ./obs-studio.nix
-      ./editors/lazyvim
+      ./editors/nixcats-lazyvim
+      # ./editors/lazyvim
       #./editors/nvf.nix
       # ./editors/nixvim.nix
       ./editors/nano.nix
