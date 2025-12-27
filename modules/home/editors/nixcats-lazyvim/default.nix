@@ -1,4 +1,4 @@
-{ inputs, ... }: let
+{inputs, ...}: let
   inherit (inputs) nixCats;
   inherit (nixCats) utils;
   nixpkgs = inputs.nixpkgs-unstable;
@@ -25,8 +25,16 @@
   # see :help nixCats.flake.outputs.categories
   # and
   # :help nixCats.flake.outputs.categoryDefinitions.scheme
-  categoryDefinitions = { pkgs, settings, categories, extra, name, mkPlugin, ... }@packageDef: {
-    # to define and use a new category, simply add a new list to a set here, 
+  categoryDefinitions = {
+    pkgs,
+    settings,
+    categories,
+    extra,
+    name,
+    mkPlugin,
+    ...
+  } @ packageDef: {
+    # to define and use a new category, simply add a new list to a set here,
     # and later, you will include categoryname = true; in the set you
     # provide when you build the package using this builder function.
     # see :help nixCats.flake.outputs.packageDefinitions for info on that section.
@@ -35,30 +43,34 @@
     # this section is for dependencies that should be available
     # at RUN TIME for plugins. Will be available to PATH within neovim terminal
     # this includes LSPs
-    lspsAndRuntimeDeps = with pkgs; {
+    lspsAndRuntimeDeps = with pkgs.unstable; {
       general = [
         universal-ctags
+        ast-grep
         curl
         # NOTE:
         # lazygit
         # Apparently lazygit when launched via snacks cant create its own config file
         # but we can add one from nix!
         (pkgs.writeShellScriptBin "lazygit" ''
-          exec ${pkgs.lazygit}/bin/lazygit --use-config-file ${pkgs.writeText "lazygit_config.yml" ""} "$@"
+          exec ${lazygit}/bin/lazygit --use-config-file ${pkgs.writeText "lazygit_config.yml" ""} "$@"
         '')
         ripgrep
         fd
-        stdenv.cc.cc
+        imagemagick
+        shfmt
+        stdenv.cc
         lua-language-server
         nil # I would go for nixd but lazy chooses this one idk
         stylua
+        tree-sitter
       ];
     };
 
     # NOTE: lazy doesnt care if these are in startupPlugins or optionalPlugins
     # also you dont have to download everything via nix if you dont want.
     # but you have the option, and that is demonstrated here.
-    startupPlugins = with pkgs.vimPlugins; {
+    startupPlugins = with pkgs.unstable.vimPlugins; {
       general = [
         # LazyVim
         lazy-nvim
@@ -107,9 +119,18 @@
 
         # sometimes you have to fix some names
         # { plugin = catppuccin-nvim; name = "catppuccin"; }
-        { plugin = mini-ai; name = "mini.ai"; }
-        { plugin = mini-icons; name = "mini.icons"; }
-        { plugin = mini-pairs; name = "mini.pairs"; }
+        {
+          plugin = mini-ai;
+          name = "mini.ai";
+        }
+        {
+          plugin = mini-icons;
+          name = "mini.icons";
+        }
+        {
+          plugin = mini-pairs;
+          name = "mini.pairs";
+        }
         # you could do this within the lazy spec instead if you wanted
         # and get the new names from `:NixCats pawsible` debug command
       ];
@@ -144,7 +165,7 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
     extraWrapperArgs = {
       test = [
-        '' --set CATTESTVAR2 "It worked again!"''
+        ''--set CATTESTVAR2 "It worked again!"''
       ];
     };
 
@@ -156,11 +177,11 @@
     # vim.g.python3_host_prog
     # or run from nvim terminal via :!<packagename>-python3
     python3.libraries = {
-      test = [ (_:[]) ];
+      test = [(_: [])];
     };
     # populates $LUA_PATH and $LUA_CPATH
     extraLuaPackages = {
-      test = [ (_:[]) ];
+      test = [(_: [])];
     };
   };
 
@@ -173,7 +194,12 @@
   packageDefinitions = {
     # These are the names of your packages
     # you can include as many as you wish.
-    nvim = { pkgs, name, mkPlugin, ... }: {
+    nvim = {
+      pkgs,
+      name,
+      mkPlugin,
+      ...
+    }: {
       # they contain a settings set defined above
       # see :help nixCats.flake.outputs.settings
       settings = {
@@ -196,14 +222,18 @@
       extra = {};
     };
     # an extra test package with normal lua reload for fast edits
-    # nix doesnt provide the config in this package, allowing you free reign to edit it.
+    # nix doesnt provide the config in this package, allowing you free reins to edit it.
     # then you can swap back to the normal pure package when done.
-    testnvim = { pkgs, mkPlugin, ... }: {
+    testnvim = {
+      pkgs,
+      mkPlugin,
+      ...
+    }: {
       settings = {
         suffix-path = true;
         suffix-LD = true;
         wrapRc = false;
-        unwrappedCfgPath = utils.mkLuaInline "os.getenv('HOME') .. '/some/path/to/your/config'";
+        unwrappedCfgPath = utils.mkLuaInline "os.getenv('HOME') .. '/zaneyos/modules/home/editors/nixcats-lazyvim'";
       };
       categories = {
         general = true;
@@ -229,5 +259,6 @@ in {
         ;
     })
   ];
+
   nvim.enable = true;
 }

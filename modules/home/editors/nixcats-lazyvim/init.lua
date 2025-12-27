@@ -24,8 +24,8 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
   { 'LazyVim/LazyVim', import = 'lazyvim.plugins' },
   -- disable mason.nvim while using nix
   -- precompiled binaries do not agree with nixos, and we can just make nix install this stuff for us.
-  { 'williamboman/mason-lspconfig.nvim', enabled = require('nixCatsUtils').lazyAdd(true, false) },
-  { 'williamboman/mason.nvim', enabled = require('nixCatsUtils').lazyAdd(true, false) },
+  { 'mason-org/mason-lspconfig.nvim', enabled = require('nixCatsUtils').lazyAdd(true, false) },
+  { 'mason-org/mason.nvim', enabled = require('nixCatsUtils').lazyAdd(true, false) },
   {
     'nvim-treesitter/nvim-treesitter',
     build = require('nixCatsUtils').lazyAdd ':TSUpdate',
