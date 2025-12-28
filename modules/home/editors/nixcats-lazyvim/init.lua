@@ -33,6 +33,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
   { import = 'lazyvim.plugins.extras.lang.nix' },
   { import = 'lazyvim.plugins.extras.lang.toml' },
   { import = 'lazyvim.plugins.extras.lang.typescript' },
+  { import = 'lazyvim.plugins.extras.linting.eslint' },
 
   -- disable mason.nvim while using nix
   -- precompiled binaries do not agree with nixos, and we can just make nix install this stuff for us.

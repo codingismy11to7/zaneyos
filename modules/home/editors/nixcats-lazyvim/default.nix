@@ -64,9 +64,14 @@ let
           shfmt
           stdenv.cc
           lua-language-server
-          nil # I would go for nixd but lazy chooses this one idk
+          marksman
+          nil
+          statix
           stylua
+          taplo
           tree-sitter
+          vscode-langservers-extracted
+          vtsls
         ];
       };
 
