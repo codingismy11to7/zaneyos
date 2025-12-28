@@ -105,8 +105,8 @@ let
           nvim-web-devicons
           persistence-nvim
           plenary-nvim
-          # telescope-fzf-native-nvim
-          # telescope-nvim
+          telescope-fzf-native-nvim
+          telescope-nvim
           todo-comments-nvim
           tokyonight-nvim
           trouble-nvim
