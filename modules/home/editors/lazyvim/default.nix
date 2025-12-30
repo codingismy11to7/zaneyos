@@ -78,8 +78,8 @@
     # NOTE: lazy doesnt care if these are in startupPlugins or optionalPlugins
     # also you dont have to download everything via nix if you dont want.
     # but you have the option, and that is demonstrated here.
-    startupPlugins = with pkgs.unstable.vimPlugins; {
-      general = [
+    startupPlugins = {
+      general = with pkgs.unstable.vimPlugins; [
         # LazyVim
         lazy-nvim
         LazyVim
@@ -155,9 +155,9 @@
     # shared libraries to be added to LD_LIBRARY_PATH
     # variable available to nvim runtime
     sharedLibraries = {
-      #   general = with pkgs; [
-      #     libgit2
-      #   ];
+      # general = with pkgs; [
+      # libgit2
+      # ];
     };
 
     # environmentVariables:
