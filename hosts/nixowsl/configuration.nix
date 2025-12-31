@@ -19,6 +19,8 @@ _: {
 
     gpuProfile = "vm";
 
+    fastfetchLogo = ./terminus.png;
+
     # Set Display Manager
     # `tui` for Text login
     # `sddm` for graphical GUI (default)
