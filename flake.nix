@@ -40,10 +40,6 @@
       url = "github:0xc000022070/zen-browser-flake/beta";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -51,7 +47,6 @@
     home-manager,
     nixvim,
     nix-flatpak,
-    alejandra,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -86,6 +81,6 @@
       })
       hosts);
 
-    formatter.x86_64-linux = inputs.alejandra.packages.x86_64-linux.default;
+    formatter.${system} = inputs.nixpkgs-unstable.legacyPackages.${system}.alejandra;
   };
 }
