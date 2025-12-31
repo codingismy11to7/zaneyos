@@ -16,6 +16,7 @@
     else [];
 
   unstablePkgs = with pkgs.unstable; [
+    alejandra # nix formatter
     bitwarden-cli
     bitwarden-desktop
     discord
@@ -58,7 +59,6 @@ in {
     noctaliaPkgs
     ++ unstablePkgs
     ++ [
-      alejandra # nix formatter
       # amfora # Fancy Terminal Browser For Gemini Protocol
       appimage-run # Needed For AppImage Support
       brave # Brave Browser
