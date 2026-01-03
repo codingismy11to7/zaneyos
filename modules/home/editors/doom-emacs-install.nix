@@ -1,9 +1,10 @@
-{pkgs, ...}: let
-  doom-icon = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/jeetelongname/doom-banners/master/splashes/doom/doom-emacs-color2.svg";
-    sha256 = "1xxi5ra1z8njsqaqiaq96wyn1sc967l42kvjzbji1zrjj8za6bgq";
-  };
-in {
+{
+  lib,
+  pkgs,
+  zaneyos,
+  ...
+}:
+lib.mkIf zaneyos.doomEmacsEnable {
   # 1. Create a script to install Doom Emacs
   home.packages = [
     (pkgs.writeShellScriptBin "get-doom" ''
@@ -63,7 +64,12 @@ in {
   ];
 
   # 3. Create a desktop file
-  xdg.desktopEntries.doom-emacs = {
+  xdg.desktopEntries.doom-emacs = let
+    doom-icon = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/jeetelongname/doom-banners/master/splashes/doom/doom-emacs-color2.svg";
+      sha256 = "1xxi5ra1z8njsqaqiaq96wyn1sc967l42kvjzbji1zrjj8za6bgq";
+    };
+  in {
     name = "Doom Emacs";
     comment = "A configuration framework for GNU Emacs";
     exec = "emacs";

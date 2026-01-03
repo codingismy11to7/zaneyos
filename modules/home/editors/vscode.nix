@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  zaneyos,
   ...
 }: let
   inherit (pkgs.lib) attrByPath;
@@ -62,7 +63,7 @@
   };
 in {
   programs.vscode = {
-    enable = true;
+    enable = zaneyos.vscodeEnable;
     profiles = {
       default = {
         extensions =

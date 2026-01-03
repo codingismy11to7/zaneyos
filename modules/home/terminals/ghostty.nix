@@ -1,8 +1,11 @@
 {
-  pkgs,
   config,
+  lib,
+  pkgs,
+  zaneyos,
   ...
-}: let
+}:
+lib.mkIf zaneyos.ghosttyEnable (let
   ghostHome = "${config.xdg.configHome}/ghostty";
   shaderFile = "${ghostHome}/shaders/shader.glsl";
 in {
@@ -219,4 +222,4 @@ in {
             fi
     '')
   ];
-}
+})

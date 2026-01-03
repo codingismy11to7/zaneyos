@@ -1,17 +1,5 @@
 {zaneyos, ...}: let
-  inherit
-    (zaneyos)
-    alacrittyEnable
-    barChoice
-    ghosttyEnable
-    tmuxEnable
-    waybarChoice
-    weztermEnable
-    vscodeEnable
-    helixEnable
-    doomEmacsEnable
-    antigravityEnable
-    ;
+  inherit (zaneyos) barChoice waybarChoice;
 
   # Select bar module based on barChoice
   barModule =
@@ -21,95 +9,60 @@
 in {
   home.sessionVariables.EDITOR = "nvim";
 
-  imports =
-    [
-      ./amfora.nix
-      ./bash.nix
-      ./bashrc-personal.nix
-      ./nix-your-shell.nix
-      ./overview.nix
-      ./python.nix
-      ./cli/bat.nix
-      ./cli/btop.nix
-      # ./cli/bottom.nix
-      ./cli/cava.nix
-      ./direnv.nix
-      ./emoji.nix
-      ./eza.nix
-      ./fastfetch
-      ./fish
-      ./cli/fzf.nix
-      ./cli/gh.nix
-      ./cli/git.nix
-      ./gtk.nix
-      # ./cli/htop.nix
-      ./hyprland
-      ./terminals/kitty.nix
-      ./cli/lazygit.nix
-      ./obs-studio.nix
-      ./editors/lazyvim
-      #./editors/nvf.nix
-      # ./editors/nixvim.nix
-      ./editors/nano.nix
-      ./rofi
-      ./qt.nix
-      ./scripts
-      # ./scripts/gemini-cli.nix
-      ./stylix.nix
-      ./swappy.nix
-      ./swaync.nix
-      ./tealdeer.nix
-      ./virtmanager.nix
-      barModule
-      ./webapps
-      ./wlogout
-      ./xdg.nix
-      ./yazi
-      # ./zen-browser.nix
-      ./zoxide.nix
-      ./zsh
-    ]
-    ++ (
-      if helixEnable
-      then [./editors/evil-helix.nix]
-      else []
-    )
-    ++ (
-      if vscodeEnable
-      then [./editors/vscode.nix]
-      else []
-    )
-    ++ (
-      if antigravityEnable
-      then [./editors/antigravity.nix]
-      else []
-    )
-    ++ (
-      if doomEmacsEnable
-      then [
-        ./editors/doom-emacs-install.nix
-        ./editors/doom-emacs.nix
-      ]
-      else []
-    )
-    ++ (
-      if weztermEnable
-      then [./terminals/wezterm.nix]
-      else []
-    )
-    ++ (
-      if ghosttyEnable
-      then [./terminals/ghostty.nix]
-      else []
-    )
-    ++ (
-      if tmuxEnable
-      then [./terminals/tmux.nix]
-      else []
-    )
-    ++ (
-      if alacrittyEnable
-      then [./terminals/alacritty.nix]
-      else []
-    );
+  imports = [
+    ./terminals/alacritty.nix
+    ./amfora.nix
+    ./editors/antigravity.nix
+    ./bash.nix
+    ./bashrc-personal.nix
+    ./nix-your-shell.nix
+    ./overview.nix
+    ./python.nix
+    ./cli/bat.nix
+    ./cli/btop.nix
+    # ./cli/bottom.nix
+    ./cli/cava.nix
+    ./direnv.nix
+    ./editors/doom-emacs.nix
+    ./editors/doom-emacs-install.nix
+    ./emoji.nix
+    ./editors/evil-helix.nix
+    ./eza.nix
+    ./fastfetch
+    ./fish
+    ./cli/fzf.nix
+    ./cli/gh.nix
+    ./terminals/ghostty.nix
+    ./cli/git.nix
+    ./gtk.nix
+    # ./cli/htop.nix
+    ./hyprland
+    ./terminals/kitty.nix
+    ./cli/lazygit.nix
+    ./obs-studio.nix
+    ./editors/lazyvim
+    #./editors/nvf.nix
+    # ./editors/nixvim.nix
+    ./editors/nano.nix
+    ./rofi
+    ./qt.nix
+    ./scripts
+    # ./scripts/gemini-cli.nix
+    ./stylix.nix
+    ./swappy.nix
+    ./swaync.nix
+    ./tealdeer.nix
+    ./terminals/tmux.nix
+    ./virtmanager.nix
+    ./editors/vscode.nix
+    barModule
+    ./webapps
+    ./terminals/wezterm.nix
+    ./wlogout
+    ./xdg.nix
+    ./yazi
+    # ./zen-browser.nix
+    ./zoxide.nix
+    ./zsh
+  ];
 }
