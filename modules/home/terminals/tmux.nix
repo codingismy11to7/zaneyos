@@ -1,5 +1,11 @@
 # Tmux is a terminal multiplexer that allows you to run multiple terminal sessions in a single window.
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  zaneyos,
+  ...
+}:
+lib.mkIf zaneyos.tmuxEnable {
   programs.tmux = {
     enable = true;
     mouse = true;

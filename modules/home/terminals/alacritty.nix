@@ -1,8 +1,9 @@
 {
-  pkgs,
   lib,
+  zaneyos,
   ...
-}: {
+}:
+lib.mkIf zaneyos.alacrittyEnable {
   programs.alacritty = let
     font_family = lib.mkDefault "Maple mono NF";
   in {

@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  zaneyos,
+  ...
+}:
+lib.mkIf zaneyos.doomEmacsEnable {
   home.packages = with pkgs; [
     emacs-pgtk
     git

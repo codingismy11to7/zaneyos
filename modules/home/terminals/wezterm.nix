@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  zaneyos,
+  ...
+}:
+lib.mkIf zaneyos.weztermEnable {
   programs.wezterm = {
     enable = true;
     package = pkgs.wezterm;
