@@ -2,14 +2,23 @@
   description = "ZaneyOS";
 
   inputs = {
+    systems.url = "github:nix-systems/default-linux";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nvf.url = "github:notashelf/nvf";
-    stylix.url = "github:danth/stylix/release-25.11";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
+    stylix = {
+      url = "github:danth/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     sops-nix = {
@@ -26,6 +35,7 @@
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
     };
 
     # Google Antigravity (IDE)
@@ -47,10 +57,12 @@
     home-manager,
     nixvim,
     nix-flatpak,
+    systems,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
     username = "steven";
+
+    forAllSystems = nixpkgs.lib.genAttrs (import systems);
 
     # Deduplicate nixosConfigurations while preserving the top-level 'profile'
     mkNixosConfig = host:
@@ -81,6 +93,6 @@
       })
       hosts);
 
-    formatter.${system} = inputs.nixpkgs-unstable.legacyPackages.${system}.alejandra;
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
