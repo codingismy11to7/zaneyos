@@ -7,12 +7,11 @@
   # Noctalia-specific packages
   noctaliaPkgs =
     if barChoice == "noctalia"
-    then
-      with pkgs; [
-        matugen # color palette generator needed for noctalia-shell
-        app2unit # launcher for noctalia-shell
-        gpu-screen-recorder # needed for nnoctalia-shell
-      ]
+    then with pkgs; [
+      matugen # color palette generator needed for noctalia-shell
+      app2unit # launcher for noctalia-shell
+      gpu-screen-recorder # needed for nnoctalia-shell
+    ]
     else [];
 
   unstablePkgs = with pkgs.unstable; [
