@@ -61,6 +61,7 @@ in {
     ./wlogout
     ./xdg.nix
     ./yazi
+    ./zellij
     # ./zen-browser.nix
     ./zoxide.nix
     ./zsh

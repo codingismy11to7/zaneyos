@@ -22,7 +22,6 @@
     discord
     ripgrep
     slack
-    zellij
   ];
 in {
   programs = {
