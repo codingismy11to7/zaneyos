@@ -1,8 +1,7 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) intelID nvidiaID;
+{config, ...}: let
+  inherit (config.zaneyos) intelID nvidiaID;
 in {
   imports = [
-    ../../hosts/${host}
     ../../modules/drivers
     ../../modules/core
   ];

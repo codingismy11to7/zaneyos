@@ -1,0 +1,89 @@
+_: {
+  # Welcome to your ZaneyOS configuration!
+  # This block is where you can customize your NixOS experience.
+  #
+  # For a comprehensive list of all available options, their descriptions,
+  # and default values, please refer to the following file:
+  # ../../modules/options.nix
+  #
+  # You can override any of those options here. Most settings are optional
+  # and can be removed to use the project defaults.
+  zaneyos = {
+    # Git Configuration
+    gitUsername = "Tyler Kelley";
+    gitEmail = "tylerzanekelley@gmail.com";
+
+    # does not have to be the same as the directory name, but
+    # would be common
+    hostName = "my-hostname";
+
+    # Set Display Manager
+    # `tui` for Text login
+    # `sddm` for graphical GUI (default)
+    # SDDM background is set with stylixImage
+    displayManager = "sddm";
+
+    # Program Options
+    # Set Default Browser (google-chrome-stable for google-chrome)
+    # This does NOT install your browser
+    # You need to install it by adding it to the `packages.nix`
+    # or as a flatpak
+    browser = "brave";
+
+    # Available Options:
+    # Kitty, ghostty, wezterm, aalacrity
+    # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
+    # Setting it here does not enable it. Kitty is installed by default
+    terminal = "kitty"; # Set Default System Terminal
+
+    keyboardLayout = "us";
+    keyboardVariant = "";
+    consoleKeyMap = "us";
+
+    # Themes, waybar and animation
+    # Set Stylix Image
+    # This will set your color palette
+    # Default background
+    # Add new images to ~/zaneyos/wallpapers
+    stylixImage = ../../wallpapers/mountainscapedark.jpg;
+
+    # Set Waybar
+    #  Available Options:
+    waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-dwm.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-dwm-2.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-TheBlackDon.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-tony.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-ddubsos-v1.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-mecha.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jak-ml4w-modern.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jak-oglo-simple.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jwt-catppuccin.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jwt-transparent.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jwt-ultradark.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-pctrade-catppuccin.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-mangowc-jak-catppuccin.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-old-ddubsos.nix;
+
+    # Set Animation style
+    # Available options are:
+    animChoice = ../../modules/home/hyprland/animations-def.nix;
+    #animChoice = ../../modules/home/hyprland/animations-end4.nix;
+    #animChoice = ../../modules/home/hyprland/animations-end4-slide.nix;
+    #animChoice = ../../modules/home/hyprland/animations-end-slide.nix;
+    #animChoice = ../../modules/home/hyprland/animations-dynamic.nix;
+    #animChoice = ../../modules/home/hyprland/animations-moving.nix;
+    #animChoice = ../../modules/home/hyprland/animations-hyde-optimized.nix;
+    #animChoice = ../../modules/home/hyprland/animations-mahaveer-me-1.nix;
+    #animChoice = ../../modules/home/hyprland/animations-mahaveer-me-2.nix;
+    #animChoice = ../../modules/home/hyprland/animations-ml4w-classic.nix;
+    #animChoice = ../../modules/home/hyprland/animations-ml4w-fast.nix;
+    #animChoice = ../../modules/home/hyprland/animations-ml4w-high.nix;
+  };
+}

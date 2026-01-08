@@ -1,9 +1,9 @@
 {
-  host,
+  config,
   pkgs,
   ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) thunarEnable;
+  inherit (config.zaneyos) thunarEnable;
 in {
   programs = {
     thunar = {
@@ -18,3 +18,4 @@ in {
     ffmpegthumbnailer # Need For Video / Image Preview
   ];
 }
+

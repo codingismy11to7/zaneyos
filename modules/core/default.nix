@@ -1,12 +1,6 @@
-{
-  inputs,
-  host,
-  ...
-}: let
-  # Import the host-specific variables.nix
-  vars = import ../../hosts/${host}/variables.nix;
-in {
+{inputs, ...}: {
   imports = [
+    ../options.nix
     ./boot.nix
     ./flatpak.nix
     ./fonts.nix
@@ -17,12 +11,8 @@ in {
     ./quickshell.nix
     ./packages.nix
     ./printing.nix
-    # Conditionally import the display manager module
-    (
-      if vars.displayManager == "tui"
-      then ./ly.nix
-      else ./sddm.nix
-    )
+    ./ly.nix
+    ./sddm.nix
     ./security.nix
     ./services.nix
     ./steam.nix
@@ -37,3 +27,4 @@ in {
     inputs.stylix.nixosModules.stylix
   ];
 }
+

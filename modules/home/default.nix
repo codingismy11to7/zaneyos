@@ -1,7 +1,6 @@
-{host, ...}: let
-  vars = import ../../hosts/${host}/variables.nix;
+{zaneyos, ...}: let
   inherit
-    (vars)
+    (zaneyos)
     alacrittyEnable
     barChoice
     ghosttyEnable
@@ -13,6 +12,7 @@
     doomEmacsEnable
     antigravityEnable
     ;
+
   # Select bar module based on barChoice
   barModule =
     if barChoice == "noctalia"
@@ -106,3 +106,4 @@ in {
       else []
     );
 }
+
