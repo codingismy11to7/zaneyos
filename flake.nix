@@ -21,6 +21,11 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
+    nvim = {
+      url = "github:codingismy11to7/nvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
