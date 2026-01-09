@@ -183,6 +183,24 @@
     },
     "flake-parts_4": {
       "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_2"
+      },
+      "locked": {
+        "lastModified": 1768135262,
+        "narHash": "sha256-PVvu7OqHBGWN16zSi6tEmPwwHQ4rLPU9Plvs8/1TUBY=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "80daad04eddbbf5a4d883996a73f3f542fa437ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_5": {
+      "inputs": {
         "nixpkgs-lib": [
           "stylix",
           "nixpkgs"
@@ -379,6 +397,46 @@
         "type": "github"
       }
     },
+    "neovim-nightly-overlay": {
+      "inputs": {
+        "flake-parts": "flake-parts_3",
+        "neovim-src": "neovim-src",
+        "nixpkgs": [
+          "nvim",
+          "nixPatch",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767398712,
+        "narHash": "sha256-kISX2IOmbk+A0xfGsO/ZN8d0QZiL0+PRKdiGM+Uh1Ok=",
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
+        "rev": "519c66e44d81e2a752759d60320dbd6f06c14437",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
+        "type": "github"
+      }
+    },
+    "neovim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767367892,
+        "narHash": "sha256-hqHV3mZp3HBpSwIMQLEP24PkRMwd9Ol6ZDtORuryciM=",
+        "owner": "neovim",
+        "repo": "neovim",
+        "rev": "067b5743f543798f4e58003816fc930f4106c2b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "neovim",
+        "type": "github"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1739444422,
@@ -410,6 +468,28 @@
         "type": "github"
       }
     },
+    "nixPatch": {
+      "inputs": {
+        "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nixpkgs": [
+          "nvim",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767402313,
+        "narHash": "sha256-oC/rsIMcxRksoxx2QxYukCB73g0jL2mE3OObnelsZD0=",
+        "ref": "refs/heads/main",
+        "rev": "6d2b51c24b34a85aeeb41b11fee10316d6abf12a",
+        "revCount": 180,
+        "type": "git",
+        "url": "https://codeberg.org/NicoElbers/nixPatch-nvim.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/NicoElbers/nixPatch-nvim.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1767155843,
@@ -427,6 +507,21 @@
       }
     },
     "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1765674936,
+        "narHash": "sha256-k00uTP4JNfmejrCLJOwdObYC9jHRrr/5M/a/8L2EIdo=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "2075416fcb47225d9b68ac469a5c4801a9c4dd85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lib_2": {
       "locked": {
         "lastModified": 1765674936,
         "narHash": "sha256-k00uTP4JNfmejrCLJOwdObYC9jHRrr/5M/a/8L2EIdo=",
@@ -578,6 +673,27 @@
         "type": "github"
       }
     },
+    "nvim": {
+      "inputs": {
+        "nixPatch": "nixPatch",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768171899,
+        "narHash": "sha256-3ENZgmOvLJ/CYBavp9gTmSPtx4odf/BUAaaCsFD/DBk=",
+        "owner": "codingismy11to7",
+        "repo": "nvim",
+        "rev": "86279ba63f2f34f69d1e0d85919147d1736a6aad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "codingismy11to7",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "antigravity-nix": "antigravity-nix",
@@ -589,6 +705,7 @@
         "nixvim": "nixvim",
         "noctalia": "noctalia",
         "nvf": "nvf",
+        "nvim": "nvim",
         "secrets": "secrets",
         "stylix": "stylix",
         "systems": "systems_3",
@@ -597,7 +714,7 @@
     },
     "secrets": {
       "inputs": {
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_4",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -649,7 +766,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-parts": "flake-parts_4",
+        "flake-parts": "flake-parts_5",
         "gnome-shell": "gnome-shell",
         "nixpkgs": [
           "nixpkgs"
