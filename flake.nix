@@ -3,6 +3,10 @@
 
   inputs = {
     systems.url = "github:nix-systems/default-linux";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +63,7 @@
   };
 
   outputs = {
+    disko,
     nixpkgs,
     home-manager,
     nixvim,
@@ -78,6 +83,7 @@
           inherit username;
         };
         modules = [
+          disko.nixosModules.disko
           ./modules/core
           ./modules/drivers
           ./hosts/${host}
@@ -87,7 +93,7 @@
 
     hosts = [
       "nixorge"
-      "nixstation"
+      "nixxy386"
       "zaneyos-24-vm"
       "zaneyos-oem"
     ];

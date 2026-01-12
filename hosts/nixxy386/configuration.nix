@@ -9,15 +9,19 @@ _: {
   # You can override any of those options here. Most settings are optional
   # and can be removed to use the project defaults.
   zaneyos = {
-    # Git Configuration ( For Pulling Software Repos )
-    gitUsername = "Tyler Kelly";
-    gitEmail = "tylerzanekelly@gmail.com";
+    # Git Configuration
+    gitUsername = "Steven Scott";
+    gitEmail = "steven@codemettle.com";
 
-    gpuProfile = "vm";
+    # does not have to be the same as the directory name, but
+    # would be common
+    hostName = "nixxy386";
 
-    # Set Displau Manager
+    gpuProfile = "nvidia";
+
+    # Set Display Manager
     # `tui` for Text login
-    # `sddm` for graphical GUI
+    # `sddm` for graphical GUI (default)
     # SDDM background is set with stylixImage
     displayManager = "sddm";
 
@@ -25,64 +29,62 @@ _: {
     tmuxEnable = false;
     alacrittyEnable = false;
     weztermEnable = false;
-    ghosttyEnable = false;
+    ghosttyEnable = true;
     vscodeEnable = false;
     antigravityEnable = false; # Google port of vscodium
+    # Note: This is evil-helix with VIM keybindings by default
     helixEnable = false;
-    #To install rebuild, then run zcli doom install
+    #To install: Enable here, zcli rebuild, then run zcli doom install
     doomEmacsEnable = false;
-
-    # Hyprland Settings
-    extraMonitorSettings = "monitor=Virtual-1,1920x1080@75,auto,1";
 
     # Bar/Shell Settings
     # Choose between noctalia or waybar
-    barChoice = "noctalia";
+    barChoice = "waybar";
 
     # Waybar Settings (used when barChoice = "waybar")
     clock24h = false;
 
     # Program Options
-    browser = "brave"; # Set Default Browser (google-chrome-stable for google-chrome)
-    terminal = "kitty"; # Set Default System Terminal
+    # Set Default Browser (google-chrome-stable for google-chrome)
+    # This does NOT install your browser
+    # You need to install it by adding it to the `packages.nix`
+    # or as a flatpak
+    browser = "brave";
+
+    # Available Options:
+    # Kitty, ghostty, wezterm, aalacrity
+    # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
+    # Setting it here does not enable it. Kitty is installed by default
+    terminal = "ghostty"; # Set Default System Terminal
+
     keyboardLayout = "us";
-    consoleKeyMap = "us";
+    keyboardVariant = "dvorak";
+    consoleKeyMap = "dvorak";
 
-    # For hybrid support (Intel/NVIDIA Prime or AMD/NVIDIA)
-    intelID = "PCI:1:0:0";
-    amdgpuID = "PCI:5:0:0";
-    nvidiaID = "PCI:0:2:0";
+    enableNFS = false;
 
-    # Enable NFS
-    enableNFS = true;
+    enableGnuPGAgent = false;
+    scannerEnable = false;
+    nautilusEnable = true;
+    obsStudioEnable = false;
 
-    # Enable Printing Support
-    printEnable = false;
-
-    # Enable Thunar GUI File Manager
-    thunarEnable = true;
-
+    # Themes, waybar and animation
     # Set Stylix Image
     # This will set your color palette
     # Default background
     # Add new images to ~/zaneyos/wallpapers
-    #stylixImage = ../../wallpapers/mountainscapedark.jpg;
-    stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
-    #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
-    #stylixImage = ../../wallpapers/Rainnight.jpg;
-    #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
-    #stylixImage = ../../wallpapers/nix-wallpapers-strips-logo.jpg;
-    #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
+    stylixImage = ../../wallpapers/astralbed.jpg;
 
     # Set Waybar
-    # Available options:
+    #  Available Options:
     waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
-    #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
-    #waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
     #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
     #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
     #waybarChoice = ../../modules/home/waybar/waybar-dwm.nix;
     #waybarChoice = ../../modules/home/waybar/waybar-dwm-2.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
+    #waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
     #waybarChoice = ../../modules/home/waybar/waybar-TheBlackDon.nix;
     #waybarChoice = ../../modules/home/waybar/waybar-tony.nix;
     #waybarChoice = ../../modules/home/waybar/waybar-ddubsos-v1.nix;
@@ -99,8 +101,8 @@ _: {
 
     # Set Animation style
     # Available options are:
-    animChoice = ../../modules/home/hyprland/animations-end4.nix;
-    #animChoice = ../../modules/home/hyprland/animations-def.nix;
+    # animChoice = ../../modules/home/hyprland/animations-def.nix;
+    #animChoice = ../../modules/home/hyprland/animations-end4.nix;
     #animChoice = ../../modules/home/hyprland/animations-end4-slide.nix;
     #animChoice = ../../modules/home/hyprland/animations-end-slide.nix;
     #animChoice = ../../modules/home/hyprland/animations-dynamic.nix;
@@ -109,11 +111,7 @@ _: {
     #animChoice = ../../modules/home/hyprland/animations-mahaveer-me-1.nix;
     #animChoice = ../../modules/home/hyprland/animations-mahaveer-me-2.nix;
     #animChoice = ../../modules/home/hyprland/animations-ml4w-classic.nix;
-    #animChoice = ../../modules/home/hyprland/animations-ml4w-fast.nix;
+    animChoice = ../../modules/home/hyprland/animations-ml4w-fast.nix;
     #animChoice = ../../modules/home/hyprland/animations-ml4w-high.nix;
-
-    # Set network hostId if required (needed for zfs)
-    # Otherwise leave as-is
-    hostId = "5ab03f50";
   };
 }
