@@ -9,6 +9,7 @@
     ./network.nix
     ./nfs.nix
     ./nh.nix
+    ./nix.nix
     ./quickshell.nix
     ./overlays.nix
     ./packages.nix
@@ -26,7 +27,6 @@
     ./virtualisation.nix
     ./xserver.nix
     ./ydotool.nix
-    ./cachix.nix
     inputs.stylix.nixosModules.stylix
   ];
 }
