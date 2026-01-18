@@ -26,15 +26,15 @@ in {
         pagers = [
           {
             colorArg = "always";
-            page = "delta --dark --paging=never";
+            page = "${pkgs.unstable.delta}/bin/delta --dark --paging=never";
           }
         ];
       };
       gui = {
-        theme = {
-          activeBorderColor = [accent "bold"];
-          inactiveBorderColor = [muted];
-        };
+        # theme = {
+        #   activeBorderColor = [accent "bold"];
+        #   inactiveBorderColor = [muted];
+        # };
         # showListFooter = false;
         showRandomTip = false;
         # showCommandLog = false;

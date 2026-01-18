@@ -872,7 +872,6 @@
       },
       "original": {
         "owner": "codingismy11to7",
-        "ref": "nix",
         "repo": "omarchy",
         "type": "github"
       }

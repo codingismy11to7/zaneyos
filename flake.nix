@@ -32,7 +32,7 @@
 
     omarchy = {
       # url = "path:/home/steven/dev/omarchy";
-      url = "github:codingismy11to7/omarchy/nix";
+      url = "github:codingismy11to7/omarchy";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";

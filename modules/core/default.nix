@@ -1,5 +1,9 @@
-{inputs, ...}: {
-  omarchy.enable = true;
+{ inputs, pkgs, ... }:
+{
+  omarchy = {
+    enable = true;
+    hyprland.package = pkgs.unstable.hyprland;
+  };
 
   imports = [
     inputs.omarchy.nixosModules.default

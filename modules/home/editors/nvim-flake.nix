@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -8,12 +9,7 @@
       pkgs = pkgs.unstable;
       inherit (pkgs.stdenv.hostPlatform) system;
       theme = {
-        content = ''
-          return {
-            { "bjarneo/ethereal.nvim" },
-            { "LazyVim/LazyVim", opts = { colorscheme = "ethereal" } },
-          }
-        '';
+        content = inputs.omarchy.lazyvimTheme.default {inherit config;};
       };
     })
   ];

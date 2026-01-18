@@ -27,8 +27,9 @@ in {
       options = "compose:ralt";
     };
     hyprland = {
+      package = pkgs.unstable.hyprland;
       monitorConfig = ''
-        env = GDK_SCALE,1.75
+        env = GDK_SCALE,1.5
         monitor=,preferred,auto,1.6,bitdepth,10
       '';
       widerWindowGaps = true;
@@ -71,7 +72,7 @@ in {
     ./eza.nix
     ./fastfetch
     ./fish
-    # ./cli/fzf.nix
+    ./cli/fzf.nix
     ./cli/gh.nix
     ./terminals/ghostty.nix
     ./cli/git.nix
@@ -100,7 +101,7 @@ in {
     # barModule
     ./webapps
     ./terminals/wezterm.nix
-    ./wlogout
+    # ./wlogout
     ./xdg.nix
     ./yazi
     ./zellij
