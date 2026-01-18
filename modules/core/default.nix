@@ -1,5 +1,8 @@
 {inputs, ...}: {
+  omarchy.enable = true;
+
   imports = [
+    inputs.omarchy.nixosModules.default
     ../options.nix
     ./boot.nix
     ./flatpak.nix
@@ -19,7 +22,7 @@
     ./security.nix
     ./services.nix
     ./steam.nix
-    ./stylix.nix
+    # ./stylix.nix
     ./syncthing.nix
     ./system.nix
     ./thunar.nix
@@ -27,6 +30,6 @@
     ./virtualisation.nix
     ./xserver.nix
     ./ydotool.nix
-    inputs.stylix.nixosModules.stylix
+    # inputs.stylix.nixosModules.stylix
   ];
 }

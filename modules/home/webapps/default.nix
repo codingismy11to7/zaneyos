@@ -1,38 +1,8 @@
 {
   config,
   lib,
-  pkgs,
-  zaneyos,
   ...
 }: let
-  inherit (zaneyos) browser;
-
-  gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
-  jq = "${pkgs.jq}/bin/jq";
-
-  launch-or-focus = pkgs.writeShellScript "launch-or-focus" ''
-    WINDOW_PATTERN="$1"
-    LAUNCH_COMMAND="''${2:-"${gtk-launch} -- $WINDOW_PATTERN"}"
-    WINDOW_ADDRESS=$(hyprctl clients -j | ${jq} -r --arg p "$WINDOW_PATTERN" '.[]|select((.class|test("\\b" + $p + "\\b";"i")) or (.title|test("\\b" + $p + "\\b";"i")))|.address' | head -n1)
-
-    if [[ -n $WINDOW_ADDRESS ]]; then
-      hyprctl dispatch focuswindow "address:$WINDOW_ADDRESS"
-    else
-      eval exec setsid -- $LAUNCH_COMMAND
-    fi
-  '';
-
-  launch-webapp = pkgs.writeShellScript "launch-webapp" ''
-    exec setsid -- ${browser} --app="$1" "''${@:2}"
-  '';
-
-  launch-or-focus-webapp = pkgs.writeShellScript "launch-or-focus-webapp" ''
-    WINDOW_PATTERN="$1"
-    shift
-    LAUNCH_COMMAND="${launch-webapp} $@"
-    exec ${launch-or-focus} "$WINDOW_PATTERN" "$LAUNCH_COMMAND"
-  '';
-
   makeDesktopFile = appName: appExec: iconPath: ''
     [Desktop Entry]
     Version=1.0
@@ -48,10 +18,10 @@
   desktopFile = appName: "${config.xdg.dataHome}/applications/${lib.toLower appName}.desktop";
 
   makeLauncher = appName: appUrl: iconPath:
-    makeDesktopFile appName "${launch-webapp} ${appUrl}" iconPath;
+    makeDesktopFile appName "omarchy-launch-webapp ${appUrl}" iconPath;
 
   makeSingleton = appName: appUrl: iconPath:
-    makeDesktopFile appName ''${launch-or-focus-webapp} "${appName}" ${appUrl}'' iconPath;
+    makeDesktopFile appName ''omarchy-launch-or-focus-webapp "${appName}" ${appUrl}'' iconPath;
 in {
   home.file = {
     "${desktopFile "radarr"}".text = makeLauncher "Radarr" "https://radarr.codingismy11to7.us" ./icons/radarr.svg;

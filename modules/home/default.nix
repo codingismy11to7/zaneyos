@@ -1,5 +1,10 @@
-{zaneyos, ...}: let
-  inherit (zaneyos) barChoice waybarChoice;
+{
+  inputs,
+  pkgs,
+  zaneyos,
+  ...
+}: let
+  inherit (zaneyos) barChoice browser waybarChoice;
 
   # Select bar module based on barChoice
   barModule =
@@ -9,7 +14,43 @@
 in {
   home.sessionVariables.EDITOR = "nvim";
 
+  omarchy = {
+    enable = true;
+    inherit browser;
+    theme = "ethereal";
+    firstRunMode = false;
+    font.name = "FiraCode Nerd Font";
+    font.package = pkgs.nerd-fonts.fira-code;
+    keyboard = {
+      layout = zaneyos.keyboardLayout;
+      variant = zaneyos.keyboardVariant;
+      options = "compose:ralt";
+    };
+    hyprland = {
+      monitorConfig = ''
+        env = GDK_SCALE,1.75
+        monitor=,preferred,auto,1.6,bitdepth,10
+      '';
+      widerWindowGaps = true;
+      # roundWindowCorners = true;
+      dwindleExtra = "single_window_aspect_ratio = 16 9";
+      bindingsExtra = ''
+        bindd = CTRL, F11, Melt Faces, exec, repeat_key_toggle
+      '';
+      envsExtra = ''
+        env = YDOTOOL_SOCKET,/run/ydotool/socket
+      '';
+    };
+    passwordManager = "bitwarden";
+    screensaver = {
+      activationMinutes = 5;
+      lockMinutes = 15;
+      screenOffDelaySeconds = 60;
+    };
+  };
+
   imports = [
+    inputs.omarchy.homeManagerModules.default
     ./terminals/alacritty.nix
     ./amfora.nix
     ./editors/antigravity.nix
@@ -19,7 +60,7 @@ in {
     ./overview.nix
     ./python.nix
     ./cli/bat.nix
-    ./cli/btop.nix
+    # ./cli/btop.nix
     # ./cli/bottom.nix
     ./cli/cava.nix
     ./direnv.nix
@@ -30,13 +71,13 @@ in {
     ./eza.nix
     ./fastfetch
     ./fish
-    ./cli/fzf.nix
+    # ./cli/fzf.nix
     ./cli/gh.nix
     ./terminals/ghostty.nix
     ./cli/git.nix
-    ./gtk.nix
+    # ./gtk.nix
     # ./cli/htop.nix
-    ./hyprland
+    # ./hyprland
     # ./terminals/kitty.nix
     ./cli/lazygit.nix
     ./obs-studio.nix
@@ -45,18 +86,18 @@ in {
     # ./editors/nixvim.nix
     ./editors/nvim-flake.nix
     ./editors/nano.nix
-    ./rofi
-    ./qt.nix
+    # ./rofi
+    # ./qt.nix
     ./scripts
     # ./scripts/gemini-cli.nix
-    ./stylix.nix
+    # ./stylix.nix
     ./swappy.nix
-    ./swaync.nix
+    # ./swaync.nix
     ./tealdeer.nix
     ./terminals/tmux.nix
     ./virtmanager.nix
     ./editors/vscode.nix
-    barModule
+    # barModule
     ./webapps
     ./terminals/wezterm.nix
     ./wlogout

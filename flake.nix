@@ -30,6 +30,16 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    omarchy = {
+      # url = "path:/home/steven/dev/omarchy";
+      url = "github:codingismy11to7/omarchy/nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        systems.follows = "systems";
+      };
+    };
+
     secrets = {
       url = "github:codingismy11to7/secrets";
       inputs.systems.follows = "systems";
