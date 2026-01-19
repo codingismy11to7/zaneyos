@@ -16,9 +16,9 @@ in {
 
   omarchy = {
     enable = true;
-    inherit browser;
     theme = "ethereal";
     firstRunMode = false;
+    browser.webapp = pkgs.unstable.microsoft-edge;
     font.name = "FiraCode Nerd Font";
     font.package = pkgs.nerd-fonts.fira-code;
     keyboard = {
