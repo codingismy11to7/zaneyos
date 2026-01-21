@@ -140,38 +140,27 @@ in
     # --- Helper Functions ---
     verify_hostname() {
       local current_hostname
-      local flake_hostname
-
       current_hostname="$(hostname)"
 
-      # Extract the host value from flake.nix
-      if [ -f "$FLAKE_NIX_PATH" ]; then
-        flake_hostname=$(${pkgs.gnugrep}/bin/grep -E '^[[:space:]]*host[[:space:]]*=' "$FLAKE_NIX_PATH" | ${pkgs.gnused}/bin/sed 's/.*=[[:space:]]*"\([^"]*\)".*/\1/')
-
-        if [ -z "$flake_hostname" ]; then
-          echo "Error: Could not find 'host' variable in $FLAKE_NIX_PATH" >&2
-          exit 1
-        fi
-
-        if [ "$current_hostname" != "$flake_hostname" ]; then
-          echo "Error: Hostname mismatch!" >&2
-          echo "  Current hostname: '$current_hostname'" >&2
-          echo "  Flake.nix host:   '$flake_hostname'" >&2
-          echo "" >&2
-          echo "Hint: Run 'zcli update-host' to automatically update flake.nix" >&2
-          echo "      or manually edit $FLAKE_NIX_PATH" >&2
-          exit 1
-        fi
-      else
-        echo "Error: Flake.nix not found at $FLAKE_NIX_PATH" >&2
+      # Check if host folder exists
+      local folder="$HOME/$PROJECT/hosts/$current_hostname"
+      if [ ! -d "$folder" ]; then
+        echo "Error: Host '$current_hostname' not found in $PROJECT" >&2
+        echo "  Missing folder: $folder" >&2
+        echo "" >&2
+        echo "Available hosts:" >&2
+        ${pkgs.coreutils}/bin/ls -1 "$HOME/$PROJECT/hosts/" 2>/dev/null | ${pkgs.gnused}/bin/sed 's/^/  - /' >&2
+        echo "" >&2
+        echo "Hint: Run 'zcli add-host' to create a new host configuration" >&2
         exit 1
       fi
 
-      # Also check if host folder exists
-      local folder="$HOME/$PROJECT/hosts/$current_hostname"
-      if [ ! -d "$folder" ]; then
-        echo "Error: Matching host not found in $PROJECT, Missing folder: $folder" >&2
-        exit 1
+      # Check if host is in flake.nix hosts list
+      if [ -f "$FLAKE_NIX_PATH" ]; then
+        if ! ${pkgs.gnugrep}/bin/grep -qE "\"$current_hostname\"" "$FLAKE_NIX_PATH"; then
+          echo "Warning: Host '$current_hostname' may not be in flake.nix hosts list" >&2
+          echo "  You may need to add it to the 'hosts' array in $FLAKE_NIX_PATH" >&2
+        fi
       fi
     }
 
@@ -190,8 +179,13 @@ in
       echo "  test            - Test the NixOS system configuration (without bootloader update)."
       echo "  trim            - Trim filesystems to improve SSD performance."
       echo "  update          - Update the flake and rebuild the system."
-      echo "  update-host     - Auto set host and profile in flake.nix."
+      echo "  update-host     - Update GPU profile in host's configuration.nix."
+      echo "                    (Opt: zcli update-host [profile])"
       echo "                    (Opt: zcli update-host [hostname] [profile])"
+      echo "  add-host        - Add a new host configuration."
+      echo "                    (Opt: zcli add-host [hostname] [--from source] [profile])"
+      echo "  del-host        - Delete a host configuration."
+      echo "                    (Opt: zcli del-host [hostname])"
       echo ""
       echo "Options for rebuild, rebuild-boot, and update commands:"
       echo "  --dry, -n       - Show what would be done without doing it"
@@ -469,6 +463,10 @@ in
         if [ "$#" -eq 3 ]; then # zcli update-host <hostname> <profile>
           target_hostname="$2"
           target_profile="$3"
+        elif [ "$#" -eq 2 ]; then # zcli update-host <profile>
+          target_hostname=$(${pkgs.nettools}/bin/hostname)
+          target_profile="$2"
+          echo "Using current hostname: $target_hostname"
         elif [ "$#" -eq 1 ]; then # zcli update-host (auto-detect)
           echo "Attempting to auto-detect hostname and GPU profile..."
           target_hostname=$(${pkgs.nettools}/bin/hostname)
@@ -476,93 +474,161 @@ in
 
           if [ -z "$target_profile" ]; then
             echo "Error: Could not auto-detect a specific GPU profile. Please provide it manually." >&2
-            echo "Usage: zcli update-host [hostname] [profile]" >&2
+            echo "Usage: zcli update-host [profile]" >&2
+            echo "       zcli update-host [hostname] [profile]" >&2
             exit 1
           fi
           echo "Auto-detected Hostname: $target_hostname"
           echo "Auto-detected Profile: $target_profile"
         else
           echo "Error: Invalid number of arguments for 'update-host'." >&2
-          echo "Usage: zcli update-host [hostname] [profile]" >&2
+          echo "Usage: zcli update-host [profile]" >&2
+          echo "       zcli update-host [hostname] [profile]" >&2
           exit 1
         fi
 
-        echo "Updating $FLAKE_NIX_PATH..."
+        # Check if host directory exists
+        HOST_CONFIG_PATH="$HOME/$PROJECT/hosts/$target_hostname/configuration.nix"
+        if [ ! -f "$HOST_CONFIG_PATH" ]; then
+          echo "Error: Host configuration not found: $HOST_CONFIG_PATH" >&2
+          echo "Available hosts:" >&2
+          ${pkgs.coreutils}/bin/ls -1 "$HOME/$PROJECT/hosts/" 2>/dev/null | ${pkgs.gnused}/bin/sed 's/^/  - /' >&2
+          exit 1
+        fi
 
-        # Update host
-        if ${pkgs.gnused}/bin/sed -i "s/^[[:space:]]*host[[:space:]]*=[[:space:]]*\".*\"/    host = \"$target_hostname\"/" "$FLAKE_NIX_PATH"; then
-          echo "Successfully updated host to: $target_hostname"
+        echo "Updating $HOST_CONFIG_PATH..."
+
+        # Update gpuProfile in host's configuration.nix
+        if ${pkgs.gnugrep}/bin/grep -q 'gpuProfile' "$HOST_CONFIG_PATH"; then
+          if ${pkgs.gnused}/bin/sed -i "s/gpuProfile[[:space:]]*=[[:space:]]*\"[^\"]*\"/gpuProfile = \"$target_profile\"/" "$HOST_CONFIG_PATH"; then
+            echo "Successfully updated gpuProfile to: $target_profile"
+          else
+            echo "Error: Failed to update gpuProfile in $HOST_CONFIG_PATH" >&2
+            exit 1
+          fi
         else
-          echo "Error: Failed to update host in $FLAKE_NIX_PATH" >&2
-          exit 1
+          echo "Warning: gpuProfile not found in $HOST_CONFIG_PATH" >&2
+          echo "You may need to add 'gpuProfile = \"$target_profile\";' to your zaneyos config block" >&2
         fi
 
-        # Update profile
-        if ${pkgs.gnused}/bin/sed -i "s/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\".*\"/    profile = \"$target_profile\"/" "$FLAKE_NIX_PATH"; then
-          echo "Successfully updated profile to: $target_profile"
-        else
-          echo "Error: Failed to update profile in $FLAKE_NIX_PATH" >&2
-          exit 1
-        fi
-
-        echo "Flake.nix updated successfully!"
+        echo "Host configuration updated successfully!"
         ;;
       add-host)
-        hostname=""
+        new_hostname=""
+        source_host=""
         profile_arg=""
 
-        if [ "$#" -ge 2 ]; then
-          hostname="$2"
-        fi
-        if [ "$#" -eq 3 ]; then
-          profile_arg="$3"
+        # Parse arguments: add-host [new-hostname] [--from source-host] [profile]
+        shift # remove 'add-host'
+        while [[ $# -gt 0 ]]; do
+          case $1 in
+            --from)
+              source_host="$2"
+              shift 2
+              ;;
+            *)
+              if [ -z "$new_hostname" ]; then
+                new_hostname="$1"
+              else
+                profile_arg="$1"
+              fi
+              shift
+              ;;
+          esac
+        done
+
+        if [ -z "$new_hostname" ]; then
+          read -p "Enter the new hostname: " new_hostname
         fi
 
-        if [ -z "$hostname" ]; then
-          read -p "Enter the new hostname: " hostname
-        fi
-
-        if [ -d "$HOME/$PROJECT/hosts/$hostname" ]; then
-          echo "Error: Host '$hostname' already exists." >&2
+        if [ -d "$HOME/$PROJECT/hosts/$new_hostname" ]; then
+          echo "Error: Host '$new_hostname' already exists." >&2
           exit 1
         fi
 
-        echo "Copying default host configuration..."
-        ${pkgs.coreutils}/bin/cp -r "$HOME/$PROJECT/hosts/default" "$HOME/$PROJECT/hosts/$hostname"
+        # Find source host to copy from
+        if [ -z "$source_host" ]; then
+          # List available hosts and ask user to pick one
+          echo "Available hosts to copy from:"
+          ${pkgs.coreutils}/bin/ls -1 "$HOME/$PROJECT/hosts/" | ${pkgs.coreutils}/bin/nl -w2 -s') '
+          echo ""
+          read -p "Enter the number of the host to copy from (or name): " source_choice
 
+          if [[ "$source_choice" =~ ^[0-9]+$ ]]; then
+            source_host=$(${pkgs.coreutils}/bin/ls -1 "$HOME/$PROJECT/hosts/" | ${pkgs.gnused}/bin/sed -n "''${source_choice}p")
+          else
+            source_host="$source_choice"
+          fi
+        fi
+
+        if [ ! -d "$HOME/$PROJECT/hosts/$source_host" ]; then
+          echo "Error: Source host '$source_host' does not exist." >&2
+          exit 1
+        fi
+
+        echo "Copying from '$source_host' to '$new_hostname'..."
+        ${pkgs.coreutils}/bin/cp -r "$HOME/$PROJECT/hosts/$source_host" "$HOME/$PROJECT/hosts/$new_hostname"
+
+        # Update hostName in the new configuration.nix if it exists
+        NEW_CONFIG="$HOME/$PROJECT/hosts/$new_hostname/configuration.nix"
+        if [ -f "$NEW_CONFIG" ]; then
+          if ${pkgs.gnugrep}/bin/grep -q 'hostName' "$NEW_CONFIG"; then
+            ${pkgs.gnused}/bin/sed -i "s/hostName[[:space:]]*=[[:space:]]*\"[^\"]*\"/hostName = \"$new_hostname\"/" "$NEW_CONFIG"
+            echo "Updated hostName in configuration.nix"
+          fi
+        fi
+
+        # Detect or set GPU profile
         detected_profile=""
         if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-hybrid|vm)$ ]]; then
           detected_profile="$profile_arg"
         else
           echo "Detecting GPU profile..."
           detected_profile=$(detect_gpu_profile)
-          echo "Detected GPU profile: $detected_profile"
-          read -p "Is this correct? (y/n) " -n 1 -r
-          echo
-          if [[ $REPLY =~ ^[Nn]$ ]]; then
-            read -p "Enter the correct profile (intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm): " new_profile
+          if [ -n "$detected_profile" ]; then
+            echo "Detected GPU profile: $detected_profile"
+            read -p "Is this correct? (y/n) " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Nn]$ ]]; then
+              detected_profile=""
+            fi
+          fi
+          if [ -z "$detected_profile" ]; then
+            read -p "Enter the profile (intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm): " new_profile
             while [[ ! "$new_profile" =~ ^(intel|amd|nvidia|nvidia-laptop|amd-hybrid|vm)$ ]]; do
-              echo "Invalid profile. Please enter one of the following: intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm"
-              read -p "Enter the correct profile: " new_profile
+              echo "Invalid profile. Please enter one of: intel, amd, nvidia, nvidia-laptop, amd-hybrid, vm"
+              read -p "Enter the profile: " new_profile
             done
-            detected_profile=$new_profile
+            detected_profile="$new_profile"
           fi
         fi
 
-        echo "Setting profile to '$detected_profile'..."
-        ${pkgs.gnused}/bin/sed -i "s/profile = .*/profile = \"$detected_profile\";/" "$HOME/$PROJECT/hosts/$hostname/default.nix"
+        # Update gpuProfile in configuration.nix
+        if [ -f "$NEW_CONFIG" ] && ${pkgs.gnugrep}/bin/grep -q 'gpuProfile' "$NEW_CONFIG"; then
+          ${pkgs.gnused}/bin/sed -i "s/gpuProfile[[:space:]]*=[[:space:]]*\"[^\"]*\"/gpuProfile = \"$detected_profile\"/" "$NEW_CONFIG"
+          echo "Set gpuProfile to '$detected_profile'"
+        fi
+
+        # Add host to flake.nix hosts list
+        if [ -f "$FLAKE_NIX_PATH" ]; then
+          if ! ${pkgs.gnugrep}/bin/grep -q "\"$new_hostname\"" "$FLAKE_NIX_PATH"; then
+            echo "Adding '$new_hostname' to flake.nix hosts list..."
+            ${pkgs.gnused}/bin/sed -i "/hosts = \[/a\\      \"$new_hostname\"" "$FLAKE_NIX_PATH"
+            echo "Added to flake.nix"
+          fi
+        fi
 
         read -p "Generate new hardware.nix? (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
           echo "Generating hardware.nix..."
-          sudo nixos-generate-config --show-hardware-config > "$HOME/$PROJECT/hosts/$hostname/hardware.nix"
+          sudo nixos-generate-config --show-hardware-config > "$HOME/$PROJECT/hosts/$new_hostname/hardware.nix"
           echo "hardware.nix generated."
         fi
 
         echo "Adding new host to git..."
         ${pkgs.git}/bin/git -C "$HOME/$PROJECT" add .
-        echo "hostname: $hostname added"
+        echo "Host '$new_hostname' added successfully!"
         ;;
       del-host)
         hostname=""
@@ -582,8 +648,15 @@ in
         if [[ $REPLY =~ ^[Yy]$ ]]; then
           echo "Deleting host '$hostname'..."
           ${pkgs.coreutils}/bin/rm -rf "$HOME/$PROJECT/hosts/$hostname"
+
+          # Remove from flake.nix hosts list
+          if [ -f "$FLAKE_NIX_PATH" ]; then
+            ${pkgs.gnused}/bin/sed -i "/\"$hostname\"/d" "$FLAKE_NIX_PATH"
+            echo "Removed from flake.nix hosts list"
+          fi
+
           ${pkgs.git}/bin/git -C "$HOME/$PROJECT" add .
-          echo "hostname: $hostname removed"
+          echo "Host '$hostname' removed successfully!"
         else
           echo "Deletion cancelled."
         fi
